@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
+import com.example.minervascoutingsubsystemandroid.structure.models.SubmittedGame;
 
 public class ScoutFragment extends Fragment {
 
@@ -22,6 +23,7 @@ public class ScoutFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         scoutViewModel =
                 ViewModelProviders.of(this).get(ScoutViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_scout, container, false);
         final TextView textView = root.findViewById(R.id.text_scout);
         scoutViewModel.getText().observe(this, new Observer<String>() {
