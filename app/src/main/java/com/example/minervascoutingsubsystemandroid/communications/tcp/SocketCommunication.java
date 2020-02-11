@@ -1,4 +1,4 @@
-package com.example.minervascoutingsubsystemandroid.communications.tco;
+package com.example.minervascoutingsubsystemandroid.communications.tcp;
 
 public class SocketCommunication implements Runnable{
 
