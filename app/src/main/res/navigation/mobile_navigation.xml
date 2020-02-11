@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_scout" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.minervascoutingsubsystemandroid.ui.schedule.ScheduleFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_schedule" />
+
+
+    <fragment
+        android:id="@+id/nav_tools"
+        android:name="com.example.minervascoutingsubsystemandroid.ui.settings.SettingsFragment"
+        android:label="@string/menu_tools"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_tcp"
+        android:name="com.example.minervascoutingsubsystemandroid.ui.tcp.TCPFragment"
+        android:label="@string/menu_tcp"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_data"
+        android:name="com.example.minervascoutingsubsystemandroid.ui.data.DataFragment"
+        android:label="@string/menu_data"
+        tools:layout="@layout/fragment_send" />
+</navigation>
