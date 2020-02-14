@@ -22,7 +22,7 @@ public class TCPFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         TCPViewModel =
                 ViewModelProviders.of(this).get(TCPViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
+        View root = inflater.inflate(R.layout.fragment_tcp, container, false);
         final TextView textView = root.findViewById(R.id.text_share);
         TCPViewModel.getText().observe(this, new Observer<String>() {
             @Override
