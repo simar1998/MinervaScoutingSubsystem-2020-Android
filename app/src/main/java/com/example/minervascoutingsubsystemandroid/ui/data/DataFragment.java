@@ -22,7 +22,7 @@ public class DataFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         dataViewModel =
                 ViewModelProviders.of(this).get(DataViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
+        View root = inflater.inflate(R.layout.fragment_data, container, false);
         final TextView textView = root.findViewById(R.id.text_send);
         dataViewModel.getText().observe(this, new Observer<String>() {
             @Override
