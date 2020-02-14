@@ -1,6 +1,40 @@
+syntax = "proto2";
 
+package  com.example.minervascoutingsubsystemandroid.communications.tcp.proto;
 
+option java_outer_classname = "TcpCommunication";
 
-message TcpMessage{
-
+message LogMessage{
+    enum LogLevel{
+        debug = 1;
+        info = 2;
+        warning = 3;
+        error = 4;
+    }
+    required LogLevel level = 1;
+    required string message = 2;
+    required DeviceID sender = 3;
+    required DeviceID recipient = 4;
 }
+
+message DeviceID{
+    required string deviceName = 1;
+    required string deviceUUID = 2;
+    enum DeviceType{
+        TABLET = 1;
+        PHONE = 2;
+        BROWSER = 3;
+        HUB = 4;
+        OTHER = 5;
+    }
+    required DeviceType deviceType = 3;
+}
+
+message CommandMessage{
+    required string messageDesc = 1;
+    required DeviceID sender = 2;
+    required DeviceID recipient = 3;
+    required string commandExecutableJSON = 4;
+}
+
+

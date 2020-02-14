@@ -9,7 +9,10 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
-
+/**
+ * @author Simarpal Kalsi
+ * Live Long and Prosper
+ */
 public class TcpClient {
 
     public static final String TAG = TcpClient.class.getSimpleName();

@@ -4,7 +4,10 @@ import com.example.minervascoutingsubsystemandroid.CONST;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
+/**
+ * @author Simarpal Kalsi
+ * Live Long and Prosper
+ */
 public class SocketCommunication implements Runnable{
 
     SocketStatus socketStatus;
