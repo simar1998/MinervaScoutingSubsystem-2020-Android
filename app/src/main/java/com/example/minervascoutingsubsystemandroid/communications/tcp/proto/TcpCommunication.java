@@ -16,7 +16,8 @@ public final class TcpCommunication {
             com.google.protobuf.MessageOrBuilder {
 
         /**
-         * <code>required .com.example.minervascoutingsubsystemandroid.communications.tcp.proto.LogMessage.LogLevel level = 1;</code>
+         * <code>required .com.example.min
+         * +ervascoutingsubsystemandroid.communications.tcp.proto.LogMessage.LogLevel level = 1;</code>
          */
         boolean hasLevel();
         /**
