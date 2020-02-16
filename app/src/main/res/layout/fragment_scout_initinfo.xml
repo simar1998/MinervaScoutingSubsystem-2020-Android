@@ -124,10 +124,12 @@
         android:id="@+id/teamNum_editTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="404dp"
+        android:layout_marginBottom="196dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="362dp"
-        tools:layout_editor_absoluteY="364dp" />
+        android:text="Enter Team Number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
