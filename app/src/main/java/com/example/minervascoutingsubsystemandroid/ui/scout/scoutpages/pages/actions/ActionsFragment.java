@@ -1,4 +1,4 @@
-package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages;
+package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.actions;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,15 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
-import com.example.minervascoutingsubsystemandroid.ui.schedule.ScheduleViewModel;
 
-public class InitInfoFragment  extends Fragment {
+public class ActionsFragment extends Fragment {
 
-    InitInfoViewModel initInfoViewModel;
+    ActionsViewModel actionsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        initInfoViewModel = ViewModelProviders.of(this).get(InitInfoViewModel.class);
+        actionsViewModel = ViewModelProviders.of(this).get(ActionsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         return root;

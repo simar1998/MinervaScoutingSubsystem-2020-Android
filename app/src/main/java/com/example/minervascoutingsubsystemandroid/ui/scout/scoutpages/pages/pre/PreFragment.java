@@ -1,4 +1,4 @@
-package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages;
+package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.pre;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,13 +11,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
 
-public class ActionsFragment extends Fragment {
+public class PreFragment extends Fragment {
 
-    ActionsViewModel actionsViewModel;
+    PreViewModel preViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        actionsViewModel = ViewModelProviders.of(this).get(ActionsViewModel.class);
+        preViewModel = ViewModelProviders.of(this).get(PreViewModel.class);
         View root = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         return root;

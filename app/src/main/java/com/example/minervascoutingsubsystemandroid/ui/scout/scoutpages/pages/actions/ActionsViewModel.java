@@ -1,4 +1,4 @@
-package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages;
+package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.actions;
 
 import androidx.lifecycle.ViewModel;
 

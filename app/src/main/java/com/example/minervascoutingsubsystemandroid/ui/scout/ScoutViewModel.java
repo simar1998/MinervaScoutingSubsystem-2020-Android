@@ -20,13 +20,13 @@ public class ScoutViewModel extends ViewModel {
         return mText;
     }
 
-    public void setOnlickListenerForButton(View view){
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mText.setValue("Hahaha bumbaclot!!");
-            }
-        });
-
-    }
+//    public void setOnlickListenerForButton(View view){
+//        view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mText.setValue("Hahaha bumbaclot!!");
+//            }
+//        });
+//
+//    }
 }

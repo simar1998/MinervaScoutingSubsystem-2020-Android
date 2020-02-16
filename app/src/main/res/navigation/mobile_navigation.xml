@@ -9,7 +9,7 @@
         android:id="@+id/nav_home"
         android:name="com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_scout" />
+        tools:layout="@layout/fragment_scout_initinfo" />
 
     <fragment
         android:id="@+id/nav_gallery"

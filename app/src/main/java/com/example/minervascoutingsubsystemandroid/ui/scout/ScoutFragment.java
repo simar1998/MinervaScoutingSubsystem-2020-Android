@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
-import com.example.minervascoutingsubsystemandroid.structure.models.SubmittedGame;
 
 public class ScoutFragment extends Fragment {
 
@@ -25,16 +24,24 @@ public class ScoutFragment extends Fragment {
         scoutViewModel =
                 ViewModelProviders.of(this).get(ScoutViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_scout, container, false);
-        final TextView textView = root.findViewById(R.id.text_scout);
+        View root = inflater.inflate(R.layout.fragment_scout_pre_action, container, false);
+        final TextView textView = root.findViewById(R.id.startPos_txtView);
         scoutViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                //textView.setText(s);
             }
         });
-        final Button button = root.findViewById(R.id.button);
-        scoutViewModel.setOnlickListenerForButton(button);
+
+
+
+
+//        final Button button = root.findViewById(R.id.button);
+//        scoutViewModel.setOnlickListenerForButton(button);
+
+
+
+
         return root;
     }
 }
