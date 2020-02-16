@@ -16,4 +16,12 @@ public class PostActions {
     int hangLoc;
 
     int balanceTime;
+
+    boolean gotBuddyd;
+
+    boolean buddydBot;
+
+    String comment;
+
+    boolean isParked;
 }

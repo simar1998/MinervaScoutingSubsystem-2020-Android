@@ -14,6 +14,12 @@ public class SubmittedGame {
 
     int match;
 
+    int scoutTeamNum;
+
+    String scoutName;
+
+    String scoutUUID;
+
     char alliance;
 
     int pos;    
@@ -23,6 +29,8 @@ public class SubmittedGame {
     Date timeStamp;
 
     int numReplayed = 0;
+
+
 
     public int getId() {
         return id;
@@ -87,4 +95,30 @@ public class SubmittedGame {
     public void setNumReplayed(int numReplayed) {
         this.numReplayed = numReplayed;
     }
+
+    public int getScoutTeamNum() {
+        return scoutTeamNum;
+    }
+
+    public void setScoutTeamNum(int scoutTeamNum) {
+        this.scoutTeamNum = scoutTeamNum;
+    }
+
+    public String getScoutName() {
+        return scoutName;
+    }
+
+    public void setScoutName(String scoutName) {
+        this.scoutName = scoutName;
+    }
+
+    public String getScoutUUID() {
+        return scoutUUID;
+    }
+
+    public void setScoutUUID(String scoutUUID) {
+        this.scoutUUID = scoutUUID;
+    }
+
+
 }
