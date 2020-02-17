@@ -27,6 +27,8 @@ public class NetworkCrawlerSubroutine extends AsyncTask<Void, Void, Void> {
         mContextRef = new WeakReference<>(context);
     }
 
+    public static String tcpSocketIP = "";
+
     @Override
     protected Void doInBackground(Void... voids) {
         Log.d(TAG, "Let's sniff the network");
