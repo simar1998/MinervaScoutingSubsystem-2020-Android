@@ -23,7 +23,7 @@ public class ActionsFragment extends Fragment {
 
         actionsViewModel = ViewModelProviders.of(this).get(ActionsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_schedule, container, false);
-        fragmentListener.onFragmentChange(1);
+        //fragmentListener.onFragmentChange(1);
         return root;
     }
 
