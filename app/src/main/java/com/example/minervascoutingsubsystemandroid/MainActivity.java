@@ -2,11 +2,14 @@ package com.example.minervascoutingsubsystemandroid;
 
 import android.os.Bundle;
 
+import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
+import com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.pre.PreFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,7 +26,7 @@ import android.view.Menu;
 
 import static com.example.minervascoutingsubsystemandroid.communications.tcp.SocketManager.initSocketComms;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnFragmentChangeListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -70,5 +73,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onFragmentChange(int n) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (n == 1) {
+            PreFragment preFragment = new PreFragment();
+            ft.replace(R.id.fragment_container, preFragment);
+            ft.commit();
+        }
     }
 }
