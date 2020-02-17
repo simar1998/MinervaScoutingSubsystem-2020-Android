@@ -21,6 +21,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
+import static com.example.minervascoutingsubsystemandroid.communications.tcp.SocketManager.initSocketComms;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 //        NetworkCrawlerSubroutine networkSniffTask = new NetworkCrawlerSubroutine(this);
 //        networkSniffTask.execute();
+        initSocketComms();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
