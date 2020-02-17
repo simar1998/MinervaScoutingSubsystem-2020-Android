@@ -22,7 +22,7 @@ public class SubmittedGame {
 
     char alliance;
 
-    int pos;    
+    int pos;
 
     String event;
 

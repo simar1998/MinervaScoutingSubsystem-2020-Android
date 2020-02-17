@@ -21,10 +21,13 @@ public class ScoutFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scoutViewModel =
-                ViewModelProviders.of(this).get(ScoutViewModel.class);
+
+
+        scoutViewModel = ViewModelProviders.of(this).get(ScoutViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_scout_pre_action, container, false);
+
+
         final TextView textView = root.findViewById(R.id.startPos_txtView);
         scoutViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -38,6 +41,8 @@ public class ScoutFragment extends Fragment {
 
 //        final Button button = root.findViewById(R.id.button);
 //        scoutViewModel.setOnlickListenerForButton(button);
+
+
 
 
 

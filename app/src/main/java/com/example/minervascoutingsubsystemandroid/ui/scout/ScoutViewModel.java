@@ -24,7 +24,7 @@ public class ScoutViewModel extends ViewModel {
 //        view.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                mText.setValue("Hahaha bumbaclot!!");
+//                mText.setValue("Hahaha this btn works from the viewModel class!!");
 //            }
 //        });
 //
