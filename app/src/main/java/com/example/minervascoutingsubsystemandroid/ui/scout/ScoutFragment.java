@@ -25,8 +25,7 @@ public class ScoutFragment extends Fragment {
 
         scoutViewModel = ViewModelProviders.of(this).get(ScoutViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_scout_pre_action, container, false);
-
+        View root = inflater.inflate(R.layout.fragment_scout, container, false);
 
         final TextView textView = root.findViewById(R.id.startPos_txtView);
         scoutViewModel.getText().observe(this, new Observer<String>() {

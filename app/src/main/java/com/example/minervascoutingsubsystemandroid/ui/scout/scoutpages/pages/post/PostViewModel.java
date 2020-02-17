@@ -6,4 +6,5 @@ public class PostViewModel extends ViewModel {
 
     public PostViewModel() {
     }
+
 }

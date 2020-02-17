@@ -11,23 +11,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.minervascoutingsubsystemandroid.structure.models.SubmittedGame;
 
+import java.util.ArrayList;
+
 public class InitInfoViewModel extends ViewModel {
 
-    EditText scoutNameEditTxt;
-    EditText matchNumEditTxt;
-
-    Button red1Btn;
-    Button red2Btn;
-    Button red3Btn;
-    Button b1ueBtn;
-    Button blue2Btn;
-    Button blue3Btn;
-
-    EditText teamNumEditTxt;
-
-    CheckBox matchReplayChkBox;
-
-    Button submitInitScreenBtn;
 
     private int team;
 
@@ -36,18 +23,17 @@ public class InitInfoViewModel extends ViewModel {
     }
 
 
-    public void setOnClickTeamNumsOnClick(View view){
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SubmittedGame  submittedGame = new SubmittedGame();
+    public void setOnClickTeamNumsOnClick(ArrayList<View> views) {
+        for (View view : views) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SubmittedGame submittedGame = new SubmittedGame();
 
 
-
-
-
-            }
-        });
+                }
+            });
+        }
     }
 
     public int buttonListner(final Button btn){

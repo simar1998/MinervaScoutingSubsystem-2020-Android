@@ -1,5 +1,7 @@
 package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages;
 
+
+
 public class ScoutPagesManager {
 
 

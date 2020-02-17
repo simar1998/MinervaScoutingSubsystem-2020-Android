@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
 
+import java.util.ArrayList;
+
 
 public class InitInfoFragment  extends Fragment {
 
@@ -27,6 +29,9 @@ public class InitInfoFragment  extends Fragment {
     Button blue2Btn;
     Button blue3Btn;
 
+    ArrayList<View> buttonArrayList = new ArrayList<>();
+
+
     EditText teamNumEditTxt;
 
     CheckBox matchReplayChkBox;
@@ -36,7 +41,11 @@ public class InitInfoFragment  extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        buttonArrayList.add(red1Btn);
+
+
         initInfoViewModel = ViewModelProviders.of(this).get(InitInfoViewModel.class);
+        initInfoViewModel.setOnClickTeamNumsOnClick(buttonArrayList);
         View root = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         return root;
