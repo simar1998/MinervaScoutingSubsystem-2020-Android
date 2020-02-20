@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
     public void onFragmentChange(int n) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (n == 1) {
-            InitInfoFragment initInfoFragment = new InitInfoFragment(1);
+            InitInfoFragment initInfoFragment = new InitInfoFragment();
             ft.replace(R.id.fragment_container, initInfoFragment);
             ft.commit();
     }

@@ -35,16 +35,6 @@ public class ScoutFragment extends Fragment {
         });
 
 
-
-
-//        final Button button = root.findViewById(R.id.button);
-//        scoutViewModel.setOnlickListenerForButton(button);
-
-
-
-
-
-
         return root;
     }
 }
