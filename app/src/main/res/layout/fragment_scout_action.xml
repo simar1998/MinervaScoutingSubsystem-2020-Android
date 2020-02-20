@@ -4,8 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/pre_action_btn2"
+        android:layout_width="270dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="612dp"
+        android:text="Pre-Match Setup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/action_action_btn2"
+        android:layout_width="188dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="348dp"
+        android:text="Atuo + Teleop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/post_action_btn2"
+        android:layout_width="196dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="84dp"
+        android:text="Endgame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/startPos_txtView"
+        android:id="@+id/climbPost_txtView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

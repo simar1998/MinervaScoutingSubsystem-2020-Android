@@ -1,19 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/startPos_txtView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/climbPost_txtView"
+        android:layout_width="398dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="184dp"
         android:layout_marginEnd="8dp"
+        android:hint="Change climb posiiton using the slider above"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pre_post_btn"
+        android:layout_width="234dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="696dp"
+        android:text="pre match setup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/post_post_btn"
+        android:layout_width="147dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="176dp"
+        android:text="endgame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/actions_post_btn"
+        android:layout_width="193dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="440dp"
+        android:text="auto + teleop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/climbPos_seekbar"
+        android:layout_width="501dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="316dp"
+        android:layout_marginBottom="428dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Switch
+        android:id="@+id/park_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parked?"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="233dp" />
+
+    <Switch
+        android:id="@+id/gotBuddyd_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Got climb assist(buddy bar/lifted)"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <Switch
+        android:id="@+id/buddydBot_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assisted another robot in climb"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <Switch
+        android:id="@+id/barBalance_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Is the bar balanced 5 secs after match is over"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <EditText
+        android:id="@+id/comments_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="212dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Additional comments"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/optionalComments_spinner"
+        android:layout_width="486dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="104dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/submitMatchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="464dp"
+        android:layout_marginBottom="68dp"
+        android:text="Submit match "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

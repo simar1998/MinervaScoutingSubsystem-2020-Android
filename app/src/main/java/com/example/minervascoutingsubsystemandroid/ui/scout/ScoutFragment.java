@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -27,7 +26,7 @@ public class ScoutFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_scout, container, false);
 
-        final TextView textView = root.findViewById(R.id.startPos_txtView);
+        final TextView textView = root.findViewById(R.id.climbPost_txtView);
         scoutViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
