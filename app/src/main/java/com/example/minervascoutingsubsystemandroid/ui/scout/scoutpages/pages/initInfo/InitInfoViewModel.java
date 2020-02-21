@@ -64,15 +64,15 @@ public class InitInfoViewModel extends ViewModel {
               String scoutName = scoutNameEditTxt.getText().toString();
               String matchNum = matchNumEditTxt.getText().toString();
               String teamNum = teamNumEditTxt.getText().toString();
-              if( !(scoutName.matches("")))
+              if( (scoutName.matches("")))
               {
                   Toast.makeText(fragment.getContext(), "You have not entered the scout name", Toast.LENGTH_SHORT).show();
               }
-              else if(!(matchNum.matches("")))
+              else if((matchNum.matches("")))
               {
                   Toast.makeText(fragment.getContext(),"Please enter a match number", Toast.LENGTH_SHORT).show();
               }
-              else if (!(teamNum.matches("")))
+              else if ((teamNum.matches("")))
               {
                   Toast.makeText(fragment.getContext(),"Please enter a team number", Toast.LENGTH_SHORT).show();
               }

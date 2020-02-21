@@ -99,8 +99,10 @@ public class PreFragment extends Fragment {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                progressBar.setProgress(progress);
 
+
+                progressBar.setProgress(progress);
+                startingPosDescription.setText(findStartingPos(progress));
             }
 
             @Override

@@ -122,4 +122,14 @@
         android:text="Submit match "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/climbPos_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="491dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="320dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
