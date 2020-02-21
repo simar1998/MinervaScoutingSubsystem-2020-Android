@@ -14,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
+import com.example.minervascoutingsubsystemandroid.ui.PagesEnum;
 import com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.actions.ActionsFragment;
 import com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.initInfo.InitInfoFragment;
 import com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.post.PostFragment;
