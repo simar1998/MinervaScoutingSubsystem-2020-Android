@@ -21,7 +21,7 @@ public class MatchTimerManager {
     }
 
     public static boolean getIsActive(){
-        return matchTimer.isActive;
+        return matchTimer.isActive();
     }
 
 
