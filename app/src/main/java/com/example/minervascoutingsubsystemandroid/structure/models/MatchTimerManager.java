@@ -2,8 +2,6 @@ package com.example.minervascoutingsubsystemandroid.structure.models;
 
 public class MatchTimerManager {
 
-
-
     private static MatchTimer matchTimer = new MatchTimer();
     private static Thread thread;
 
@@ -20,6 +18,10 @@ public class MatchTimerManager {
 
     public static int getCounter(){
         return matchTimer.getCounter();
+    }
+
+    public static boolean getIsActive(){
+        return matchTimer.isActive();
     }
 
 
@@ -52,7 +54,6 @@ public class MatchTimerManager {
         public int getCounter() {
             return counter;
         }
-
 
     }
 
