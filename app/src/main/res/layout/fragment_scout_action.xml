@@ -387,4 +387,12 @@
         </TableRow>
     </TableLayout>
 
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_width="960dp"
+        android:layout_height="512dp"
+        android:text="start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

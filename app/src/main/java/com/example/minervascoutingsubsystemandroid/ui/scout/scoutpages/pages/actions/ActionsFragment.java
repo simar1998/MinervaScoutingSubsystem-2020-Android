@@ -2,6 +2,7 @@ package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.ac
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
+import com.example.minervascoutingsubsystemandroid.structure.models.Actions;
+import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 
@@ -22,6 +25,8 @@ import java.util.Arrays;
 
 public class ActionsFragment extends Fragment implements FragmentManager {
 
+
+    ArrayList<Actions> actionsList;
 
     Button preTabBtn;
     Button actionTabBtn;
@@ -36,6 +41,9 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
     ImageView yellowImg;
     ImageView zone2Img;
+
+    Button startBtn;
+
 
     Button zone1Btn;
     Button zone2Btn;
@@ -78,6 +86,11 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         final View view = inflater.inflate(R.layout.fragment_scout_action, container, false);
         //fragmentListener.onFragmentChange(1);
 
+
+
+        actionsList = new ArrayList<>();
+
+
         preTabBtn = ( Button) view.findViewById(R.id.pre_action_btn2);
         actionTabBtn = ( Button) view.findViewById(R.id.action_action_btn2);
         postTabBtn = ( Button) view.findViewById(R.id.post_action_btn2);
@@ -85,6 +98,16 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         debugTxtView = (TextView)view.findViewById(R.id.debug_action_txtView);
 
         fieldImg = (ImageView) view.findViewById(R.id.field_actions_imgView);
+
+
+        intakeBtn = (Button) view.findViewById(R.id.intake_btn);
+        shootBtn = (Button) view.findViewById(R.id.shoot_btn);
+        dropBtn = (Button) view.findViewById(R.id.drop_btn);
+        feedBtn = (Button) view.findViewById(R.id.feed_btn);
+        cancelBtn = (Button) view.findViewById(R.id.cancel_btn);
+
+
+        startBtn = (Button) view.findViewById(R.id.start_btn);
 
         zone1Btn = (Button) view.findViewById(R.id.zone1_btn);
         zone2Btn = (Button) view.findViewById(R.id.zone2_btn);
@@ -112,25 +135,83 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         zone24Btn = (Button) view.findViewById(R.id.zone24_btn);
         final int yellowImgLoc[] = new int[2];
 
+        int timeCounter  = -1;
+
+
         final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
                 zone1Btn, zone2Btn,zone3Btn,zone4Btn,zone5Btn,zone6Btn,zone7Btn,zone8Btn,zone9Btn,
                 zone10Btn,zone11Btn,zone12Btn,zone13Btn,zone14Btn,zone15Btn,zone16Btn,zone17Btn,
                 zone18Btn,zone19Btn,zone20Btn,zone21Btn,zone22Btn,zone23Btn,zone24Btn
                 ));
 
+        final ArrayList<Button> optionBtns = new ArrayList<>(Arrays.asList(intakeBtn,shootBtn,dropBtn,feedBtn,cancelBtn));
+
         ArrayList<ImageView> zoneImageViews = new ArrayList<>(Arrays.asList(yellowImg,zone2Img));
 
+
+
+
+
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MatchTimerManager.startMatchTimer();
+
+            }
+        });
+
+
+
+
+        for (int k =0; k<optionBtns.size(); k++){
+            optionBtns.get(k).setVisibility(View.INVISIBLE);
+        }
+
+
+        /**
+         * Cycles through all zone buttons as a onClick listener
+         *
+         * KNOWN ISSUE:
+         * When zone 21 is clicked, none of the optionButtons can be clicked because its under zone 21
+         */
         for ( int i = 0 ; i < zoneBtns.size(); i ++){
             final int copyOfI = i;
             zoneBtns.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    getCoordinateXY(zoneBtns.get(copyOfI));
+
+
+
+//Testing if zone 21 btn is hit or the actions menu
+                    if (copyOfI == 20){
+                        Log.d("CREATION","IM HITTING ZONE 21");
+                    }
+                    //Get teh coordinates of zone button clicked
+                    int[] zoneBtnLoc= getCoordinateXY(zoneBtns.get(copyOfI));
+                    for (int j =0;j<zoneBtns.size();j++)
+                    {
+                        if(copyOfI !=j){
+                            zoneBtns.get(j).setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            intakeBtn.setX(zoneBtnLoc[0]);
+                            intakeBtn.setY(zoneBtnLoc[1]);
+
+                            for(int m = 0; m< optionBtns.size(); m++){
+
+                                optionBtns.get(m).setVisibility(View.VISIBLE);
+                            }
+                        }
+
+
+                    }
+
 
                 }
 
-                public  void getCoordinateXY(Button btn ){
+                public  int[] getCoordinateXY(Button btn ){
                     //Button btn = (Button) view.findViewById(btnID);
                     int locOfBtn[] = new  int[2];
                     btn.getLocationOnScreen(locOfBtn);
@@ -144,11 +225,37 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
                     }
 
-
+                        return locOfBtn;
 
                 }
             });
         }
+
+
+
+
+        intakeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Actions action = new Actions();
+
+            }
+        });
+
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    for (int m = 0; m< optionBtns.size(); m++){
+                        optionBtns.get(m).setVisibility(View.INVISIBLE);
+                    }
+                    for(int i = 0; i < zoneBtns.size(); i++){
+                        zoneBtns.get(i).setVisibility(View.VISIBLE);
+                    }
+            }
+        });
+
+
 
         for ( int i = 0 ; i < zoneImageViews.size(); i ++){
 

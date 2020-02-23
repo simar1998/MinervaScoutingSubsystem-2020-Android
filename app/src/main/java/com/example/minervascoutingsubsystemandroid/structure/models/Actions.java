@@ -15,6 +15,12 @@ public class Actions {
 
     String location;
 
+    int eventZone;
+
+    int scoreAttempt;
+
+    int scoreSuccess;
+
     boolean auto;
 
 
@@ -57,6 +63,29 @@ public class Actions {
 
     public void setAuto(boolean auto) {
         this.auto = auto;
+    }
+
+    public int getScoreAttempt() {
+        return scoreAttempt;
+    }
+
+    public void setScoreAttempt(int scoreAttempt) {
+        this.scoreAttempt = scoreAttempt;
+    }
+
+    public int getScoreSuccess() {
+        return scoreSuccess;
+    }
+
+    public void setScoreSuccess(int scoreSuccess) {
+        this.scoreSuccess = scoreSuccess;
+    }
+    public int getEventZone() {
+        return eventZone;
+    }
+
+    public void setEventZone(int eventZone) {
+        this.eventZone = eventZone;
     }
 
 
