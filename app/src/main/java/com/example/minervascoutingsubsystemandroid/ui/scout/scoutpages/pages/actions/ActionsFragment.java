@@ -37,9 +37,37 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     ImageView yellowImg;
     ImageView zone2Img;
 
+    Button zone1Btn;
+    Button zone2Btn;
     Button zone3Btn;
     Button zone4Btn;
+    Button zone5Btn;
+    Button zone6Btn;
+    Button zone7Btn;
+    Button zone8Btn;
+    Button zone9Btn;
+    Button zone10Btn;
+    Button zone11Btn;
+    Button zone12Btn;
+    Button zone13Btn;
+    Button zone14Btn;
+    Button zone15Btn;
+    Button zone16Btn;
+    Button zone17Btn;
+    Button zone18Btn;
+    Button zone19Btn;
+    Button zone20Btn;
+    Button zone21Btn;
+    Button zone22Btn;
+    Button zone23Btn;
+    Button zone24Btn;
 
+
+    Button intakeBtn;
+    Button shootBtn;
+    Button dropBtn;
+    Button feedBtn;
+    Button cancelBtn;
 
 
 
@@ -56,13 +84,39 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
         debugTxtView = (TextView)view.findViewById(R.id.debug_action_txtView);
 
-                fieldImg = (ImageView) view.findViewById(R.id.field_actions_imgView);
+        fieldImg = (ImageView) view.findViewById(R.id.field_actions_imgView);
 
+        zone1Btn = (Button) view.findViewById(R.id.zone1_btn);
+        zone2Btn = (Button) view.findViewById(R.id.zone2_btn);
         zone3Btn = (Button) view.findViewById(R.id.zone3_btn);
         zone4Btn = ( Button) view.findViewById(R.id.zone4_btn);
+        zone5Btn = (Button) view.findViewById(R.id.zone5_btn);
+        zone6Btn = (Button) view.findViewById(R.id.zone6_btn);
+        zone7Btn = (Button) view.findViewById(R.id.zone7_btn);
+        zone8Btn = (Button) view.findViewById(R.id.zone8_btn);
+        zone9Btn = (Button) view.findViewById(R.id.zone9_btn);
+        zone10Btn = (Button) view.findViewById(R.id.zone10_btn);
+        zone11Btn = (Button) view.findViewById(R.id.zone11_btn);
+        zone12Btn = (Button) view.findViewById(R.id.zone12_btn);
+        zone13Btn = (Button) view.findViewById(R.id.zone13_btn);
+        zone14Btn = (Button) view.findViewById(R.id.zone14_btn);
+        zone15Btn = (Button) view.findViewById(R.id.zone15_btn);
+        zone16Btn = (Button) view.findViewById(R.id.zone16_btn);
+        zone17Btn = (Button) view.findViewById(R.id.zone17_btn);
+        zone18Btn = (Button) view.findViewById(R.id.zone18_btn);
+        zone19Btn = (Button) view.findViewById(R.id.zone19_btn);
+        zone20Btn = (Button) view.findViewById(R.id.zone20_btn);
+        zone21Btn = (Button) view.findViewById(R.id.zone21_btn);
+        zone22Btn = (Button) view.findViewById(R.id.zone22_btn);
+        zone23Btn = (Button) view.findViewById(R.id.zone23_btn);
+        zone24Btn = (Button) view.findViewById(R.id.zone24_btn);
         final int yellowImgLoc[] = new int[2];
 
-        final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(zone3Btn,zone4Btn));
+        final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
+                zone1Btn, zone2Btn,zone3Btn,zone4Btn,zone5Btn,zone6Btn,zone7Btn,zone8Btn,zone9Btn,
+                zone10Btn,zone11Btn,zone12Btn,zone13Btn,zone14Btn,zone15Btn,zone16Btn,zone17Btn,
+                zone18Btn,zone19Btn,zone20Btn,zone21Btn,zone22Btn,zone23Btn,zone24Btn
+                ));
 
         ArrayList<ImageView> zoneImageViews = new ArrayList<>(Arrays.asList(yellowImg,zone2Img));
 
@@ -82,7 +136,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
                     btn.getLocationOnScreen(locOfBtn);
                     int btnXLoc = locOfBtn[0];
                     int btnYLoc = locOfBtn[1];
-                    String btnName = view.getResources().getResourceEntryName(view.getId());
+                    String btnName = view.getResources().getResourceEntryName(btn.getId());
                     try {
                         debugTxtView.setText ("X Of"+ btnName + ": " + btnXLoc +" \n Y of " + btnName + " :" + btnYLoc);
                     }
@@ -142,7 +196,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         });
 
 
-        yellowImg.setVisibility(View.INVISIBLE);
+//        yellowImg.setVisibility(View.INVISIBLE);
 //        fieldImg.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -155,16 +209,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 //        });
         //view.findViewById(R.id.yellow_imgView).setVisibility(View.VISIBLE);
 
-        yellowImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                yellowImg.getLocationOnScreen(yellowImgLoc);
-                int yellowXLoc = yellowImgLoc[0];
-                int yellowYLoc = yellowImgLoc[1];
 
-                debugTxtView.setText("X Of yellowImg = " + yellowXLoc + " \n Y of yellowImg = " + yellowYLoc);
-            }
-        });
 
 
 //        public  String getCoordinateXY(int btnID){

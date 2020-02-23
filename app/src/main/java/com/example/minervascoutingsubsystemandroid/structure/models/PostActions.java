@@ -27,6 +27,17 @@ public class PostActions {
 
     String comment;
 
+    public Boolean getWasBotDefended() {
+        return wasBotDefended;
+    }
+
+    public void setWasBotDefended(Boolean wasBotDefended) {
+        this.wasBotDefended = wasBotDefended;
+    }
+
+    Boolean wasBotDefended;
+
+
     public int getId() {
         return id;
     }

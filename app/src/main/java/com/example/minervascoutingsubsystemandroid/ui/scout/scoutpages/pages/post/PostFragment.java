@@ -43,6 +43,8 @@ public class PostFragment extends Fragment implements FragmentManager {
     Switch gaveClimbAssistanceSwitch;
     Switch isBarBalancedSwitch;
 
+    Switch wasBotDefendedSwitch;
+
     Spinner commentsSelectionSpinner;
     EditText commentsEdiText;
 
@@ -56,6 +58,15 @@ public class PostFragment extends Fragment implements FragmentManager {
 
     //String[] sampleComments;
 
+
+    /**
+     *
+     * TODO: ADD SKETCHY-O METER ON CLIMB
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
@@ -74,6 +85,7 @@ public class PostFragment extends Fragment implements FragmentManager {
         gotClimbAssistanceSwitch = (Switch) view.findViewById(R.id.gotBuddyd_switch);
         gaveClimbAssistanceSwitch = (Switch) view.findViewById(R.id.buddydBot_switch);
         isBarBalancedSwitch = (Switch) view.findViewById(R.id.barBalance_switch);
+        wasBotDefendedSwitch = (Switch) view.findViewById(R.id.wasDefended_switch);
 
         commentsSelectionSpinner = (Spinner) view.findViewById(R.id.optionalComments_spinner);
         commentsEdiText = (EditText) view.findViewById(R.id.comments_editText);
@@ -161,6 +173,13 @@ public class PostFragment extends Fragment implements FragmentManager {
                 }
                 else {
                     post.setBarBalanced(false);
+                }
+
+                if(wasBotDefendedSwitch.isChecked()){
+                    post.setWasBotDefended(true);
+                }
+                else {
+                    post.setWasBotDefended(false);
                 }
 
                 try{

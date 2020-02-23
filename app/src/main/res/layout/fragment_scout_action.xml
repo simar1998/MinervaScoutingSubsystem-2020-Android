@@ -64,201 +64,199 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn"
+        android:id="@+id/zone21_btn"
         android:layout_width="184dp"
         android:layout_height="245dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="344dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
+        android:text="21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn2"
+        android:id="@+id/zone22_btn"
         android:layout_width="184dp"
-        android:layout_height="252dp"
+        android:layout_height="245dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
+        android:text="22"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zone3_btn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn3"
+        android:id="@+id/zone17_btn"
         android:layout_width="107dp"
         android:layout_height="85dp"
-        android:layout_marginEnd="316dp"
+        android:layout_marginEnd="312dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="504dp" />
+        android:text="17"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn7"
+        android:id="@+id/zone10_btn"
         android:layout_width="107dp"
         android:layout_height="85dp"
-        android:layout_marginEnd="544dp"
+        android:layout_marginEnd="540dp"
+        android:layout_marginBottom="420dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="92dp" />
+        android:text="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn5"
-        android:layout_width="54dp"
-        android:layout_height="85dp"
+        android:id="@+id/zone7_btn"
+        android:layout_width="58dp"
+        android:layout_height="84dp"
         android:layout_marginEnd="588dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="504dp" />
+        android:text="7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn17"
-        android:layout_width="162dp"
-        android:layout_height="159dp"
-        android:layout_marginEnd="316dp"
+        android:id="@+id/zone11_btn"
+        android:layout_width="64dp"
+        android:layout_height="84dp"
+        android:layout_marginEnd="520dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="345dp" />
+        android:text="11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn21"
+        android:id="@+id/zone8_btn"
         android:layout_width="162dp"
         android:layout_height="159dp"
         android:layout_marginEnd="484dp"
+        android:layout_marginBottom="96dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="344dp" />
+        android:text="8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn18"
+        android:id="@+id/zone14_btn"
+        android:layout_width="162dp"
+        android:layout_height="159dp"
+        android:layout_marginEnd="312dp"
+        android:layout_marginBottom="92dp"
+        android:background="@drawable/zone_btn"
+        android:text="14"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/zone15_btn"
         android:layout_width="164dp"
         android:layout_height="169dp"
-        android:layout_marginEnd="316dp"
+        android:layout_marginEnd="328dp"
+        android:layout_marginBottom="252dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="178dp" />
+        android:text="15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn22"
+        android:id="@+id/zone9_btn"
         android:layout_width="158dp"
         android:layout_height="168dp"
-        android:layout_marginEnd="488dp"
+        android:layout_marginEnd="492dp"
+        android:layout_marginBottom="252dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="176dp" />
+        android:text="9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn6"
+        android:id="@+id/zone18_btn"
         android:layout_width="54dp"
         android:layout_height="85dp"
-        android:layout_marginEnd="320dp"
+        android:layout_marginEnd="316dp"
+        android:layout_marginBottom="420dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="93dp" />
+        android:text="18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn13"
-        android:layout_width="54dp"
-        android:layout_height="85dp"
+        android:id="@+id/zone16_btn"
+        android:layout_width="72dp"
+        android:layout_height="84dp"
+        android:layout_marginEnd="376dp"
+        android:layout_marginBottom="420dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="201dp" />
+        android:text="16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn14"
-        android:layout_width="54dp"
-        android:layout_height="85dp"
-        android:layout_marginEnd="908dp"
+        android:id="@+id/zone12_btn"
+        android:layout_width="101dp"
+        android:layout_height="82dp"
+        android:layout_marginEnd="448dp"
+        android:layout_marginBottom="420dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="391dp" />
+        android:text="12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn15"
-        android:layout_width="54dp"
-        android:layout_height="85dp"
-        android:layout_marginEnd="904dp"
-        android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="201dp" />
-
-    <Button
-        android:id="@+id/zone3_btn16"
-        android:layout_width="54dp"
-        android:layout_height="85dp"
-        android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="398dp" />
-
-    <Button
-        android:id="@+id/zone3_btn4"
+        android:id="@+id/zone13_btn"
         android:layout_width="100dp"
         android:layout_height="86dp"
-        android:layout_marginEnd="420dp"
+        android:layout_marginEnd="416dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="503dp" />
+        android:text="13"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn8"
-        android:layout_width="100dp"
-        android:layout_height="86dp"
-        android:layout_marginEnd="444dp"
-        android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="92dp" />
-
-    <Button
-        android:id="@+id/zone3_btn9"
+        android:id="@+id/zone6_btn"
         android:layout_width="124dp"
         android:layout_height="261dp"
-        android:layout_marginEnd="648dp"
+        android:layout_marginEnd="652dp"
+        android:layout_marginBottom="252dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="92dp" />
+        android:text="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn10"
+        android:id="@+id/zone5_btn"
         android:layout_width="124dp"
         android:layout_height="253dp"
         android:layout_marginEnd="648dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="347dp" />
+        android:text="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn11"
+        android:id="@+id/zone20_btn"
         android:layout_width="124dp"
         android:layout_height="253dp"
-        android:layout_marginEnd="192dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="256dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="92dp" />
+        android:text="20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/zone3_btn12"
+        android:id="@+id/zone19_btn"
         android:layout_width="123dp"
         android:layout_height="245dp"
-        android:layout_marginEnd="192dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="344dp" />
+        android:text="19"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/zone4_btn"
@@ -267,7 +265,7 @@
         android:layout_marginEnd="768dp"
         android:layout_marginBottom="248dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 4"
+        android:text="4"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -275,14 +273,118 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/zone4_btn2"
+        android:id="@+id/zone3_btn"
         android:layout_width="187dp"
         android:layout_height="250dp"
         android:layout_marginEnd="772dp"
         android:background="@drawable/zone_btn"
-        android:text="Zone 4"
+        android:text="3"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/zone1_btn"
+        android:layout_width="54dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="124dp"
+        android:background="@drawable/zone_btn"
+        android:text="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/zone24_btn"
+        android:layout_width="54dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="312dp"
+        android:background="@drawable/zone_btn"
+        android:text="24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/zone2_btn"
+        android:layout_width="54dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="908dp"
+        android:layout_marginBottom="320dp"
+        android:background="@drawable/zone_btn"
+        android:text="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/zone23_btn"
+        android:layout_width="54dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="112dp"
+        android:background="@drawable/zone_btn"
+        android:text="23"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TableLayout
+        android:id="@+id/action_options_tableView"
+        android:layout_width="93dp"
+        android:layout_height="242dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/intake_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="intake" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/shoot_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="shoot" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/drop_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="drop" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/feed_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="feed" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cancel" />
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
