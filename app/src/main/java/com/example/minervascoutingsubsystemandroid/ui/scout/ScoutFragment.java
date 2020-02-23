@@ -26,8 +26,6 @@ public class ScoutFragment extends Fragment implements FragmentManager {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-
-
         scoutViewModel = ViewModelProviders.of(this).get(ScoutViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_scout, container, false);

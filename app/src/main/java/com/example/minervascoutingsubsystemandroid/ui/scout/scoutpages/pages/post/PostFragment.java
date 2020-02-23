@@ -29,7 +29,6 @@ import java.util.Arrays;
 
 public class PostFragment extends Fragment implements FragmentManager {
 
-
     OnFragmentChangeListener fragmentListener;
     private Button preBtn;
     private Button actionBtn;
@@ -55,9 +54,6 @@ public class PostFragment extends Fragment implements FragmentManager {
 
     ProgressBar climbPosProgressBar;
     String climbPosDescription;
-
-    //String[] sampleComments;
-
 
     /**
      *
@@ -193,21 +189,6 @@ public class PostFragment extends Fragment implements FragmentManager {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         climbPosSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
 
@@ -266,17 +247,8 @@ public class PostFragment extends Fragment implements FragmentManager {
             }
         });
 
-
-
-
-
-
-
         return view;
     }
-
-
-
 
 
     @Override

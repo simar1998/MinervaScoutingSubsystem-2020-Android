@@ -36,7 +36,6 @@ public class PreFragment extends Fragment implements FragmentManager {
 
     CheckBox hasBallPreload;
 
-
     String startPos;
 
     private Button submitPre;
@@ -121,7 +120,6 @@ public class PreFragment extends Fragment implements FragmentManager {
         });
 
 
-
         submitPre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,20 +138,11 @@ public class PreFragment extends Fragment implements FragmentManager {
                 }
                 else
                     Toast.makeText(getContext(), "Update the Robot Starting position", Toast.LENGTH_SHORT).show();
-
-
-
-
             }
         });
 
-
-
         return view;
     }
-
-
-
 
     @Override
     public void onAttach(Activity activity) {

@@ -20,6 +20,7 @@ import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerMa
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -77,7 +78,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     Button feedBtn;
     Button cancelBtn;
 
-
+    ArrayList<ButtonWrapper> buttonWrappers = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -85,8 +86,6 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         actionsViewModel = ViewModelProviders.of(this).get(ActionsViewModel.class);
         final View view = inflater.inflate(R.layout.fragment_scout_action, container, false);
         //fragmentListener.onFragmentChange(1);
-
-
 
         actionsList = new ArrayList<>();
 
@@ -108,6 +107,8 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
 
         startBtn = (Button) view.findViewById(R.id.start_btn);
+
+
 
         zone1Btn = (Button) view.findViewById(R.id.zone1_btn);
         zone2Btn = (Button) view.findViewById(R.id.zone2_btn);
@@ -137,6 +138,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
         int timeCounter  = -1;
 
+        generateButtonWrapperList();
 
         final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
                 zone1Btn, zone2Btn,zone3Btn,zone4Btn,zone5Btn,zone6Btn,zone7Btn,zone8Btn,zone9Btn,
@@ -334,6 +336,11 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     }
 
 
+    public void generateButtonWrapperList(){
+        for (Field field : R.class.getDeclaredFields()){
+            Log.i("FIELD" , field.getName());
+        }
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -350,5 +357,44 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     public void onDetach() {
         super.onDetach();
         fragmentListener = null;
+    }
+
+
+    public class ButtonWrapper{
+
+        int zoneNum;
+        int buttonId;
+
+        Button button;
+
+        public ButtonWrapper(int zoneNum, int buttonId, View view){
+           this.zoneNum = zoneNum;
+           this.buttonId = buttonId;
+           this.button = view.findViewById(buttonId);
+        }
+
+        public int getZoneNum() {
+            return zoneNum;
+        }
+
+        public void setZoneNum(int zoneNum) {
+            this.zoneNum = zoneNum;
+        }
+
+        public int getButtonId() {
+            return buttonId;
+        }
+
+        public void setButtonId(int buttonId) {
+            this.buttonId = buttonId;
+        }
+
+        public Button getButton() {
+            return button;
+        }
+
+        public void setButton(Button button) {
+            this.button = button;
+        }
     }
 }
