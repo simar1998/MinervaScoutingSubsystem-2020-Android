@@ -49,6 +49,7 @@ public class InitInfoFragment  extends Fragment implements FragmentManager {
 
         initInfoViewModel = new InitInfoViewModel(this, fragmentListener);
 
+
         scoutNameEditTxt = (EditText) view.findViewById(R.id.scout_name_editText);
         matchNumEditTxt = (EditText) view.findViewById(R.id.match_num_editText);
 

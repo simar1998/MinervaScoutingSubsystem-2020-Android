@@ -1,5 +1,6 @@
 package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.pre;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +14,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.Pre;
+import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
+import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 
-public class PreFragment extends Fragment {
+public class PreFragment extends Fragment implements FragmentManager {
 
     PreViewModel preViewModel;
+
+    OnFragmentChangeListener fragmentListener;
 
     private Button preTabBtn;
     private Button actionTabBtn;
@@ -47,7 +51,7 @@ public class PreFragment extends Fragment {
         final Pre pre = new Pre();
 
 
-        preViewModel = ViewModelProviders.of(this).get(PreViewModel.class);
+//        preViewModel = ViewModelProviders.of(this).get(PreViewModel.class);
         View view = inflater.inflate(R.layout.fragment_scout_pre_action, container, false);
 
 
@@ -130,8 +134,10 @@ public class PreFragment extends Fragment {
                 }
 
 
-                if(startPos != "NULL")
-                pre.setStartPos(startPos);
+                if(startPos != "NULL") {
+                    pre.setStartPos(startPos);
+                    fragmentListener.onFragmentChange(3);
+                }
                 else
                     Toast.makeText(getContext(), "Update the Robot Starting position", Toast.LENGTH_SHORT).show();
 
@@ -144,5 +150,25 @@ public class PreFragment extends Fragment {
 
 
         return view;
+    }
+
+
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            fragmentListener = (OnFragmentChangeListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
     }
 }

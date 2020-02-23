@@ -1,5 +1,6 @@
 package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.post;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +21,16 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.PostActions;
+import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
+import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class PostFragment extends Fragment {
+public class PostFragment extends Fragment implements FragmentManager {
 
+
+    OnFragmentChangeListener fragmentListener;
     private Button preBtn;
     private Button actionBtn;
     private Button postBtn;
@@ -52,6 +57,8 @@ public class PostFragment extends Fragment {
     //String[] sampleComments;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
 
         postViewModel = ViewModelProviders.of(this).get(PostViewModel.class);
         View view = inflater.inflate(R.layout.fragment_scout_post_action, container, false);
@@ -93,8 +100,22 @@ public class PostFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                 String currentComment = commentsEdiText.getText().toString();
+                int lenOfSasmpleText = sampleComments.length;
+                 for(int i = 0 ; i <lenOfSasmpleText ; i ++){
+                     if(i == 0){
+                         currentComment += ", "+ sampleComments[i];
+                     }
+                     else if (i<lenOfSasmpleText-2){
+                         currentComment += sampleComments[i] + ", ";
+                     }
+                     else if(lenOfSasmpleText-i == 2){
+                         currentComment += sampleComments[i];
+                     }
 
-               commentsEdiText.setText(adapterView.getItemAtPosition(position).toString());
+                 }
+
+
+               commentsEdiText.setText(currentComment);
 
 //                if (position == 0){
 //                    commentsEdiText.setText(sampleComments);
@@ -232,9 +253,30 @@ public class PostFragment extends Fragment {
 
 
 
-
-
-
         return view;
     }
+
+
+
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            fragmentListener = (OnFragmentChangeListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
+    }
+
+
+
 }
