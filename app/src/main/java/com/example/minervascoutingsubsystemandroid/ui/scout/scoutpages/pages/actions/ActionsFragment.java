@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.minervascoutingsubsystemandroid.MainActivity;
 import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.Actions;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager;
@@ -28,6 +29,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
 
     ArrayList<Actions> actionsList;
+    Activity activity;
 
     Button preTabBtn;
     Button actionTabBtn;
@@ -138,7 +140,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
         int timeCounter  = -1;
 
-        generateButtonWrapperList();
+        generateButtonWrapperList(view);
 
         final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
                 zone1Btn, zone2Btn,zone3Btn,zone4Btn,zone5Btn,zone6Btn,zone7Btn,zone8Btn,zone9Btn,
@@ -336,9 +338,11 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     }
 
 
-    public void generateButtonWrapperList(){
-        for (Field field : R.class.getDeclaredFields()){
-            Log.i("FIELD" , field.getName());
+    public void generateButtonWrapperList(View view){
+        int tempId;
+        for (int i  = 0; i < 24 ; i++){
+            tempId = getResources().getIdentifier("zone"+i+"_btn","id",activity.getPackageName());
+            buttonWrappers.add(new ButtonWrapper(i,tempId,view));
         }
     }
 
@@ -359,6 +363,14 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         fragmentListener = null;
     }
 
+    public Button getButton(int zone){
+        for (ButtonWrapper buttonWrapper : buttonWrappers){
+            if (buttonWrapper.getZoneNum() == zone){
+                return buttonWrapper.getButton();
+            }
+        }
+        throw new RuntimeException("Button not found in button wrapper");
+    }
 
     public class ButtonWrapper{
 
