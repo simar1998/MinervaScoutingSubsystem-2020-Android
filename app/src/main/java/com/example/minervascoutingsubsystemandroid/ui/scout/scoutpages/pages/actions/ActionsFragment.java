@@ -140,7 +140,6 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
         int timeCounter  = -1;
 
-        generateButtonWrapperList(view);
 
         final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
                 zone1Btn, zone2Btn,zone3Btn,zone4Btn,zone5Btn,zone6Btn,zone7Btn,zone8Btn,zone9Btn,
@@ -338,13 +337,6 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     }
 
 
-    public void generateButtonWrapperList(View view){
-        int tempId;
-        for (int i  = 0; i < 24 ; i++){
-            tempId = getResources().getIdentifier("zone"+i+"_btn","id",activity.getPackageName());
-            buttonWrappers.add(new ButtonWrapper(i,tempId,view));
-        }
-    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -363,14 +355,6 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         fragmentListener = null;
     }
 
-    public Button getButton(int zone){
-        for (ButtonWrapper buttonWrapper : buttonWrappers){
-            if (buttonWrapper.getZoneNum() == zone){
-                return buttonWrapper.getButton();
-            }
-        }
-        throw new RuntimeException("Button not found in button wrapper");
-    }
 
     public class ButtonWrapper{
 
