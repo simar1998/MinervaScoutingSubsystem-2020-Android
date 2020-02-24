@@ -6,22 +6,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.minervascoutingsubsystemandroid.MainActivity;
 import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.Actions;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
+import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,7 +30,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
 
     ArrayList<Actions> actionsList;
-    Activity activity;
+    Actions actions;
 
     Button preTabBtn;
     Button actionTabBtn;
@@ -80,9 +81,14 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     Button feedBtn;
     Button cancelBtn;
 
+    //ViewGroup optionBtnLayout;
+    ViewGroup optionBtnLayout;
+
+int temp1, temp2;
+
     ArrayList<ButtonWrapper> buttonWrappers = new ArrayList<>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         actionsViewModel = ViewModelProviders.of(this).get(ActionsViewModel.class);
@@ -136,9 +142,13 @@ public class ActionsFragment extends Fragment implements FragmentManager {
         zone22Btn = (Button) view.findViewById(R.id.zone22_btn);
         zone23Btn = (Button) view.findViewById(R.id.zone23_btn);
         zone24Btn = (Button) view.findViewById(R.id.zone24_btn);
+
+        //optionBtnLayout = (ConstraintLayout) view.findViewById(R.id.action_options_tableLayout);
         final int yellowImgLoc[] = new int[2];
 
-        int timeCounter  = -1;
+         final int timeCounter  = -1;
+
+         actions = new Actions();
 
 
         final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
@@ -167,11 +177,6 @@ public class ActionsFragment extends Fragment implements FragmentManager {
 
 
 
-        for (int k =0; k<optionBtns.size(); k++){
-            optionBtns.get(k).setVisibility(View.INVISIBLE);
-        }
-
-
         /**
          * Cycles through all zone buttons as a onClick listener
          *
@@ -180,27 +185,65 @@ public class ActionsFragment extends Fragment implements FragmentManager {
          */
         for ( int i = 0 ; i < zoneBtns.size(); i ++){
             final int copyOfI = i;
+
+            int tempTimeCounter = -1;
             zoneBtns.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    MatchTimerManager.getCounter();
+                    zoneBtns.get(copyOfI).setEnabled(false);
 
 
+                    for (Button button : optionBtns){
+                        if (temp1 != 0 && temp2 != 0){
+                            TranslateAnimation animation = new TranslateAnimation(0, button.getX() - temp1, 0, button.getY() - temp2);
+                            animation.setDuration(10000); // duartion in ms
 
-
+                            intakeBtn.startAnimation(animation);
+                        }
+                    }
 //Testing if zone 21 btn is hit or the actions menu
                     if (copyOfI == 20){
                         Log.d("CREATION","IM HITTING ZONE 21");
                     }
                     //Get teh coordinates of zone button clicked
                     int[] zoneBtnLoc= getCoordinateXY(zoneBtns.get(copyOfI));
+
+
                     for (int j =0;j<zoneBtns.size();j++)
                     {
                         if(copyOfI !=j){
                             zoneBtns.get(j).setVisibility(View.INVISIBLE);
                         }
                         else{
-                            intakeBtn.setX(zoneBtnLoc[0]);
-                            intakeBtn.setY(zoneBtnLoc[1]);
+                            TableLayout.LayoutParams btnGroupPos = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            btnGroupPos.leftMargin = zoneBtnLoc[0];
+                            btnGroupPos.topMargin = zoneBtnLoc[1];
+                            System.out.println("TEST 1");
+                            try {
+                                //intakeBtn.setLayoutParams(btnGroupPos);
+
+                                TranslateAnimation animation = new TranslateAnimation(0, 200, 0, 200);
+                                animation.setDuration(10000); // duartion in ms
+                                animation.setFillAfter(false);
+                                intakeBtn.startAnimation(animation);
+                                intakeBtn.setVisibility(View.VISIBLE);
+                                temp1 = 0;
+                                temp2 = 0;
+                                Actions actions = new Actions();
+                                actions.setAction("asdadadasd");
+                                ScoutFragment.submittedInfoWrapper.addAction(actions);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                            System.out.println("TEST 2");
+                           // optionBtnLayout.setLayoutParams(btnGroupPos);
+
+                            //optionBtnLayout.setTranslationX(zoneBtnLoc[0]);s
+                            //optionBtnLayout.setTranslationY(zoneBtnLoc[1]);
+                            debugTxtView.setText("Location of intake btn is " + intakeBtn.getX() + ", " + intakeBtn.getY()
+                            +"\n Location of zone clicked is" + zoneBtns.get(copyOfI).getX() + ", " + zoneBtns.get(copyOfI).getY());
+
 
                             for(int m = 0; m< optionBtns.size(); m++){
 
@@ -231,6 +274,9 @@ public class ActionsFragment extends Fragment implements FragmentManager {
                         return locOfBtn;
 
                 }
+
+
+
             });
         }
 
@@ -255,6 +301,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
                     for(int i = 0; i < zoneBtns.size(); i++){
                         zoneBtns.get(i).setVisibility(View.VISIBLE);
                     }
+
             }
         });
 
@@ -356,7 +403,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     }
 
 
-    public class ButtonWrapper{
+    private class ButtonWrapper{
 
         int zoneNum;
         int buttonId;
@@ -393,4 +440,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
             this.button = button;
         }
     }
+
+
+
 }

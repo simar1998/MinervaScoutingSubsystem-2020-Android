@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
+import com.example.minervascoutingsubsystemandroid.structure.SubmittedInfoWrapper;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 
@@ -22,6 +23,8 @@ public class ScoutFragment extends Fragment implements FragmentManager {
     private ScoutViewModel scoutViewModel;
 
     public  OnFragmentChangeListener fragmentListener;
+
+    public static SubmittedInfoWrapper submittedInfoWrapper = new SubmittedInfoWrapper();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

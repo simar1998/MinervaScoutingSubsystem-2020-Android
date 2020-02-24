@@ -29,6 +29,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <EditText
+        android:id="@+id/teamNum_editTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="172dp"
+        android:layout_marginBottom="420dp"
+        android:ems="10"
+        android:hint="Click on team #s above or enter here"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <CheckBox
         android:id="@+id/replayedMatch_chkBox"
         android:layout_width="wrap_content"
@@ -117,18 +129,6 @@
         android:layout_marginEnd="452dp"
         android:layout_marginBottom="124dp"
         android:text="CONTINUE TO MATCH"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/teamNum_editTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="404dp"
-        android:layout_marginBottom="196dp"
-        android:ems="10"
-        android:hint="Click on team #s above or enter here"
-        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
