@@ -27,6 +27,10 @@ public class PostActions {
 
     String comment;
 
+    Boolean wasBotDefended;
+
+
+
     public Boolean getWasBotDefended() {
         return wasBotDefended;
     }
@@ -35,7 +39,7 @@ public class PostActions {
         this.wasBotDefended = wasBotDefended;
     }
 
-    Boolean wasBotDefended;
+
 
 
     public int getId() {

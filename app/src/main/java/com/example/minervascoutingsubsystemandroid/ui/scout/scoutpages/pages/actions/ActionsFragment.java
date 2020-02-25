@@ -6,10 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TableLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,14 +20,13 @@ import com.example.minervascoutingsubsystemandroid.structure.models.Actions;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
-import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ActionsFragment extends Fragment implements FragmentManager {
 
-
+ActionsViewModel actionsViewModel;
     ArrayList<Actions> actionsList;
     Actions actions;
 
@@ -37,7 +35,7 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     Button postTabBtn;
 
     TextView debugTxtView;
-    ActionsViewModel actionsViewModel;
+
 
     OnFragmentChangeListener fragmentListener;
 
@@ -81,8 +79,26 @@ public class ActionsFragment extends Fragment implements FragmentManager {
     Button feedBtn;
     Button cancelBtn;
 
+
+
+    SeekBar shootAttemptSeekbar;
+    TextView shootAttemptTxtView;
+    TextView shootStaticAttemptTxtView;
+
+    SeekBar shootSuccessSeekbar;
+    TextView shootSuccessTxtView;
+    TextView shootStaticSuccessTxtView;
+
+
+    Button shootSubmitBtn;
+    Button shootCancelBtn;
+
+    int selectedZone;
+
     //ViewGroup optionBtnLayout;
     ViewGroup optionBtnLayout;
+
+    OnFragmentChangeListener onFragmentChangeListener;
 
 int temp1, temp2;
 
@@ -143,6 +159,19 @@ int temp1, temp2;
         zone23Btn = (Button) view.findViewById(R.id.zone23_btn);
         zone24Btn = (Button) view.findViewById(R.id.zone24_btn);
 
+
+        shootAttemptSeekbar = (SeekBar) view.findViewById(R.id.shoot_attempt_seekBar);
+        shootAttemptTxtView = (TextView) view.findViewById(R.id.shoot_attempt_txtView);
+        shootStaticAttemptTxtView = (TextView) view.findViewById(R.id.shoot_static_attempt_txtView);
+
+        shootSuccessSeekbar = (SeekBar) view.findViewById(R.id.shoot_success_seekBar);
+        shootSuccessTxtView = (TextView) view.findViewById(R.id.shoot_success_txtView);
+        shootStaticSuccessTxtView = (TextView) view.findViewById(R.id.shoot_static_success_txtView);
+
+        shootSubmitBtn = ( Button) view.findViewById(R.id.shoot_submit_btn);
+        shootCancelBtn = (Button) view.findViewById(R.id.shoot_cancel_btn);
+
+
         //optionBtnLayout = (ConstraintLayout) view.findViewById(R.id.action_options_tableLayout);
         final int yellowImgLoc[] = new int[2];
 
@@ -150,7 +179,7 @@ int temp1, temp2;
 
          actions = new Actions();
 
-
+         final ArrayList<Actions> actionsList = new ArrayList<>();
         final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
                 zone1Btn, zone2Btn,zone3Btn,zone4Btn,zone5Btn,zone6Btn,zone7Btn,zone8Btn,zone9Btn,
                 zone10Btn,zone11Btn,zone12Btn,zone13Btn,zone14Btn,zone15Btn,zone16Btn,zone17Btn,
@@ -161,26 +190,37 @@ int temp1, temp2;
 
         ArrayList<ImageView> zoneImageViews = new ArrayList<>(Arrays.asList(yellowImg,zone2Img));
 
+        final ArrayList<SeekBar> shootOptionSeekBars = new ArrayList<>(Arrays.asList(shootAttemptSeekbar,shootSuccessSeekbar));
+        final  ArrayList<TextView> shootOptionTextViews = new ArrayList<>(Arrays.asList(shootAttemptTxtView,shootStaticAttemptTxtView,shootSuccessTxtView,shootStaticSuccessTxtView));
+        final  ArrayList<Button> shootOptionBtns = new ArrayList<>(Arrays.asList(shootSubmitBtn,shootCancelBtn));
+
+        selectedZone = -1;
 
 
 
+
+        preTabBtn.setVisibility(View.INVISIBLE);
+        actionTabBtn.setVisibility(View.INVISIBLE);
 
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MatchTimerManager.startMatchTimer();
+                startBtn.setVisibility(View.GONE);
 
             }
         });
 
 
 
+        decideBtnsVisibility(optionBtns,false);
+        decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
 
         /**
          * Cycles through all zone buttons as a onClick listener
          *
-         * KNOWN ISSUE:
+         * KNOWN ISSUE(FIXED):
          * When zone 21 is clicked, none of the optionButtons can be clicked because its under zone 21
          */
         for ( int i = 0 ; i < zoneBtns.size(); i ++){
@@ -190,64 +230,39 @@ int temp1, temp2;
             zoneBtns.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MatchTimerManager.getCounter();
                     zoneBtns.get(copyOfI).setEnabled(false);
+                    selectedZone = copyOfI+1;
 
 
-                    for (Button button : optionBtns){
-                        if (temp1 != 0 && temp2 != 0){
-                            TranslateAnimation animation = new TranslateAnimation(0, button.getX() - temp1, 0, button.getY() - temp2);
-                            animation.setDuration(10000); // duartion in ms
-
-                            intakeBtn.startAnimation(animation);
-                        }
-                    }
+//                    for (Button button : optionBtns){
+//                        if (temp1 != 0 && temp2 != 0){
+//                            TranslateAnimation animation = new TranslateAnimation(0, button.getX() - temp1, 0, button.getY() - temp2);
+//                            animation.setDuration(10000); // duartion in ms
+//
+//                            intakeBtn.startAnimation(animation);
+//                        }
+//                    }
 //Testing if zone 21 btn is hit or the actions menu
-                    if (copyOfI == 20){
-                        Log.d("CREATION","IM HITTING ZONE 21");
-                    }
+//                    if (copyOfI == 20){
+//                        Log.d("CREATION","IM HITTING ZONE 21");
+//                    }
                     //Get teh coordinates of zone button clicked
                     int[] zoneBtnLoc= getCoordinateXY(zoneBtns.get(copyOfI));
 
 
-                    for (int j =0;j<zoneBtns.size();j++)
-                    {
+                    for (int j =0;j<zoneBtns.size();j++){
                         if(copyOfI !=j){
                             zoneBtns.get(j).setVisibility(View.INVISIBLE);
+
                         }
                         else{
-                            TableLayout.LayoutParams btnGroupPos = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                            btnGroupPos.leftMargin = zoneBtnLoc[0];
-                            btnGroupPos.topMargin = zoneBtnLoc[1];
-                            System.out.println("TEST 1");
-                            try {
-                                //intakeBtn.setLayoutParams(btnGroupPos);
 
-                                TranslateAnimation animation = new TranslateAnimation(0, 200, 0, 200);
-                                animation.setDuration(10000); // duartion in ms
-                                animation.setFillAfter(false);
-                                intakeBtn.startAnimation(animation);
-                                intakeBtn.setVisibility(View.VISIBLE);
-                                temp1 = 0;
-                                temp2 = 0;
-                                Actions actions = new Actions();
-                                actions.setAction("asdadadasd");
-                                ScoutFragment.submittedInfoWrapper.addAction(actions);
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
                             System.out.println("TEST 2");
-                           // optionBtnLayout.setLayoutParams(btnGroupPos);
-
-                            //optionBtnLayout.setTranslationX(zoneBtnLoc[0]);s
-                            //optionBtnLayout.setTranslationY(zoneBtnLoc[1]);
-                            debugTxtView.setText("Location of intake btn is " + intakeBtn.getX() + ", " + intakeBtn.getY()
-                            +"\n Location of zone clicked is" + zoneBtns.get(copyOfI).getX() + ", " + zoneBtns.get(copyOfI).getY());
-
 
                             for(int m = 0; m< optionBtns.size(); m++){
 
                                 optionBtns.get(m).setVisibility(View.VISIBLE);
+
                             }
                         }
 
@@ -283,24 +298,178 @@ int temp1, temp2;
 
 
 
+
+
+
+
+
+
+
+
         intakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Actions action = new Actions();
+                actionsList.add(generateNormalAction("intake",selectedZone));
+                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                decideBtnsVisibility(zoneBtns,true);
+                decideBtnsVisibility(optionBtns,false);
+                zoneBtns.get(selectedZone-1).setEnabled(true);
+                selectedZone = -1;
+
+
+            }
+        });
+
+        shootBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,true);
+                //debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+            decideBtnsVisibility(optionBtns,false);
+            }
+        });
+
+
+
+        dropBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionsList.add(generateNormalAction("drop",selectedZone));
+                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                decideBtnsVisibility(zoneBtns,true);
+                decideBtnsVisibility(optionBtns,false);
+                zoneBtns.get(selectedZone-1).setEnabled(true);
+                selectedZone = -1;
+            }
+
+        });
+
+        feedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionsList.add(generateNormalAction("feed",selectedZone));
+                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                decideBtnsVisibility(zoneBtns,true);
+                decideBtnsVisibility(optionBtns,false);
+                zoneBtns.get(selectedZone-1).setEnabled(true);
+                selectedZone = -1;
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                zoneBtns.get(selectedZone-1).setEnabled(true);
+                decideBtnsVisibility(zoneBtns,true);
+                decideBtnsVisibility(optionBtns,false);
+                selectedZone = -1;
+            }
+        });
+
+
+
+        shootSubmitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int attemptedBalls = shootAttemptValueConverter(shootAttemptSeekbar.getProgress());
+                int scoredBalls = shootSuccessValueConverter(shootSuccessSeekbar.getProgress());
+                actionsList.add(generateShootAction("shoot", selectedZone,attemptedBalls,scoredBalls));
+                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                shootAttemptSeekbar.setProgress(0);
+                shootSuccessSeekbar.setProgress(0);
+                zoneBtns.get(selectedZone-1).setEnabled(true);
+                selectedZone = -1;
+                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+                decideBtnsVisibility(optionBtns,false);
+                decideBtnsVisibility(zoneBtns,true);
+            }
+        });
+
+        shootCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shootAttemptSeekbar.setProgress(0);
+                shootSuccessSeekbar.setProgress(0);
+                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+                decideBtnsVisibility(optionBtns, true);
+            }
+        });
+
+
+        shootAttemptSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+
+               int ballsRecord = -1;
+                if (progress <20)
+                    ballsRecord = 1;
+                else if (progress <40)
+                    ballsRecord = 2;
+                else if (progress <60)
+                    ballsRecord=3;
+                else if (progress<80)
+                    ballsRecord=4;
+                else
+                    ballsRecord=5;
+
+
+               try {
+                   shootAttemptTxtView.setText(ballsRecord +"");
+               }
+               catch (Exception e){
+
+               }
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
 
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
+
+
+        shootSuccessSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View view) {
-                    for (int m = 0; m< optionBtns.size(); m++){
-                        optionBtns.get(m).setVisibility(View.INVISIBLE);
-                    }
-                    for(int i = 0; i < zoneBtns.size(); i++){
-                        zoneBtns.get(i).setVisibility(View.VISIBLE);
-                    }
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int ballsRecord = -1;
+                if (progress/16.7 <1)
+                    ballsRecord = 0;
+                else if (progress/16.7 <2)
+                    ballsRecord = 1;
+                else if (progress/16.7 <3)
+                    ballsRecord=2;
+                else if (progress/16.7<4)
+                    ballsRecord=3;
+                else if (progress/16.7 < 5)
+                    ballsRecord=4;
+                else
+                    ballsRecord = 5;
+                try {
+                    shootSuccessTxtView.setText(ballsRecord+"");
+                }
+                catch (Exception e){
+
+                }
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
@@ -330,7 +499,7 @@ int temp1, temp2;
                     int btnYLoc = locOfBtn[1];
                     String btnName = view.getResources().getResourceEntryName(btn.getId()).toString();
                     try {
-                        debugTxtView.setText ("X Of"+ btnName + ": " + btnXLoc +" \n Y of " + btnName + " :" + btnYLoc);
+                       // debugTxtView.setText ("X Of"+ btnName + ": " + btnXLoc +" \n Y of " + btnName + " :" + btnYLoc);
                     }
                     catch (Exception e){
 
@@ -348,59 +517,144 @@ int temp1, temp2;
         preTabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 fragmentListener.onFragmentChange(2);
             }
         });
 
-
-//        yellowImg.setVisibility(View.INVISIBLE);
-//        fieldImg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                yellowImg.getLocationOnScreen(yellowImgLoc);
-//                int yellowXLoc = yellowImgLoc[0];
-//                int yellowYLoc = yellowImgLoc[1];
-//                debugTxtView.setText("X Of yellowImg = " + yellowXLoc + " \n Y of yellowImg = " + yellowYLoc);
-//            }
-//        });
-        //view.findViewById(R.id.yellow_imgView).setVisibility(View.VISIBLE);
-
-
-
-
-//        public  String getCoordinateXY(int btnID){
-//            Button btn = (Button) view.findViewById(btnID);
-//            int locOfBtn[] = new  int[2];
-//            btn.getLocationOnScreen(locOfBtn);
-//            int btnXLoc = locOfBtn[0];
-//            int btnYLoc = locOfBtn[1];
-//            String btnDisplayText = btn.getText().toString();
-//            return ("X Of"+ btnDisplayText + ": " + btnXLoc +" \n Y of " + btnDisplayText + " :" + btnYLoc);
-//
-//        }
+        postTabBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentListener.onFragmentChange(4);
+            }
+        });
 
         return view;
     }
 
 
+    public String getActionDebugText(Actions actions){
+        return actions.getAction().toString() + " time: " + actions.getTime() +"\n zone:" + actions.getLocation();
+    }
+    public int shootAttemptValueConverter(int progress){
+        int ballsRecord = -1;
+        if (progress <20)
+            ballsRecord = 1;
+        else if (progress <40)
+            ballsRecord = 2;
+        else if (progress <60)
+            ballsRecord=3;
+        else if (progress<80)
+            ballsRecord=4;
+        else
+            ballsRecord=5;
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            fragmentListener = (OnFragmentChangeListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+        return ballsRecord;
+    }
+
+
+    public int shootSuccessValueConverter(int progress){
+        int ballsRecord = -1;
+        if (progress <20)
+            ballsRecord = 1;
+        else if (progress <40)
+            ballsRecord = 2;
+        else if (progress <60)
+            ballsRecord=3;
+        else if (progress<80)
+            ballsRecord=4;
+        else
+            ballsRecord=5;
+
+        return ballsRecord;
+    }
+
+
+
+    public void decideBtnsVisibility(ArrayList<Button> btns, boolean makeVisible){
+        for (int i = 0; i < btns.size();i++){
+            if(makeVisible)
+            btns.get(i).setVisibility(View.VISIBLE);
+            else
+                btns.get(i).setVisibility(View.INVISIBLE);
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        fragmentListener = null;
+    public void decideShootOptionsVisibility(ArrayList<SeekBar> seekBars, ArrayList<TextView> txtViews, ArrayList<Button> btns, boolean makeVisible){
+        decideSeekBarVisibility(seekBars,makeVisible);
+        decideTextViewVisibility(txtViews,makeVisible);
+        decideBtnsVisibility(btns,makeVisible);
     }
+
+    public  void decideSeekBarVisibility(ArrayList<SeekBar> views, boolean makeVisible){
+
+        for (int i = 0; i < views.size();i++){
+            if (makeVisible)
+                views.get(i).setVisibility(View.VISIBLE);
+            else
+                views.get(i).setVisibility(View.INVISIBLE);
+        }
+    }
+    public  void decideTextViewVisibility(ArrayList<TextView> txtViews, boolean makeVisible){
+        for (int i = 0; i < txtViews.size();i++){
+            if (makeVisible)
+                txtViews.get(i).setVisibility(View.VISIBLE);
+            else
+                txtViews.get(i).setVisibility(View.INVISIBLE);
+        }
+    }
+
+
+    public Actions generateNormalAction(String action, int zone){
+        Actions matchAction = new Actions();
+        String actionString;
+
+        if(action!= "shoot"){
+            actionString = action;
+
+            matchAction.setAction(actionString);
+            matchAction.setTime(MatchTimerManager.getCounter());
+            matchAction.setLocation(zone+"");
+            if(MatchTimerManager.getCounter() >15){
+                matchAction.setAuto(true);
+            }
+            else {
+                matchAction.setAuto(false );
+            }
+        }
+
+        return matchAction;
+    }
+
+    public  Actions generateShootAction(String action, int zone, int attempts, int success){
+        Actions matchAction = new Actions();
+        String actionString;
+        Log.d("ACTION", "taking action as SHOOT");
+        if(action == "shoot"){
+            actionString = action;
+
+            matchAction.setAction(actionString+ "_" + attempts + "_" + success);
+            matchAction.setTime(MatchTimerManager.getCounter());
+            matchAction.setLocation(zone+"");
+            if(MatchTimerManager.getCounter() >15){
+                matchAction.setAuto(true);
+            }
+            else {
+                matchAction.setAuto(false);
+            }
+        }
+
+        return matchAction;
+    }
+
+
+    public void resetZoneClickability(ArrayList<Button> btns){
+
+        for (int i = 0; i < btns.size();i++){
+            btns.get(i).setEnabled(true);
+        }
+    }
+
 
 
     private class ButtonWrapper{
@@ -442,5 +696,22 @@ int temp1, temp2;
     }
 
 
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            fragmentListener = (OnFragmentChangeListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
+    }
 
 }

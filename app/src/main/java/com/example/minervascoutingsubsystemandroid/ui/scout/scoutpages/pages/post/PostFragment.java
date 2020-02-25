@@ -157,12 +157,14 @@ public class PostFragment extends Fragment implements FragmentManager {
                     post.setGotBuddyd(false);
                 }
 
+
                 if (gaveClimbAssistanceSwitch.isChecked()){
                     post.setBuddydBot(true);
                 }
                 else {
                     post.setBuddydBot(false);
                 }
+
 
                 if (isBarBalancedSwitch.isChecked()){
                     post.setBarBalanced(true);
@@ -171,12 +173,14 @@ public class PostFragment extends Fragment implements FragmentManager {
                     post.setBarBalanced(false);
                 }
 
+
                 if(wasBotDefendedSwitch.isChecked()){
                     post.setWasBotDefended(true);
                 }
                 else {
                     post.setWasBotDefended(false);
                 }
+
 
                 try{
                     post.setHangLoc(Integer.parseInt(climbPos));
@@ -185,7 +189,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                     post.setHangLoc(-1);
                    System.out.println("CANNOT SET CLIMB POSITION");
                 }
-                ;
+
             }
         });
 
@@ -196,26 +200,26 @@ public class PostFragment extends Fragment implements FragmentManager {
                 int positionConversion = climbPosProgressBar.getProgress();
 
 
-                if(positionConversion<20){
+                if(progress<20){
                     climbPosDescription = "Far Left of bar";
                     climbPos= "1";
                 }
-                else if(positionConversion>= 20 && positionConversion < 40)
+                else if(progress<20)
                 {
                     climbPosDescription = "Left of bar";
                     climbPos = "2";
                 }
-                else if ( positionConversion >= 40 && positionConversion< 60)
+                else if ( progress <40)
                 {
                     climbPosDescription = "Center of bar";
                     climbPos = "3";
                 }
-                else if (positionConversion >= 60 && positionConversion < 80)
+                else if (progress <60)
                 {
                     climbPosDescription = " Right of bar";
                     climbPos = "4";
                 }
-                else if (positionConversion >= 80 && positionConversion <= 100)
+                else if (progress <80)
                 {
                     climbPosDescription = "Far right of bar";
                     climbPos = "5";
@@ -231,9 +235,36 @@ public class PostFragment extends Fragment implements FragmentManager {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 //returned as climbPos, climbPosDescription
-                ArrayList<String> climbStats = findClimbPos(progress);
-                climbPos = climbStats.get(0);
-              climbPosTxtView.setText(climbStats.get(1));
+                int positionConversion = climbPosProgressBar.getProgress();
+
+
+                if(progress<20){
+                    climbPosDescription = "Far Left of bar";
+                    climbPos= "1";
+                }
+                else if(progress<40)
+                {
+                    climbPosDescription = "Left of bar";
+                    climbPos = "2";
+                }
+                else if ( progress <60)
+                {
+                    climbPosDescription = "Center of bar";
+                    climbPos = "3";
+                }
+                else if (progress <80)
+                {
+                    climbPosDescription = " Right of bar";
+                    climbPos = "4";
+                }
+                else
+                {
+                    climbPosDescription = "Far right of bar";
+                    climbPos = "5";
+                }
+
+
+                climbPosTxtView.setText(climbPosDescription);
             }
 
             @Override

@@ -18,7 +18,7 @@ public class InitInfoViewModel extends ViewModel {
 
 
     OnFragmentChangeListener fragmentChangeListener;
-    SubmittedGame submittedGame = new SubmittedGame();
+    public SubmittedGame submittedGame = new SubmittedGame();
     Fragment fragment;
 
     /**
@@ -99,7 +99,9 @@ public class InitInfoViewModel extends ViewModel {
         else{
             submittedGame.setNumReplayed(0);
         }
+
         submittedGame.setScoutName(scoutName);
+
         submittedGame.setTeamNum(Integer.parseInt(teamNum));
     }
 

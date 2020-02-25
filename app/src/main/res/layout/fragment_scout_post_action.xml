@@ -12,41 +12,21 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="184dp"
         android:layout_marginEnd="8dp"
-        android:hint="Change climb posiiton using the slider above"
+        android:hint="Change climb position using the slider above"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintHorizontal_bias="0.399"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/pre_post_btn"
-        android:layout_width="234dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="696dp"
-        android:text="pre match setup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/post_post_btn"
-        android:layout_width="147dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="176dp"
-        android:text="endgame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/actions_post_btn"
-        android:layout_width="193dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="440dp"
-        android:text="auto + teleop"
+    <ProgressBar
+        android:id="@+id/climbPos_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="491dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="316dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,49 +34,87 @@
         android:id="@+id/climbPos_seekbar"
         android:layout_width="501dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="308dp"
-        android:layout_marginBottom="424dp"
+        android:layout_marginEnd="304dp"
+        android:layout_marginBottom="440dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/pre_post_btn"
+        android:layout_width="176dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="716dp"
+        android:text="pre match setup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/post_post_btn"
+        android:layout_width="149dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="168dp"
+        android:text="endgame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/actions_post_btn"
+        android:layout_width="176dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="436dp"
+        android:text="auto + teleop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/park_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="816dp"
+        android:layout_marginBottom="324dp"
         android:text="Parked?"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="233dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Switch
         android:id="@+id/gotBuddyd_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="652dp"
+        android:layout_marginBottom="284dp"
         android:text="Got climb assist(buddy bar/lifted)"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="290dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Switch
         android:id="@+id/buddydBot_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="668dp"
+        android:layout_marginBottom="236dp"
         android:text="Assisted another robot in climb"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="341dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Switch
         android:id="@+id/barBalance_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="572dp"
+        android:layout_marginBottom="196dp"
         android:text="Is the bar balanced 5 secs after match is over"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/comments_editText"
         android:layout_width="402dp"
         android:layout_height="207dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Additional comments"
@@ -108,8 +126,8 @@
         android:id="@+id/optionalComments_spinner"
         android:layout_width="486dp"
         android:layout_height="57dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,22 +141,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/climbPos_progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="491dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="320dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Switch
         android:id="@+id/wasDefended_switch"
         android:layout_width="335dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="560dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginEnd="572dp"
+        android:layout_marginBottom="128dp"
         android:text="Was there performance-impacting defence played on this robot through the match"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

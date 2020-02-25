@@ -30,9 +30,16 @@ public class PreFragment extends Fragment implements FragmentManager {
     private Button actionTabBtn;
     private Button postTabBtn;
 
-    SeekBar botSetupPos;
-    ProgressBar progressBar;
-    TextView startingPosDescription;
+    SeekBar bluePosSeekbar;
+    ProgressBar bluePosProgressBar;
+    TextView bluePosDescriptionTxtView;
+
+    SeekBar redPosSeekbar;
+    ProgressBar redPosProgressBar;
+    TextView redPosDescriptionTxtView;
+
+
+
 
     CheckBox hasBallPreload;
 
@@ -59,9 +66,13 @@ public class PreFragment extends Fragment implements FragmentManager {
         postTabBtn = (Button) view.findViewById(R.id.post_pre_btn);
 
 
-        botSetupPos = (SeekBar) view.findViewById(R.id.start_pos_seekbar);
-        progressBar = (ProgressBar) view.findViewById(R.id.start_pos_progressbr);
-        startingPosDescription = (TextView) view.findViewById(R.id.robot_pos_txtView);
+        redPosSeekbar = (SeekBar) view.findViewById(R.id.start_pos_blue_seekbar);
+        redPosProgressBar = (ProgressBar) view.findViewById(R.id.start_pos_progressbr);
+        redPosDescriptionTxtView = (TextView) view.findViewById(R.id.robot_pos_blue_txtView);
+
+        bluePosSeekbar = (SeekBar) view.findViewById(R.id.start_pos_blue_seekbar);
+        bluePosProgressBar = (ProgressBar) view.findViewById(R.id.start_pos_progressbr);
+        bluePosDescriptionTxtView = (TextView) view.findViewById(R.id.robot_pos_blue_txtView);
 
         hasBallPreload = (CheckBox) view.findViewById(R.id.ballsPreloaded_init_chkbx);
 
@@ -69,16 +80,61 @@ public class PreFragment extends Fragment implements FragmentManager {
 
         startPos = "NULL";
 
+        SeekBar botSeupSeekBar;
+        final ProgressBar botSetupProgressBar;
+        final TextView botStartPosDescription;
+
+
+        preTabBtn.setVisibility(View.INVISIBLE);
+        actionTabBtn.setVisibility(View.INVISIBLE);
+        postTabBtn.setVisibility(View.INVISIBLE);
+
+
+
+        redPosDescriptionTxtView.setVisibility(View.INVISIBLE);
+        redPosProgressBar.setVisibility(View.INVISIBLE);
+        redPosSeekbar.setVisibility(View.INVISIBLE);
+
+
+        bluePosDescriptionTxtView.setVisibility(View.INVISIBLE);
+        bluePosProgressBar.setVisibility(View.INVISIBLE);
+        bluePosSeekbar.setVisibility(View.INVISIBLE);
+
+
+//        Log.d("TEST" , (ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance())+"");
+
+//        if(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance() == 'r'){
+//
+//            redPosProgressBar.setVisibility(View.VISIBLE);
+//            redPosDescriptionTxtView.setVisibility(View.VISIBLE);
+//            redPosSeekbar.setVisibility(View.VISIBLE);
+//
+//            botSetupProgressBar = redPosProgressBar;
+//            botSeupSeekBar = redPosSeekbar;
+//            botStartPosDescription = redPosDescriptionTxtView;
+//        }
+//        else {
+//
+            bluePosProgressBar.setVisibility(View.VISIBLE);
+            bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
+            bluePosSeekbar.setVisibility(View.VISIBLE);
+
+            botSetupProgressBar = bluePosProgressBar;
+            botSeupSeekBar = bluePosSeekbar;
+            botStartPosDescription = bluePosDescriptionTxtView;
+//
+//        }
+
 
         /**
          * TODO- adjust values for positions depending on where the bot starts
          * i.e. bot in front of trench is different than start in front of hirizontal rendevouz
          *
          */
-        botSetupPos.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        botSeupSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public String findStartingPos(int progress){
-                int positionConversion = progressBar.getProgress();
+                int positionConversion = botSetupProgressBar.getProgress();
 
 
                 if(positionConversion<=20){
@@ -104,8 +160,8 @@ public class PreFragment extends Fragment implements FragmentManager {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
 
 
-                progressBar.setProgress(progress);
-                startingPosDescription.setText(findStartingPos(progress));
+                botSetupProgressBar.setProgress(progress);
+                botStartPosDescription.setText(findStartingPos(progress));
             }
 
             @Override
