@@ -67,12 +67,17 @@ public class PostFragment extends Fragment implements FragmentManager {
 
 
 
+
         postViewModel = ViewModelProviders.of(this).get(PostViewModel.class);
         View view = inflater.inflate(R.layout.fragment_scout_post_action, container, false);
 
 
         final PostActions post = new PostActions();
 
+
+        preBtn = (Button) view.findViewById(R.id.pre_post_btn);
+        actionBtn = (Button) view.findViewById(R.id.actions_post_btn);
+        postBtn = (Button) view.findViewById(R.id.post_post_btn);
 
         climbPosSeekBar = (SeekBar) view.findViewById(R.id.climbPos_seekbar);
         climbPosTxtView = (TextView) view.findViewById(R.id.climbPost_txtView);
@@ -101,6 +106,14 @@ public class PostFragment extends Fragment implements FragmentManager {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         commentsSelectionSpinner.setAdapter(adapter);
+
+
+
+
+        preBtn.setVisibility(View.INVISIBLE);
+        actionBtn.setVisibility(View.VISIBLE);
+        postBtn.setVisibility(View.INVISIBLE);
+
 
 
         commentsSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -226,12 +226,13 @@ int temp1, temp2;
         for ( int i = 0 ; i < zoneBtns.size(); i ++){
             final int copyOfI = i;
 
-            int tempTimeCounter = -1;
+
             zoneBtns.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     zoneBtns.get(copyOfI).setEnabled(false);
                     selectedZone = copyOfI+1;
+                    postTabBtn.setVisibility(View.INVISIBLE);
 
 
 //                    for (Button button : optionBtns){
@@ -309,12 +310,19 @@ int temp1, temp2;
         intakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionsList.add(generateNormalAction("intake",selectedZone));
-                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-                decideBtnsVisibility(zoneBtns,true);
-                decideBtnsVisibility(optionBtns,false);
-                zoneBtns.get(selectedZone-1).setEnabled(true);
-                selectedZone = -1;
+
+                try {
+                    actionsList.add(generateNormalAction("intake", selectedZone));
+                    debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size() - 1)));
+                    decideBtnsVisibility(zoneBtns, true);
+                    decideBtnsVisibility(optionBtns, false);
+                    zoneBtns.get(selectedZone - 1).setEnabled(true);
+                    selectedZone = -1;
+                    postTabBtn.setVisibility(View.VISIBLE);
+                    decideBtnEnabled(zoneBtns, true);
+                }catch (Exception e){
+
+                }
 
 
             }
@@ -327,6 +335,8 @@ int temp1, temp2;
                 decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,true);
                 //debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
             decideBtnsVisibility(optionBtns,false);
+                postTabBtn.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -335,12 +345,19 @@ int temp1, temp2;
         dropBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionsList.add(generateNormalAction("drop",selectedZone));
-                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-                decideBtnsVisibility(zoneBtns,true);
-                decideBtnsVisibility(optionBtns,false);
-                zoneBtns.get(selectedZone-1).setEnabled(true);
-                selectedZone = -1;
+                try {
+                    actionsList.add(generateNormalAction("drop",selectedZone));
+                    debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                    decideBtnsVisibility(zoneBtns,true);
+                    decideBtnsVisibility(optionBtns,false);
+                    zoneBtns.get(selectedZone-1).setEnabled(true);
+                    selectedZone = -1;
+                    postTabBtn.setVisibility(View.VISIBLE);
+                    decideBtnEnabled(zoneBtns, true);
+                }catch (Exception e){
+
+                }
+
             }
 
         });
@@ -354,6 +371,8 @@ int temp1, temp2;
                 decideBtnsVisibility(optionBtns,false);
                 zoneBtns.get(selectedZone-1).setEnabled(true);
                 selectedZone = -1;
+                postTabBtn.setVisibility(View.VISIBLE);
+                decideBtnEnabled(zoneBtns, true);
             }
         });
 
@@ -364,6 +383,8 @@ int temp1, temp2;
                 decideBtnsVisibility(zoneBtns,true);
                 decideBtnsVisibility(optionBtns,false);
                 selectedZone = -1;
+                postTabBtn.setVisibility(View.VISIBLE);
+                decideBtnEnabled(zoneBtns, true);
             }
         });
 
@@ -383,6 +404,8 @@ int temp1, temp2;
                 decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
                 decideBtnsVisibility(optionBtns,false);
                 decideBtnsVisibility(zoneBtns,true);
+                postTabBtn.setVisibility(View.VISIBLE);
+                decideBtnEnabled(zoneBtns, true);
             }
         });
 
@@ -393,6 +416,8 @@ int temp1, temp2;
                 shootSuccessSeekbar.setProgress(0);
                 decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
                 decideBtnsVisibility(optionBtns, true);
+                postTabBtn.setVisibility(View.VISIBLE);
+                decideBtnEnabled(zoneBtns, true);
             }
         });
 
@@ -577,6 +602,15 @@ int temp1, temp2;
             btns.get(i).setVisibility(View.VISIBLE);
             else
                 btns.get(i).setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void decideBtnEnabled(ArrayList<Button> btns, boolean makeEnabled){
+        for (int i = 0 ; i < btns.size(); i ++){
+            if (makeEnabled)
+            btns.get(i).setEnabled(true);
+            else
+                btns.get(i).setEnabled(true);
         }
     }
 
