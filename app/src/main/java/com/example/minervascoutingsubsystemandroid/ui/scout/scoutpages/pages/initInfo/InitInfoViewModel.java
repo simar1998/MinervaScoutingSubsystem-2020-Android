@@ -102,7 +102,11 @@ public class InitInfoViewModel extends ViewModel {
 
         submittedGame.setScoutName(scoutName);
 
-        submittedGame.setTeamNum(Integer.parseInt(teamNum));
+        try {
+            submittedGame.setTeamNum(Integer.parseInt(teamNum));
+        }catch (Exception e){
+            submittedGame.setTeamNum(-1);
+        }
     }
 
 }

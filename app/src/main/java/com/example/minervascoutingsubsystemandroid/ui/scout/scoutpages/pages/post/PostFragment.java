@@ -163,27 +163,27 @@ public class PostFragment extends Fragment implements FragmentManager {
 
 
                 if(gotClimbAssistanceSwitch.isChecked()){
-                    post.setGotBuddyd(true);
+                    post.setGotClimbAssistance(true);
                 }
                 else
                 {
-                    post.setGotBuddyd(false);
+                    post.setGotClimbAssistance(false);
                 }
 
 
                 if (gaveClimbAssistanceSwitch.isChecked()){
-                    post.setBuddydBot(true);
+                    post.setBuddyBot(true);
                 }
                 else {
-                    post.setBuddydBot(false);
+                    post.setBuddyBot(false);
                 }
 
 
                 if (isBarBalancedSwitch.isChecked()){
-                    post.setBarBalanced(true);
+                    post.setBalanced(true);
                 }
                 else {
-                    post.setBarBalanced(false);
+                    post.setBalanced(false);
                 }
 
 

@@ -9,26 +9,25 @@ public class PostActions {
 
     int id;
 
-    int hangStart;
+    int hangStart = 0;
 
-    int hangEnd;
+    int hangEnd = 0;
 
     int hangLoc;
 
-    int balanceTime;
+    int balanceTime = 0;
 
-    boolean gotBuddyd;
+    boolean gotClimbAssistance;
 
-    boolean buddydBot;
+    boolean buddyBot;
 
-    boolean barBalanced;
-
-    boolean isParked;
+    boolean isBalanced;
 
     String comment;
 
-    Boolean wasBotDefended;
+    boolean wasBotDefended;
 
+    boolean isParked;
 
 
     public Boolean getWasBotDefended() {
@@ -82,20 +81,20 @@ public class PostActions {
         this.balanceTime = balanceTime;
     }
 
-    public boolean isGotBuddyd() {
-        return gotBuddyd;
+    public boolean isGotClimbAssistance() {
+        return gotClimbAssistance;
     }
 
-    public void setGotBuddyd(boolean gotBuddyd) {
-        this.gotBuddyd = gotBuddyd;
+    public void setGotClimbAssistance(boolean gotClimbAssistance) {
+        this.gotClimbAssistance = gotClimbAssistance;
     }
 
-    public boolean isBuddydBot() {
-        return buddydBot;
+    public boolean isBuddyBot() {
+        return buddyBot;
     }
 
-    public void setBuddydBot(boolean buddydBot) {
-        this.buddydBot = buddydBot;
+    public void setBuddyBot(boolean buddyBot) {
+        this.buddyBot = buddyBot;
     }
 
     public String getComment() {
@@ -114,11 +113,11 @@ public class PostActions {
         isParked = parked;
     }
 
-    public boolean isBarBalanced() {
-        return barBalanced;
+    public boolean isBalanced() {
+        return isBalanced;
     }
 
-    public void setBarBalanced(boolean barBalanced) {
-        this.barBalanced = barBalanced;
+    public void setBalanced(boolean balanced) {
+        this.isBalanced = balanced;
     }
 }
