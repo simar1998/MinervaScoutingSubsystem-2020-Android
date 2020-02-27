@@ -20,16 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/climbPos_progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="491dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="316dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <SeekBar
         android:id="@+id/climbPos_seekbar"
         android:layout_width="501dp"

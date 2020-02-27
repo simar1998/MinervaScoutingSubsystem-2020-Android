@@ -109,7 +109,7 @@ public class PostFragment extends Fragment implements FragmentManager {
 
         submitMatchBtn = (Button) view.findViewById(R.id.submitMatchBtn);
 
-        climbPosProgressBar = (ProgressBar) view.findViewById(R.id.climbPos_progressBar);
+
 
         submitMatch = (Button) view.findViewById(R.id.submitMatchBtn);
         climbPos = "NULL";
@@ -312,7 +312,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                 HttpParams params = new BasicHttpParams();
                 params.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
                 DefaultHttpClient mHttpClient = new DefaultHttpClient(params);
-                HttpPost httppost = new HttpPost("https://scouting.runnymederobotics.com/Lembos2020-Backend_war/api/upload/submittedInfoWrapperJSON");
+                HttpPost httppost = new HttpPost("https://scouting.ru  nnymederobotics.com/Lembos2020-Backend_war/api/upload/submittedInfoWrapperJSON");
                 MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
                 try {
                     multipartEntity.addPart("json",new StringBody(new Gson().toJson(ScoutFragment.submittedInfoWrapper)));

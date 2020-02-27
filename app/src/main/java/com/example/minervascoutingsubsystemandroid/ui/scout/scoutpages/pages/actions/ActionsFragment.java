@@ -10,13 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
-import com.example.minervascoutingsubsystemandroid.structure.SubmittedInfoWrapper;
 import com.example.minervascoutingsubsystemandroid.structure.models.Actions;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
@@ -132,7 +131,7 @@ int temp1, temp2;
         final  ArrayList<TextView> shootOptionTextViews = new ArrayList<>(Arrays.asList(shootAttemptTxtView,shootStaticAttemptTxtView,shootSuccessTxtView,shootStaticSuccessTxtView));
         final  ArrayList<Button> shootOptionBtns = new ArrayList<>(Arrays.asList(shootSubmitBtn,shootCancelBtn));
 
-        selectedZone = -1;
+        //selectedZone = -1;
 
         preTabBtn.setVisibility(View.INVISIBLE);
         actionTabBtn.setVisibility(View.INVISIBLE);
@@ -155,8 +154,6 @@ int temp1, temp2;
         /**
          * Cycles through all zone buttons as a onClick listener
          *
-         * KNOWN ISSUE(FIXED):
-         * When zone 21 is clicked, none of the optionButtons can be clicked because its under zone 21
          */
        for (final ButtonWrapper buttonWrapper : zoneButtons){
 
@@ -164,7 +161,7 @@ int temp1, temp2;
                 @Override
                 public void onClick(View view) {
                     buttonWrapper.getButton().setEnabled(false);
-                    selectedZone = buttonWrapper.getZoneNum();
+                    //selectedZone = buttonWrapper.getZoneNum();
                     postTabBtn.setVisibility(View.INVISIBLE);
                     for (ButtonWrapper buttonWrapper1 : zoneButtons){
                         if(buttonWrapper1.getZoneNum() != buttonWrapper.getZoneNum()){
@@ -211,6 +208,7 @@ int temp1, temp2;
                     debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size() - 1)));
                     decideBtnsVisibility(zoneButtons, true);
                     decideBtnsVisibility(optionsButtons, false);
+
                     postTabBtn.setVisibility(View.VISIBLE);
                     decideBtnEnabled(zoneButtons, true);
                 }catch (Exception e){
@@ -282,15 +280,22 @@ int temp1, temp2;
             public void onClick(View view) {
                 int attemptedBalls = shootAttemptValueConverter(shootAttemptSeekbar.getProgress());
                 int scoredBalls = shootSuccessValueConverter(shootSuccessSeekbar.getProgress());
-                actionsList.add(generateShootAction("shoot", selectedZone,attemptedBalls,scoredBalls));
-                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-                shootAttemptSeekbar.setProgress(0);
-                shootSuccessSeekbar.setProgress(0);
-                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
-                decideBtnsVisibility(optionsButtons,false);
-                decideBtnsVisibility(zoneButtons,true);
-                postTabBtn.setVisibility(View.VISIBLE);
-                decideBtnEnabled(zoneButtons, true);
+                if(attemptedBalls >= scoredBalls){
+                    actionsList.add(generateShootAction("shoot", selectedZone,attemptedBalls,scoredBalls));
+                    debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                    shootAttemptSeekbar.setProgress(0);
+                    shootSuccessSeekbar.setProgress(0);
+                    decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+                    decideBtnsVisibility(optionsButtons,false);
+                    decideBtnsVisibility(zoneButtons,true);
+                    postTabBtn.setVisibility(View.VISIBLE);
+                    decideBtnEnabled(zoneButtons, true);
+                }
+                else {
+                    Toast.makeText(getContext(), "There cannot be more balls scored than attempted", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 
@@ -455,8 +460,16 @@ int temp1, temp2;
     public void decideShootOptionsVisibility(ArrayList<SeekBar> seekBars, ArrayList<TextView> txtViews, ArrayList<Button> btns, boolean makeVisible){
         decideSeekBarVisibility(seekBars,makeVisible);
         decideTextViewVisibility(txtViews,makeVisible);
-        decideBtnsVisibility(optionsButtons,makeVisible);
+
+        for (int i = 0; i < btns.size();i++){
+            if(makeVisible)
+                btns.get(i).setVisibility(View.VISIBLE);
+            else
+                btns.get(i).setVisibility(View.INVISIBLE);
+        }
     }
+
+
 
     public  void decideSeekBarVisibility(ArrayList<SeekBar> views, boolean makeVisible){
 
