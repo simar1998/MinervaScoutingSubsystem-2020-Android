@@ -312,7 +312,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                 HttpParams params = new BasicHttpParams();
                 params.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
                 DefaultHttpClient mHttpClient = new DefaultHttpClient(params);
-                HttpPost httppost = new HttpPost("https://scouting.ru  nnymederobotics.com/Lembos2020-Backend_war/api/upload/submittedInfoWrapperJSON");
+                HttpPost httppost = new HttpPost("https://scouting.runnymederobotics.com/minervascouting2020/api/upload/submittedInfoWrapperJSON");
                 MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
                 try {
                     multipartEntity.addPart("json",new StringBody(new Gson().toJson(ScoutFragment.submittedInfoWrapper)));
