@@ -16,10 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.R;
+import com.example.minervascoutingsubsystemandroid.structure.SubmittedInfoWrapper;
 import com.example.minervascoutingsubsystemandroid.structure.models.Actions;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
+import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -381,17 +383,11 @@ int temp1, temp2;
 
             }
         });
-        preTabBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                fragmentListener.onFragmentChange(2);
-            }
-        });
 
         postTabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ScoutFragment.submittedInfoWrapper.setActions(actionsList);
                 fragmentListener.onFragmentChange(4);
             }
         });

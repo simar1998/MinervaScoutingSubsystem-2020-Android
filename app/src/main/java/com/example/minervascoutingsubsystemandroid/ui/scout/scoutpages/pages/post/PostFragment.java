@@ -23,7 +23,21 @@ import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.PostActions;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
+import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
+import com.google.gson.Gson;
 
+import org.apache.http.HttpVersion;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.params.HttpParams;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -54,6 +68,8 @@ public class PostFragment extends Fragment implements FragmentManager {
 
     ProgressBar climbPosProgressBar;
     String climbPosDescription;
+
+    Button submitMatch;
 
     /**
      *
@@ -95,6 +111,7 @@ public class PostFragment extends Fragment implements FragmentManager {
 
         climbPosProgressBar = (ProgressBar) view.findViewById(R.id.climbPos_progressBar);
 
+        submitMatch = (Button) view.findViewById(R.id.submitMatchBtn);
         climbPos = "NULL";
 
         climbPosDescription = "NULL";
@@ -138,9 +155,6 @@ public class PostFragment extends Fragment implements FragmentManager {
 
                commentsEdiText.setText(currentComment);
 
-//                if (position == 0){
-//                    commentsEdiText.setText(sampleComments);
-//                }
             }
 
             @Override
@@ -288,6 +302,30 @@ public class PostFragment extends Fragment implements FragmentManager {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        submitMatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScoutFragment.submittedInfoWrapper.setPostActions(post);
+                HttpParams params = new BasicHttpParams();
+                params.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+                DefaultHttpClient mHttpClient = new DefaultHttpClient(params);
+                HttpPost httppost = new HttpPost("https://scouting.runnymederobotics.com/Lembos2020-Backend_war/api/upload/submittedInfoWrapperJSON");
+                MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+                try {
+                    multipartEntity.addPart("json",new StringBody(new Gson().toJson(ScoutFragment.submittedInfoWrapper)));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                httppost.setEntity(multipartEntity);
+                try {
+                    mHttpClient.execute(httppost);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                fragmentListener.onFragmentChange(1);
             }
         });
 

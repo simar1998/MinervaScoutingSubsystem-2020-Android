@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.minervascoutingsubsystemandroid.structure.models.SubmittedGame;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
+import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 
 import java.util.ArrayList;
 
@@ -78,6 +79,7 @@ public class InitInfoViewModel extends ViewModel {
               }
               else {
                   sendInfoTpSubmittedMatch(checkBox,scoutName,matchNum,teamNum);
+                  ScoutFragment.submittedInfoWrapper.setSubmittedGame(submittedGame);
                   fragmentChangeListener.onFragmentChange(2);
               }
           }

@@ -19,6 +19,7 @@ import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.Pre;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
+import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 
 public class PreFragment extends Fragment implements FragmentManager {
 
@@ -100,31 +101,13 @@ public class PreFragment extends Fragment implements FragmentManager {
         bluePosProgressBar.setVisibility(View.INVISIBLE);
         bluePosSeekbar.setVisibility(View.INVISIBLE);
 
+        bluePosProgressBar.setVisibility(View.VISIBLE);
+        bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
+        bluePosSeekbar.setVisibility(View.VISIBLE);
 
-//        Log.d("TEST" , (ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance())+"");
-
-//        if(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance() == 'r'){
-//
-//            redPosProgressBar.setVisibility(View.VISIBLE);
-//            redPosDescriptionTxtView.setVisibility(View.VISIBLE);
-//            redPosSeekbar.setVisibility(View.VISIBLE);
-//
-//            botSetupProgressBar = redPosProgressBar;
-//            botSeupSeekBar = redPosSeekbar;
-//            botStartPosDescription = redPosDescriptionTxtView;
-//        }
-//        else {
-//
-            bluePosProgressBar.setVisibility(View.VISIBLE);
-            bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
-            bluePosSeekbar.setVisibility(View.VISIBLE);
-
-            botSetupProgressBar = bluePosProgressBar;
-            botSeupSeekBar = bluePosSeekbar;
-            botStartPosDescription = bluePosDescriptionTxtView;
-//
-//        }
-
+        botSetupProgressBar = bluePosProgressBar;
+        botSeupSeekBar = bluePosSeekbar;
+        botStartPosDescription = bluePosDescriptionTxtView;
 
         /**
          * TODO- adjust values for positions depending on where the bot starts
@@ -190,6 +173,7 @@ public class PreFragment extends Fragment implements FragmentManager {
 
                 if(startPos != "NULL") {
                     pre.setStartPos(startPos);
+                    ScoutFragment.submittedInfoWrapper.setPre(pre);
                     fragmentListener.onFragmentChange(3);
                 }
                 else
@@ -214,6 +198,7 @@ public class PreFragment extends Fragment implements FragmentManager {
     @Override
     public void onDetach() {
         super.onDetach();
+
         fragmentListener = null;
     }
 }
