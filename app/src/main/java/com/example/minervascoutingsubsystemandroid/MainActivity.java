@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    public static MainActivity mainActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        NetworkCrawlerSubroutine networkSniffTask = new NetworkCrawlerSubroutine(this);
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        mainActivity = this;
     }
 
     @Override
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 
     @Override
     public void onFragmentChange(int n) {

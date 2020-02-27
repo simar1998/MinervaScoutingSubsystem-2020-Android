@@ -36,6 +36,8 @@ ActionsViewModel actionsViewModel;
 
     TextView debugTxtView;
 
+    Activity activity;
+
 
     OnFragmentChangeListener fragmentListener;
 
@@ -44,41 +46,10 @@ ActionsViewModel actionsViewModel;
     ImageView yellowImg;
     ImageView zone2Img;
 
+    ArrayList<ButtonWrapper> zoneButtons = new ArrayList<>();
+    ArrayList<ButtonWrapper> optionsButtons = new ArrayList<>();
+
     Button startBtn;
-
-
-    Button zone1Btn;
-    Button zone2Btn;
-    Button zone3Btn;
-    Button zone4Btn;
-    Button zone5Btn;
-    Button zone6Btn;
-    Button zone7Btn;
-    Button zone8Btn;
-    Button zone9Btn;
-    Button zone10Btn;
-    Button zone11Btn;
-    Button zone12Btn;
-    Button zone13Btn;
-    Button zone14Btn;
-    Button zone15Btn;
-    Button zone16Btn;
-    Button zone17Btn;
-    Button zone18Btn;
-    Button zone19Btn;
-    Button zone20Btn;
-    Button zone21Btn;
-    Button zone22Btn;
-    Button zone23Btn;
-    Button zone24Btn;
-
-
-    Button intakeBtn;
-    Button shootBtn;
-    Button dropBtn;
-    Button feedBtn;
-    Button cancelBtn;
-
 
 
     SeekBar shootAttemptSeekbar;
@@ -107,8 +78,11 @@ int temp1, temp2;
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        actionsViewModel = ViewModelProviders.of(this).get(ActionsViewModel.class);
+        actionsViewModel = new ActionsViewModel(this,onFragmentChangeListener);
+
         final View view = inflater.inflate(R.layout.fragment_scout_action, container, false);
+
+        createButtonWrappers(view);
         //fragmentListener.onFragmentChange(1);
 
         actionsList = new ArrayList<>();
@@ -123,41 +97,10 @@ int temp1, temp2;
         fieldImg = (ImageView) view.findViewById(R.id.field_actions_imgView);
 
 
-        intakeBtn = (Button) view.findViewById(R.id.intake_btn);
-        shootBtn = (Button) view.findViewById(R.id.shoot_btn);
-        dropBtn = (Button) view.findViewById(R.id.drop_btn);
-        feedBtn = (Button) view.findViewById(R.id.feed_btn);
-        cancelBtn = (Button) view.findViewById(R.id.cancel_btn);
 
 
         startBtn = (Button) view.findViewById(R.id.start_btn);
 
-
-
-        zone1Btn = (Button) view.findViewById(R.id.zone1_btn);
-        zone2Btn = (Button) view.findViewById(R.id.zone2_btn);
-        zone3Btn = (Button) view.findViewById(R.id.zone3_btn);
-        zone4Btn = ( Button) view.findViewById(R.id.zone4_btn);
-        zone5Btn = (Button) view.findViewById(R.id.zone5_btn);
-        zone6Btn = (Button) view.findViewById(R.id.zone6_btn);
-        zone7Btn = (Button) view.findViewById(R.id.zone7_btn);
-        zone8Btn = (Button) view.findViewById(R.id.zone8_btn);
-        zone9Btn = (Button) view.findViewById(R.id.zone9_btn);
-        zone10Btn = (Button) view.findViewById(R.id.zone10_btn);
-        zone11Btn = (Button) view.findViewById(R.id.zone11_btn);
-        zone12Btn = (Button) view.findViewById(R.id.zone12_btn);
-        zone13Btn = (Button) view.findViewById(R.id.zone13_btn);
-        zone14Btn = (Button) view.findViewById(R.id.zone14_btn);
-        zone15Btn = (Button) view.findViewById(R.id.zone15_btn);
-        zone16Btn = (Button) view.findViewById(R.id.zone16_btn);
-        zone17Btn = (Button) view.findViewById(R.id.zone17_btn);
-        zone18Btn = (Button) view.findViewById(R.id.zone18_btn);
-        zone19Btn = (Button) view.findViewById(R.id.zone19_btn);
-        zone20Btn = (Button) view.findViewById(R.id.zone20_btn);
-        zone21Btn = (Button) view.findViewById(R.id.zone21_btn);
-        zone22Btn = (Button) view.findViewById(R.id.zone22_btn);
-        zone23Btn = (Button) view.findViewById(R.id.zone23_btn);
-        zone24Btn = (Button) view.findViewById(R.id.zone24_btn);
 
 
         shootAttemptSeekbar = (SeekBar) view.findViewById(R.id.shoot_attempt_seekBar);
@@ -180,13 +123,6 @@ int temp1, temp2;
          actions = new Actions();
 
          final ArrayList<Actions> actionsList = new ArrayList<>();
-        final ArrayList<Button> zoneBtns = new ArrayList<>(Arrays.asList(
-                zone1Btn, zone2Btn,zone3Btn,zone4Btn,zone5Btn,zone6Btn,zone7Btn,zone8Btn,zone9Btn,
-                zone10Btn,zone11Btn,zone12Btn,zone13Btn,zone14Btn,zone15Btn,zone16Btn,zone17Btn,
-                zone18Btn,zone19Btn,zone20Btn,zone21Btn,zone22Btn,zone23Btn,zone24Btn
-                ));
-
-        final ArrayList<Button> optionBtns = new ArrayList<>(Arrays.asList(intakeBtn,shootBtn,dropBtn,feedBtn,cancelBtn));
 
         ArrayList<ImageView> zoneImageViews = new ArrayList<>(Arrays.asList(yellowImg,zone2Img));
 
@@ -195,9 +131,6 @@ int temp1, temp2;
         final  ArrayList<Button> shootOptionBtns = new ArrayList<>(Arrays.asList(shootSubmitBtn,shootCancelBtn));
 
         selectedZone = -1;
-
-
-
 
         preTabBtn.setVisibility(View.INVISIBLE);
         actionTabBtn.setVisibility(View.INVISIBLE);
@@ -214,7 +147,7 @@ int temp1, temp2;
 
 
 
-        decideBtnsVisibility(optionBtns,false);
+        decideBtnsVisibility(optionsButtons,false);
         decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
 
         /**
@@ -223,54 +156,25 @@ int temp1, temp2;
          * KNOWN ISSUE(FIXED):
          * When zone 21 is clicked, none of the optionButtons can be clicked because its under zone 21
          */
-        for ( int i = 0 ; i < zoneBtns.size(); i ++){
-            final int copyOfI = i;
+       for (final ButtonWrapper buttonWrapper : zoneButtons){
 
-
-            zoneBtns.get(i).setOnClickListener(new View.OnClickListener() {
+            buttonWrapper.getButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    zoneBtns.get(copyOfI).setEnabled(false);
-                    selectedZone = copyOfI+1;
+                    buttonWrapper.getButton().setEnabled(false);
+                    selectedZone = buttonWrapper.getZoneNum();
                     postTabBtn.setVisibility(View.INVISIBLE);
-
-
-//                    for (Button button : optionBtns){
-//                        if (temp1 != 0 && temp2 != 0){
-//                            TranslateAnimation animation = new TranslateAnimation(0, button.getX() - temp1, 0, button.getY() - temp2);
-//                            animation.setDuration(10000); // duartion in ms
-//
-//                            intakeBtn.startAnimation(animation);
-//                        }
-//                    }
-//Testing if zone 21 btn is hit or the actions menu
-//                    if (copyOfI == 20){
-//                        Log.d("CREATION","IM HITTING ZONE 21");
-//                    }
-                    //Get teh coordinates of zone button clicked
-                    int[] zoneBtnLoc= getCoordinateXY(zoneBtns.get(copyOfI));
-
-
-                    for (int j =0;j<zoneBtns.size();j++){
-                        if(copyOfI !=j){
-                            zoneBtns.get(j).setVisibility(View.INVISIBLE);
-
+                    for (ButtonWrapper buttonWrapper1 : zoneButtons){
+                        if(buttonWrapper1.getZoneNum() != buttonWrapper.getZoneNum()){
+                            buttonWrapper1.getButton().setVisibility(View.INVISIBLE);
                         }
                         else{
-
-                            System.out.println("TEST 2");
-
-                            for(int m = 0; m< optionBtns.size(); m++){
-
-                                optionBtns.get(m).setVisibility(View.VISIBLE);
-
+                            for(ButtonWrapper options : optionsButtons){
+                                options.getButton().setVisibility(View.VISIBLE);
                             }
                         }
 
-
                     }
-
-
                 }
 
                 public  int[] getCoordinateXY(Button btn ){
@@ -296,30 +200,17 @@ int temp1, temp2;
             });
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        intakeBtn.setOnClickListener(new View.OnClickListener() {
+        getOptionsButtonWrapper("intake_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 try {
                     actionsList.add(generateNormalAction("intake", selectedZone));
                     debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size() - 1)));
-                    decideBtnsVisibility(zoneBtns, true);
-                    decideBtnsVisibility(optionBtns, false);
-                    zoneBtns.get(selectedZone - 1).setEnabled(true);
-                    selectedZone = -1;
+                    decideBtnsVisibility(zoneButtons, true);
+                    decideBtnsVisibility(optionsButtons, false);
                     postTabBtn.setVisibility(View.VISIBLE);
-                    decideBtnEnabled(zoneBtns, true);
+                    decideBtnEnabled(zoneButtons, true);
                 }catch (Exception e){
 
                 }
@@ -328,13 +219,13 @@ int temp1, temp2;
             }
         });
 
-        shootBtn.setOnClickListener(new View.OnClickListener() {
+        getOptionsButtonWrapper("shoot_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,true);
                 //debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-            decideBtnsVisibility(optionBtns,false);
+            decideBtnsVisibility(optionsButtons,false);
                 postTabBtn.setVisibility(View.VISIBLE);
 
             }
@@ -342,18 +233,16 @@ int temp1, temp2;
 
 
 
-        dropBtn.setOnClickListener(new View.OnClickListener() {
+        getOptionsButtonWrapper("drop_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     actionsList.add(generateNormalAction("drop",selectedZone));
                     debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-                    decideBtnsVisibility(zoneBtns,true);
-                    decideBtnsVisibility(optionBtns,false);
-                    zoneBtns.get(selectedZone-1).setEnabled(true);
-                    selectedZone = -1;
+                    decideBtnsVisibility(zoneButtons,true);
+                    decideBtnsVisibility(optionsButtons,false);
                     postTabBtn.setVisibility(View.VISIBLE);
-                    decideBtnEnabled(zoneBtns, true);
+                    decideBtnEnabled(zoneButtons, true);
                 }catch (Exception e){
 
                 }
@@ -362,29 +251,25 @@ int temp1, temp2;
 
         });
 
-        feedBtn.setOnClickListener(new View.OnClickListener() {
+        getOptionsButtonWrapper("feed_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 actionsList.add(generateNormalAction("feed",selectedZone));
                 debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-                decideBtnsVisibility(zoneBtns,true);
-                decideBtnsVisibility(optionBtns,false);
-                zoneBtns.get(selectedZone-1).setEnabled(true);
-                selectedZone = -1;
+                decideBtnsVisibility(zoneButtons,true);
+                decideBtnsVisibility(optionsButtons,false);
                 postTabBtn.setVisibility(View.VISIBLE);
-                decideBtnEnabled(zoneBtns, true);
+                decideBtnEnabled(zoneButtons, true);
             }
         });
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
+        getOptionsButtonWrapper("cancel_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                zoneBtns.get(selectedZone-1).setEnabled(true);
-                decideBtnsVisibility(zoneBtns,true);
-                decideBtnsVisibility(optionBtns,false);
-                selectedZone = -1;
+                decideBtnsVisibility(zoneButtons,true);
+                decideBtnsVisibility(optionsButtons,false);
                 postTabBtn.setVisibility(View.VISIBLE);
-                decideBtnEnabled(zoneBtns, true);
+                decideBtnEnabled(zoneButtons, true);
             }
         });
 
@@ -399,13 +284,11 @@ int temp1, temp2;
                 debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
                 shootAttemptSeekbar.setProgress(0);
                 shootSuccessSeekbar.setProgress(0);
-                zoneBtns.get(selectedZone-1).setEnabled(true);
-                selectedZone = -1;
                 decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
-                decideBtnsVisibility(optionBtns,false);
-                decideBtnsVisibility(zoneBtns,true);
+                decideBtnsVisibility(optionsButtons,false);
+                decideBtnsVisibility(zoneButtons,true);
                 postTabBtn.setVisibility(View.VISIBLE);
-                decideBtnEnabled(zoneBtns, true);
+                decideBtnEnabled(zoneButtons, true);
             }
         });
 
@@ -415,9 +298,9 @@ int temp1, temp2;
                 shootAttemptSeekbar.setProgress(0);
                 shootSuccessSeekbar.setProgress(0);
                 decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
-                decideBtnsVisibility(optionBtns, true);
+                decideBtnsVisibility(optionsButtons, true);
                 postTabBtn.setVisibility(View.VISIBLE);
-                decideBtnEnabled(zoneBtns, true);
+                decideBtnEnabled(zoneButtons, true);
             }
         });
 
@@ -498,47 +381,6 @@ int temp1, temp2;
 
             }
         });
-
-
-
-        for ( int i = 0 ; i < zoneImageViews.size(); i ++){
-
-            final int copyOfI = i;
-            //zoneBtns.get(i).setBackgroundColor(Color.TRANSPARENT);
-
-            int zoneBackColor = getContext().getResources().getIdentifier("zone_btn", "drawable", "");
-
-            zoneBtns.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    getCoordinateXY(zoneBtns.get(copyOfI).getId());
-
-                }
-
-                public  void getCoordinateXY(int btnID ){
-                    Button btn = (Button) view.findViewById(btnID);
-                    int locOfBtn[] = new  int[2];
-                    btn.getLocationOnScreen(locOfBtn);
-                    int btnXLoc = locOfBtn[0];
-                    int btnYLoc = locOfBtn[1];
-                    String btnName = view.getResources().getResourceEntryName(btn.getId()).toString();
-                    try {
-                       // debugTxtView.setText ("X Of"+ btnName + ": " + btnXLoc +" \n Y of " + btnName + " :" + btnYLoc);
-                    }
-                    catch (Exception e){
-
-                    }
-
-
-
-                }
-            });
-        }
-
-
-
-
         preTabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -596,28 +438,28 @@ int temp1, temp2;
 
 
 
-    public void decideBtnsVisibility(ArrayList<Button> btns, boolean makeVisible){
+    public void decideBtnsVisibility(ArrayList<ButtonWrapper> btns, boolean makeVisible){
         for (int i = 0; i < btns.size();i++){
             if(makeVisible)
-            btns.get(i).setVisibility(View.VISIBLE);
+            btns.get(i).getButton().setVisibility(View.VISIBLE);
             else
-                btns.get(i).setVisibility(View.INVISIBLE);
+                btns.get(i).getButton().setVisibility(View.INVISIBLE);
         }
     }
 
-    public void decideBtnEnabled(ArrayList<Button> btns, boolean makeEnabled){
+    public void decideBtnEnabled(ArrayList<ButtonWrapper> btns, boolean makeEnabled){
         for (int i = 0 ; i < btns.size(); i ++){
             if (makeEnabled)
-            btns.get(i).setEnabled(true);
+            btns.get(i).getButton().setEnabled(true);
             else
-                btns.get(i).setEnabled(true);
+                btns.get(i).getButton().setEnabled(true);
         }
     }
 
     public void decideShootOptionsVisibility(ArrayList<SeekBar> seekBars, ArrayList<TextView> txtViews, ArrayList<Button> btns, boolean makeVisible){
         decideSeekBarVisibility(seekBars,makeVisible);
         decideTextViewVisibility(txtViews,makeVisible);
-        decideBtnsVisibility(btns,makeVisible);
+        decideBtnsVisibility(optionsButtons,makeVisible);
     }
 
     public  void decideSeekBarVisibility(ArrayList<SeekBar> views, boolean makeVisible){
@@ -690,18 +532,41 @@ int temp1, temp2;
     }
 
 
+    public void createButtonWrappers(View view){
+
+        int tempButtonId;
+        for (int i = 1 ; i < 25; i++){
+            tempButtonId = view.getResources().getIdentifier("zone"+i+"_btn","id",activity.getPackageName());
+            zoneButtons.add(new ButtonWrapper(i,tempButtonId,view));
+        }
+
+        String[] optionButtonsName = {"intake_btn","shoot_btn","drop_btn","feed_btn","cancel_btn"};
+        for (String optionStr : optionButtonsName){
+            tempButtonId = view.getResources().getIdentifier(optionStr,"id",activity.getPackageName());
+            optionsButtons.add(new ButtonWrapper(optionStr,tempButtonId,view));
+        }
+
+
+    }
+
 
     private class ButtonWrapper{
 
         int zoneNum;
+        String optionName;
         int buttonId;
-
         Button button;
 
         public ButtonWrapper(int zoneNum, int buttonId, View view){
            this.zoneNum = zoneNum;
            this.buttonId = buttonId;
            this.button = view.findViewById(buttonId);
+        }
+
+        public ButtonWrapper(String optionName, int buttonId,View view) {
+            this.optionName = optionName;
+            this.buttonId = buttonId;
+            this.button = view.findViewById(buttonId);
         }
 
         public int getZoneNum() {
@@ -727,12 +592,29 @@ int temp1, temp2;
         public void setButton(Button button) {
             this.button = button;
         }
+
+        public String getOptionName() {
+            return optionName;
+        }
+
+        public void setOptionName(String optionName) {
+            this.optionName = optionName;
+        }
+
     }
 
-
+    public  ButtonWrapper getOptionsButtonWrapper(String optionsName){
+        for (ButtonWrapper buttonWrapper : optionsButtons){
+            if (buttonWrapper.getOptionName().equals(optionsName)){
+                return buttonWrapper;
+            }
+        }
+        return null;
+    }
 
     @Override
     public void onAttach(Activity activity) {
+        this.activity = activity;
         super.onAttach(activity);
         try {
             fragmentListener = (OnFragmentChangeListener) activity;
