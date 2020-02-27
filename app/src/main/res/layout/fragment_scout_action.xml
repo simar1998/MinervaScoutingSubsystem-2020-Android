@@ -23,15 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/post_action_btn2"
-        android:layout_width="174dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="84dp"
-        android:text="Endgame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/climbPost_txtView"
         android:layout_width="match_parent"
@@ -71,6 +62,15 @@
         android:text="21"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/post_action_btn2"
+        android:layout_width="174dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="84dp"
+        android:text="Endgame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/zone22_btn"
