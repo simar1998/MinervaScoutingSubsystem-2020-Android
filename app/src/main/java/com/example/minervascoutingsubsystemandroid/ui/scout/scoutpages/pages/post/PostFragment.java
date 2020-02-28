@@ -1,7 +1,11 @@
 package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.post;
 
 import android.app.Activity;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.CONST;
+import com.example.minervascoutingsubsystemandroid.MainActivity;
 import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.PostActions;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
@@ -28,7 +33,11 @@ import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 import com.google.gson.Gson;
 
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -86,7 +95,7 @@ public class PostFragment extends Fragment implements FragmentManager {
 
 
         postViewModel = ViewModelProviders.of(this).get(PostViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_scout_post_action, container, false);
+        final View view = inflater.inflate(R.layout.fragment_scout_post_action, container, false);
 
 
 
@@ -281,6 +290,18 @@ public class PostFragment extends Fragment implements FragmentManager {
                     });
                     thread.start();
                 stopMatchTimer();
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        String fileName =ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+
+                                ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+ScoutFragment.submittedInfoWrapper.getSubmittedGame().getScoutUUID();
+                        try {
+                            writeToFile((new Gson()).toJson(ScoutFragment.submittedInfoWrapper),fileName, view.getContext());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 fragmentListener.onFragmentChange(1);
             }
         });
@@ -356,5 +377,27 @@ public class PostFragment extends Fragment implements FragmentManager {
             System.out.println("CANNOT SET CLIMB POSITION");
         }
     }
+
+
+    public static void writeToFile(String data, String fileName, Context context) throws IOException {
+        File root = Environment.getExternalStorageDirectory();
+
+        File outDir = new File(root.getAbsolutePath() + File.separator + "Scouting_App_2020");
+        Writer writer;
+        boolean success = true;
+        if (!outDir.exists()) {
+            success = outDir.mkdirs();
+        }
+        if (success) {
+            File outPutFile = new File(outDir, fileName);
+            writer = new PrintWriter(new FileWriter(outPutFile));
+            writer.write(data);
+            writer.close();
+            writer.flush();
+        } else {
+            Log.e("Error","Folder not created properly");
+        }
+    }
+
 
 }
