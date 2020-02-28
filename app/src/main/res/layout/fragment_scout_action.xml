@@ -462,7 +462,7 @@
         android:id="@+id/start_btn"
         android:layout_width="960dp"
         android:layout_height="526dp"
-        android:text="start matchNum "
+        android:text="start match"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
