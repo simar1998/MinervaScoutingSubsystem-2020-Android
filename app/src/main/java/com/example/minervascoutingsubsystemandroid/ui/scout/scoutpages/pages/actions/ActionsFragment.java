@@ -140,6 +140,9 @@ int temp1, temp2;
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (MatchTimerManager.getIsActive()){
+                    MatchTimerManager.stopMatchTimer();
+                }
                 MatchTimerManager.startMatchTimer();
                 startBtn.setVisibility(View.GONE);
 

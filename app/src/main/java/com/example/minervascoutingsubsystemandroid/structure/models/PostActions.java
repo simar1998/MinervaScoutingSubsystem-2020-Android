@@ -9,6 +9,8 @@ public class PostActions {
 
     int id;
 
+    int id2;
+
     int hangStart = 0;
 
     int hangEnd = 0;

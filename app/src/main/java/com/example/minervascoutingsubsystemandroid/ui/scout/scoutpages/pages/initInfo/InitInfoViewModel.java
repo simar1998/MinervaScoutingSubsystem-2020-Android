@@ -65,6 +65,7 @@ public class InitInfoViewModel extends ViewModel {
               String scoutName = scoutNameEditTxt.getText().toString();
               String matchNum = matchNumEditTxt.getText().toString();
               String teamNum = teamNumEditTxt.getText().toString();
+              System.out.println("Match num = "+matchNum);
               if( (scoutName.matches("")))
               {
                   Toast.makeText(fragment.getContext(), "You have not entered the scout name", Toast.LENGTH_SHORT).show();

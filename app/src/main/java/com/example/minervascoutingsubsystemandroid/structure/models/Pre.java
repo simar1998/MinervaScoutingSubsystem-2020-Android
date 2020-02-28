@@ -9,6 +9,8 @@ public class Pre {
 
     int id;
 
+    int id2;
+
     String startPos;
 
     int loadedBall;

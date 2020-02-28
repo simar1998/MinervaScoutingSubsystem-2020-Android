@@ -38,6 +38,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager.stopMatchTimer;
+
 public class PostFragment extends Fragment implements FragmentManager {
 
     OnFragmentChangeListener fragmentListener;
@@ -309,6 +311,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                 final OkHttpClient client = new OkHttpClient().newBuilder()
                         .build();
                 MediaType mediaType = MediaType.parse("text/plain");
+                System.out.println(new Gson().toJson(ScoutFragment.submittedInfoWrapper));
                 RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                         .addFormDataPart("json", new Gson().toJson(ScoutFragment.submittedInfoWrapper))
                         .build();
@@ -327,6 +330,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                         }
                     });
                     thread.start();
+                stopMatchTimer();
                 fragmentListener.onFragmentChange(1);
             }
         });
