@@ -304,7 +304,6 @@ public class PostFragment extends Fragment implements FragmentManager {
         fragmentListener = null;
     }
 
-
     public void setPostValues(){
 
         post.setComment(commentsEdiText.getText().toString());

@@ -163,6 +163,7 @@ int temp1, temp2;
             buttonWrapper.getButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    selectedZone = buttonWrapper.getZoneNum();
                     buttonWrapper.getButton().setEnabled(false);
                     //selectedZone = buttonWrapper.getZoneNum();
                     postTabBtn.setVisibility(View.INVISIBLE);
@@ -175,7 +176,6 @@ int temp1, temp2;
                                 options.getButton().setVisibility(View.VISIBLE);
                             }
                         }
-
                     }
                 }
 
