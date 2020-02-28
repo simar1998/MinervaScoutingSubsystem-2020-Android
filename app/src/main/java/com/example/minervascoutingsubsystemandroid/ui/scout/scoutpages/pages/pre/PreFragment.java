@@ -101,13 +101,31 @@ public class PreFragment extends Fragment implements FragmentManager {
         bluePosProgressBar.setVisibility(View.INVISIBLE);
         bluePosSeekbar.setVisibility(View.INVISIBLE);
 
-        bluePosProgressBar.setVisibility(View.VISIBLE);
-        bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
-        bluePosSeekbar.setVisibility(View.VISIBLE);
+;
 
         botSetupProgressBar = bluePosProgressBar;
         botSeupSeekBar = bluePosSeekbar;
         botStartPosDescription = bluePosDescriptionTxtView;
+
+        char alliance =  ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance();
+
+//        if(alliance == 'r'){
+//            botSeupSeekBar = redPosSeekbar;
+//            botSetupProgressBar = redPosProgressBar;
+//            botStartPosDescription = redPosDescriptionTxtView;
+//        redPosProgressBar.setVisibility(View.VISIBLE);
+//        redPosDescriptionTxtView.setVisibility(View.VISIBLE);
+//        redPosSeekbar.setVisibility(View.VISIBLE);
+//
+//        }
+//        else{
+//            botSeupSeekBar = bluePosSeekbar;
+//            botSetupProgressBar = bluePosProgressBar;
+//            botStartPosDescription = bluePosDescriptionTxtView;
+//        redPosProgressBar.setVisibility(View.VISIBLE);
+//        redPosDescriptionTxtView.setVisibility(View.VISIBLE);
+//        redPosSeekbar.setVisibility(View.VISIBLE);
+//        }
 
         /**
          * TODO- adjust values for positions depending on where the bot starts

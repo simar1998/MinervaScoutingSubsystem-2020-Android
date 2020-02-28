@@ -94,6 +94,8 @@ public class InitInfoViewModel extends ViewModel {
      * @param teamNum
      */
     private void sendInfoTpSubmittedMatch(CheckBox matchReplayChkBox, String scoutName, String matchNum, String teamNum){
+
+
         submittedGame.setMatchNum(Integer.parseInt(matchNum));
         if(matchReplayChkBox.isChecked()){
             submittedGame.setNumReplayed(1);
@@ -103,6 +105,7 @@ public class InitInfoViewModel extends ViewModel {
         }
 
         submittedGame.setScoutName(scoutName);
+
 
         try {
             submittedGame.setTeamNum(Integer.parseInt(teamNum));
