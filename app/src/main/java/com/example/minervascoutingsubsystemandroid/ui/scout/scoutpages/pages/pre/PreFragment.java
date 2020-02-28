@@ -101,8 +101,8 @@ public class PreFragment extends Fragment implements FragmentManager {
         bluePosProgressBar.setVisibility(View.INVISIBLE);
         bluePosSeekbar.setVisibility(View.INVISIBLE);
 
-;
 
+//comment this when uncommenting the if statements below
         botSetupProgressBar = bluePosProgressBar;
         botSeupSeekBar = bluePosSeekbar;
         botStartPosDescription = bluePosDescriptionTxtView;
