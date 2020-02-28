@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.minervascoutingsubsystemandroid.CONST;
 import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.PostActions;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
@@ -263,8 +264,9 @@ public class PostFragment extends Fragment implements FragmentManager {
                 RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                         .addFormDataPart("json", new Gson().toJson(ScoutFragment.submittedInfoWrapper))
                         .build();
+                System.out.println(CONST.postURI+"/minervascouting2020/api/upload/submittedInfoWrapperJSON");
                 final Request request = new Request.Builder()
-                        .url("https://scouting.runnymederobotics.com/minervascouting2020/api/upload/submittedInfoWrapperJSON")
+                        .url(CONST.postURI+"/minervascouting2020/api/upload/submittedInfoWrapperJSON")
                         .method("POST", body)
                         .build();
                     Thread thread = new Thread(new Runnable() {

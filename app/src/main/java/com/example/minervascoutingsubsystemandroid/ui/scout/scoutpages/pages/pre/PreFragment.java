@@ -104,29 +104,29 @@ public class PreFragment extends Fragment implements FragmentManager {
 
 
 //comment this when uncommenting the if statements below
-        botSetupProgressBar = bluePosProgressBar;
-        botSeupSeekBar = bluePosSeekbar;
-        botStartPosDescription = bluePosDescriptionTxtView;
+//        botSetupProgressBar = bluePosProgressBar;
+//        botSeupSeekBar = bluePosSeekbar;
+//        botStartPosDescription = bluePosDescriptionTxtView;
 
         char alliance =  ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance();
 
-//        if(alliance == 'r'){
-//            botSeupSeekBar = redPosSeekbar;
-//            botSetupProgressBar = redPosProgressBar;
-//            botStartPosDescription = redPosDescriptionTxtView;
-//        redPosProgressBar.setVisibility(View.VISIBLE);
-//        redPosDescriptionTxtView.setVisibility(View.VISIBLE);
-//        redPosSeekbar.setVisibility(View.VISIBLE);
-//
-//        }
-//        else{
-//            botSeupSeekBar = bluePosSeekbar;
-//            botSetupProgressBar = bluePosProgressBar;
-//            botStartPosDescription = bluePosDescriptionTxtView;
-//        bluePosProgressBar.setVisibility(View.VISIBLE);
-//        bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
-//        bluePosSeekbar.setVisibility(View.VISIBLE);
-//        }
+        if(alliance == 'r'){
+            botSeupSeekBar = redPosSeekbar;
+            botSetupProgressBar = redPosProgressBar;
+            botStartPosDescription = redPosDescriptionTxtView;
+        redPosProgressBar.setVisibility(View.VISIBLE);
+        redPosDescriptionTxtView.setVisibility(View.VISIBLE);
+        redPosSeekbar.setVisibility(View.VISIBLE);
+
+        }
+        else{
+            botSeupSeekBar = bluePosSeekbar;
+            botSetupProgressBar = bluePosProgressBar;
+            botStartPosDescription = bluePosDescriptionTxtView;
+        bluePosProgressBar.setVisibility(View.VISIBLE);
+        bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
+        bluePosSeekbar.setVisibility(View.VISIBLE);
+        }
 
         /**
          * TODO- adjust values for positions depending on where the bot starts

@@ -13,8 +13,17 @@ public class Match {
         private int blue3;
         private int matchNum;
 
+    public Match(Object red1, Object red2, Object red3, Object blue1, Object blue2, Object blue3, Object matchNum) {
+        this.red1 = Integer.parseInt(((String) red1).replace("frc",""));
+        this.red2 = Integer.parseInt((((String) red2).replace("frc","")));
+        this.red3 = Integer.parseInt(((String) red3).replace("frc",""));
+        this.blue1 = Integer.parseInt((((String) blue1).replace("frc","")));
+        this.blue2 = Integer.parseInt((((String) blue2).replace("frc","")));
+        this.blue3 = Integer.parseInt((((String) blue3 ).replace("frc","")));
+        this.matchNum = Integer.parseInt(((String) matchNum));
+    }
 
-        public void match(int r1,int r2,int r3,int b1,int b2,int b3) {
+    public void match(int r1, int r2, int r3, int b1, int b2, int b3) {
             this.setR1(r1);
             this.setR2(r2);
             this.setR3(r3);
@@ -23,6 +32,8 @@ public class Match {
             this.setB3(b3);
 
         }
+
+
 
 
         public int getR1() {
@@ -122,16 +133,22 @@ public class Match {
             switch (i) {
                 case 1:
                     teamNum = red1;
+                    break;
                 case 2 :
                     teamNum = red2;
+                    break;
                 case 3 :
                     teamNum = red3;
+                    break;
                 case 4:
                     teamNum = blue1;
+                    break;
                 case 5 :
                     teamNum = blue2;
+                    break;
                 case 6 :
                     teamNum = blue3;
+                    break;
             }
             return teamNum;
     }

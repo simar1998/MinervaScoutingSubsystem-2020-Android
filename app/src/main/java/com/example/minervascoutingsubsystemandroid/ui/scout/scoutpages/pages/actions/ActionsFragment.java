@@ -562,7 +562,7 @@ int temp1, temp2;
     }
 
 
-    private class ButtonWrapper{
+    public class ButtonWrapper{
 
         int zoneNum;
         String optionName;

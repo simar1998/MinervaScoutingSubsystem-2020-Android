@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 
+import com.example.minervascoutingsubsystemandroid.CONST;
 import com.example.minervascoutingsubsystemandroid.structure.models.SubmittedGame;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
@@ -113,6 +114,9 @@ public class InitInfoViewModel extends ViewModel {
         }catch (Exception e){
             submittedGame.setTeamNum(-1);
         }
+
+        submittedGame.setScoutTeamNum(CONST.scoutTeam);
+        submittedGame.setEvent(CONST.eventName);
     }
 
 }

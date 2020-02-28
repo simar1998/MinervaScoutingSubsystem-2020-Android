@@ -11,4 +11,10 @@ public class CONST {
     public static final int MAX_VIBRATION_TIME = 5000;
 
     public static final int VIDEO_PORT = 8081;
+    public static final String MY_PREFS_NAME = "minerva2020";
+
+    public static String postURI = "";
+
+    public static int scoutTeam = 0;
+    public static String eventName = "";
 }
