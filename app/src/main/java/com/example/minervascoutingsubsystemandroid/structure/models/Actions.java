@@ -9,6 +9,8 @@ public class Actions {
 
     int id;
 
+    int id2;
+
     int time;
 
     String action;
