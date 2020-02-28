@@ -12,7 +12,7 @@ public class SubmittedGame {
 
     int teamNum;
 
-    int match;
+    int matchNum;
 
     int scoutTeamNum;
 
@@ -29,6 +29,8 @@ public class SubmittedGame {
     Date timeStamp;
 
     int numReplayed = 0;
+
+    String submissionUUID;
 
 
 
@@ -48,12 +50,12 @@ public class SubmittedGame {
         this.teamNum = teamNum;
     }
 
-    public int getMatch() {
-        return match;
+    public int getMatchNum() {
+        return matchNum;
     }
 
-    public void setMatch(int match) {
-        this.match = match;
+    public void setMatchNum(int matchNum) {
+        this.matchNum = matchNum;
     }
 
     public char getAlliance() {

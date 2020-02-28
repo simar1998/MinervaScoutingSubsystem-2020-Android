@@ -26,20 +26,17 @@ import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 import com.google.gson.Gson;
 
-import org.apache.http.HttpVersion;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.params.HttpParams;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class PostFragment extends Fragment implements FragmentManager {
 
@@ -309,22 +306,27 @@ public class PostFragment extends Fragment implements FragmentManager {
             @Override
             public void onClick(View v) {
                 ScoutFragment.submittedInfoWrapper.setPostActions(post);
-                HttpParams params = new BasicHttpParams();
-                params.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-                DefaultHttpClient mHttpClient = new DefaultHttpClient(params);
-                HttpPost httppost = new HttpPost("https://scouting.runnymederobotics.com/minervascouting2020/api/upload/submittedInfoWrapperJSON");
-                MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-                try {
-                    multipartEntity.addPart("json",new StringBody(new Gson().toJson(ScoutFragment.submittedInfoWrapper)));
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                httppost.setEntity(multipartEntity);
-                try {
-                    mHttpClient.execute(httppost);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                final OkHttpClient client = new OkHttpClient().newBuilder()
+                        .build();
+                MediaType mediaType = MediaType.parse("text/plain");
+                RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                        .addFormDataPart("json", new Gson().toJson(ScoutFragment.submittedInfoWrapper))
+                        .build();
+                final Request request = new Request.Builder()
+                        .url("https://scouting.runnymederobotics.com/minervascouting2020/api/upload/submittedInfoWrapperJSON")
+                        .method("POST", body)
+                        .build();
+                    Thread thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Response response = client.newCall(request).execute();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    thread.start();
                 fragmentListener.onFragmentChange(1);
             }
         });
