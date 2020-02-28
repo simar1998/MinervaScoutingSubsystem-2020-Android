@@ -97,9 +97,10 @@ public class PreFragment extends Fragment implements FragmentManager {
         redPosSeekbar.setVisibility(View.INVISIBLE);
 
 
-        bluePosDescriptionTxtView.setVisibility(View.INVISIBLE);
-        bluePosProgressBar.setVisibility(View.INVISIBLE);
-        bluePosSeekbar.setVisibility(View.INVISIBLE);
+
+        bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
+        bluePosProgressBar.setVisibility(View.VISIBLE);
+        bluePosSeekbar.setVisibility(View.VISIBLE);
 
 
 //comment this when uncommenting the if statements below
@@ -122,9 +123,9 @@ public class PreFragment extends Fragment implements FragmentManager {
 //            botSeupSeekBar = bluePosSeekbar;
 //            botSetupProgressBar = bluePosProgressBar;
 //            botStartPosDescription = bluePosDescriptionTxtView;
-//        redPosProgressBar.setVisibility(View.VISIBLE);
-//        redPosDescriptionTxtView.setVisibility(View.VISIBLE);
-//        redPosSeekbar.setVisibility(View.VISIBLE);
+//        bluePosProgressBar.setVisibility(View.VISIBLE);
+//        bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
+//        bluePosSeekbar.setVisibility(View.VISIBLE);
 //        }
 
         /**
