@@ -70,7 +70,7 @@ public class PostFragment extends Fragment implements FragmentManager {
 
     Button submitMatch;
 
-    PostActions post;
+    PostActions post = new PostActions();
     /**
      *
      * TODO: ADD SKETCHY-O METER ON CLIMB
@@ -88,7 +88,7 @@ public class PostFragment extends Fragment implements FragmentManager {
         View view = inflater.inflate(R.layout.fragment_scout_post_action, container, false);
 
 
-        post = new PostActions();
+
 
 
         preBtn = (Button) view.findViewById(R.id.pre_post_btn);
@@ -164,14 +164,6 @@ public class PostFragment extends Fragment implements FragmentManager {
         });
 
 
-
-        submitMatchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               setPostValues();
-
-            }
-        });
 
         climbPosSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -261,6 +253,8 @@ public class PostFragment extends Fragment implements FragmentManager {
         submitMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setPostValues();
+                System.out.println(new Gson().toJson(post));
                 ScoutFragment.submittedInfoWrapper.setPostActions(post);
                 final OkHttpClient client = new OkHttpClient().newBuilder()
                         .build();
@@ -351,9 +345,6 @@ public class PostFragment extends Fragment implements FragmentManager {
         else {
             post.setWasBotDefended(false);
         }
-            post.setHangLoc(Integer.parseInt(climbPos));
-
-
         try{
             post.setHangLoc(Integer.parseInt(climbPos));
         }
