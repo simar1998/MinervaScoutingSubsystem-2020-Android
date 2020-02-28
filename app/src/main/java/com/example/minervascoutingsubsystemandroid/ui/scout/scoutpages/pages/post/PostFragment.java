@@ -266,6 +266,18 @@ public class PostFragment extends Fragment implements FragmentManager {
                 setPostValues();
                 System.out.println(new Gson().toJson(post));
                 ScoutFragment.submittedInfoWrapper.setPostActions(post);
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        String fileName =ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+
+                                ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+ScoutFragment.submittedInfoWrapper.getSubmittedGame().getScoutUUID();
+                        try {
+                            writeToFile((new Gson()).toJson(ScoutFragment.submittedInfoWrapper),fileName, view.getContext());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 final OkHttpClient client = new OkHttpClient().newBuilder()
                         .build();
                 MediaType mediaType = MediaType.parse("text/plain");
@@ -290,18 +302,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                     });
                     thread.start();
                 stopMatchTimer();
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        String fileName =ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+
-                                ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+ScoutFragment.submittedInfoWrapper.getSubmittedGame().getScoutUUID();
-                        try {
-                            writeToFile((new Gson()).toJson(ScoutFragment.submittedInfoWrapper),fileName, view.getContext());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+
                 fragmentListener.onFragmentChange(1);
             }
         });
