@@ -131,7 +131,7 @@ public class PostFragment extends Fragment implements FragmentManager {
         actionBtn.setVisibility(View.VISIBLE);
         postBtn.setVisibility(View.INVISIBLE);
 
-
+        commentsSelectionSpinner.setVisibility(View.GONE);
 
         commentsSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -207,7 +207,7 @@ public class PostFragment extends Fragment implements FragmentManager {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 //returned as climbPos, climbPosDescription
-                int positionConversion = climbPosProgressBar.getProgress();
+//                int positionConversion = climbPosProgressBar.getProgress();
 
 
                 if(progress<20){
@@ -306,6 +306,8 @@ public class PostFragment extends Fragment implements FragmentManager {
 
 
     public void setPostValues(){
+
+        post.setComment(commentsEdiText.getText().toString());
         if (hasParkedSwitch.isChecked()){
             post.setParked(true);
         }

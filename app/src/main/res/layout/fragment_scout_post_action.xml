@@ -25,7 +25,7 @@
         android:layout_width="501dp"
         android:layout_height="34dp"
         android:layout_marginEnd="304dp"
-        android:layout_marginBottom="440dp"
+        android:layout_marginBottom="420dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
