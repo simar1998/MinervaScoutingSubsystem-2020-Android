@@ -70,6 +70,7 @@ public class PostFragment extends Fragment implements FragmentManager {
 
     Button submitMatch;
 
+    PostActions post;
     /**
      *
      * TODO: ADD SKETCHY-O METER ON CLIMB
@@ -87,7 +88,7 @@ public class PostFragment extends Fragment implements FragmentManager {
         View view = inflater.inflate(R.layout.fragment_scout_post_action, container, false);
 
 
-        final PostActions post = new PostActions();
+        post = new PostActions();
 
 
         preBtn = (Button) view.findViewById(R.id.pre_post_btn);
@@ -115,7 +116,7 @@ public class PostFragment extends Fragment implements FragmentManager {
 
         climbPosDescription = "NULL";
 
-        final String[] sampleComments = {"Robot stopped early match", " Robot stopped mid-match", "Robot stopped near end of match", "Robot got heavily defended."};
+        final String[] sampleComments = {};
 
 
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_spinner_item,Arrays.asList(sampleComments));
@@ -167,54 +168,7 @@ public class PostFragment extends Fragment implements FragmentManager {
         submitMatchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (hasParkedSwitch.isChecked()){
-                    post.setParked(true);
-                }
-                else{
-                    post.setParked(false);
-                }
-
-
-                if(gotClimbAssistanceSwitch.isChecked()){
-                    post.setGotClimbAssistance(true);
-                }
-                else
-                {
-                    post.setGotClimbAssistance(false);
-                }
-
-
-                if (gaveClimbAssistanceSwitch.isChecked()){
-                    post.setBuddyBot(true);
-                }
-                else {
-                    post.setBuddyBot(false);
-                }
-
-
-                if (isBarBalancedSwitch.isChecked()){
-                    post.setBalanced(true);
-                }
-                else {
-                    post.setBalanced(false);
-                }
-
-
-                if(wasBotDefendedSwitch.isChecked()){
-                    post.setWasBotDefended(true);
-                }
-                else {
-                    post.setWasBotDefended(false);
-                }
-
-
-                try{
-                    post.setHangLoc(Integer.parseInt(climbPos));
-                }
-                catch (Exception e ){
-                    post.setHangLoc(-1);
-                   System.out.println("CANNOT SET CLIMB POSITION");
-                }
+               setPostValues();
 
             }
         });
@@ -357,5 +311,56 @@ public class PostFragment extends Fragment implements FragmentManager {
     }
 
 
+    public void setPostValues(){
+        if (hasParkedSwitch.isChecked()){
+            post.setParked(true);
+        }
+        else{
+            post.setParked(false);
+        }
+
+
+        if(gotClimbAssistanceSwitch.isChecked()){
+            post.setGotClimbAssistance(true);
+        }
+        else
+        {
+            post.setGotClimbAssistance(false);
+        }
+
+
+        if (gaveClimbAssistanceSwitch.isChecked()){
+            post.setBuddyBot(true);
+        }
+        else {
+            post.setBuddyBot(false);
+        }
+
+
+        if (isBarBalancedSwitch.isChecked()){
+            post.setBalanced(true);
+        }
+        else {
+            post.setBalanced(false);
+        }
+
+
+        if(wasBotDefendedSwitch.isChecked()){
+            post.setWasBotDefended(true);
+        }
+        else {
+            post.setWasBotDefended(false);
+        }
+            post.setHangLoc(Integer.parseInt(climbPos));
+
+
+        try{
+            post.setHangLoc(Integer.parseInt(climbPos));
+        }
+        catch (Exception e ){
+            post.setHangLoc(-1);
+            System.out.println("CANNOT SET CLIMB POSITION");
+        }
+    }
 
 }

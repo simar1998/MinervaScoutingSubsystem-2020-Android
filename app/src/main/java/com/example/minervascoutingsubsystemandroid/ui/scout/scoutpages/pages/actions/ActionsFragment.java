@@ -211,7 +211,6 @@ int temp1, temp2;
                     debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size() - 1)));
                     decideBtnsVisibility(zoneButtons, true);
                     decideBtnsVisibility(optionsButtons, false);
-
                     postTabBtn.setVisibility(View.VISIBLE);
                     decideBtnEnabled(zoneButtons, true);
                 }catch (Exception e){
@@ -273,6 +272,7 @@ int temp1, temp2;
                 decideBtnsVisibility(optionsButtons,false);
                 postTabBtn.setVisibility(View.VISIBLE);
                 decideBtnEnabled(zoneButtons, true);
+
             }
         });
 
