@@ -1,6 +1,7 @@
 package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.pre;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class PreFragment extends Fragment implements FragmentManager {
     ProgressBar redPosProgressBar;
     TextView redPosDescriptionTxtView;
 
-
+    TextView teamNumInfoTextView;
 
 
     CheckBox hasBallPreload;
@@ -79,6 +80,8 @@ public class PreFragment extends Fragment implements FragmentManager {
 
         submitPre = (Button) view.findViewById(R.id.submit_pre_btn);
 
+
+        teamNumInfoTextView = (TextView) view.findViewById(R.id.teamNumInfor_pre_txtView);
         startPos = "NULL";
 
         SeekBar botSeupSeekBar;
@@ -98,9 +101,9 @@ public class PreFragment extends Fragment implements FragmentManager {
 
 
 
-        bluePosDescriptionTxtView.setVisibility(View.VISIBLE);
-        bluePosProgressBar.setVisibility(View.VISIBLE);
-        bluePosSeekbar.setVisibility(View.VISIBLE);
+        bluePosDescriptionTxtView.setVisibility(View.INVISIBLE);
+        bluePosProgressBar.setVisibility(View.INVISIBLE);
+        bluePosSeekbar.setVisibility(View.INVISIBLE);
 
 
 //comment this when uncommenting the if statements below
@@ -200,8 +203,19 @@ public class PreFragment extends Fragment implements FragmentManager {
             }
         });
 
+
+        System.out.println("ALLIANCE: "  + ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance());
+        teamNumInfoTextView.setText(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getTeamNum()+"");
+        if(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance() == 'b')
+            teamNumInfoTextView.setBackgroundColor(Color.BLUE);
+        else
+            teamNumInfoTextView.setBackgroundColor(Color.RED);
+
+
         return view;
     }
+
+
 
     @Override
     public void onAttach(Activity activity) {

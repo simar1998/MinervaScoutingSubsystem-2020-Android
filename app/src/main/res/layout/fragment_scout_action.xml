@@ -59,7 +59,6 @@
         android:layout_width="200dp"
         android:layout_height="256dp"
         android:background="@drawable/zone_btn"
-        android:text="21"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -69,7 +68,6 @@
         android:layout_height="255dp"
         android:layout_marginBottom="256dp"
         android:background="@drawable/zone_btn"
-        android:text="22"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -88,7 +86,6 @@
         android:layout_height="98dp"
         android:layout_marginEnd="316dp"
         android:background="@drawable/zone_btn"
-        android:text="17"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -99,7 +96,6 @@
         android:layout_marginEnd="540dp"
         android:layout_marginBottom="418dp"
         android:background="@drawable/zone_btn"
-        android:text="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -109,7 +105,6 @@
         android:layout_height="97dp"
         android:layout_marginEnd="580dp"
         android:background="@drawable/zone_btn"
-        android:text="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -119,7 +114,6 @@
         android:layout_height="97dp"
         android:layout_marginEnd="516dp"
         android:background="@drawable/zone_btn"
-        android:text="11"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -130,7 +124,6 @@
         android:layout_marginEnd="488dp"
         android:layout_marginBottom="96dp"
         android:background="@drawable/zone_btn"
-        android:text="8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -141,7 +134,6 @@
         android:layout_marginEnd="316dp"
         android:layout_marginBottom="92dp"
         android:background="@drawable/zone_btn"
-        android:text="14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -152,7 +144,6 @@
         android:layout_marginEnd="316dp"
         android:layout_marginBottom="256dp"
         android:background="@drawable/zone_btn"
-        android:text="15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -163,7 +154,6 @@
         android:layout_marginEnd="488dp"
         android:layout_marginBottom="256dp"
         android:background="@drawable/zone_btn"
-        android:text="9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -174,7 +164,6 @@
         android:layout_marginEnd="316dp"
         android:layout_marginBottom="420dp"
         android:background="@drawable/zone_btn"
-        android:text="18"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -185,7 +174,6 @@
         android:layout_marginEnd="380dp"
         android:layout_marginBottom="420dp"
         android:background="@drawable/zone_btn"
-        android:text="16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -196,7 +184,6 @@
         android:layout_marginEnd="445dp"
         android:layout_marginBottom="418dp"
         android:background="@drawable/zone_btn"
-        android:text="12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -206,7 +193,6 @@
         android:layout_height="96dp"
         android:layout_marginEnd="416dp"
         android:background="@drawable/zone_btn"
-        android:text="13"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -217,7 +203,6 @@
         android:layout_marginEnd="643dp"
         android:layout_marginBottom="256dp"
         android:background="@drawable/zone_btn"
-        android:text="6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -227,7 +212,6 @@
         android:layout_height="257dp"
         android:layout_marginEnd="644dp"
         android:background="@drawable/zone_btn"
-        android:text="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -238,7 +222,6 @@
         android:layout_marginEnd="196dp"
         android:layout_marginBottom="256dp"
         android:background="@drawable/zone_btn"
-        android:text="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -248,7 +231,6 @@
         android:layout_height="256dp"
         android:layout_marginEnd="196dp"
         android:background="@drawable/zone_btn"
-        android:text="19"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -259,7 +241,6 @@
         android:layout_marginEnd="768dp"
         android:layout_marginBottom="256dp"
         android:background="@drawable/zone_btn"
-        android:text="4"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -272,7 +253,6 @@
         android:layout_height="259dp"
         android:layout_marginEnd="768dp"
         android:background="@drawable/zone_btn"
-        android:text="3"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -283,7 +263,6 @@
         android:layout_height="85dp"
         android:layout_marginBottom="124dp"
         android:background="@drawable/zone_btn"
-        android:text="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -294,7 +273,6 @@
         android:layout_marginEnd="908dp"
         android:layout_marginBottom="320dp"
         android:background="@drawable/zone_btn"
-        android:text="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -304,7 +282,6 @@
         android:layout_height="85dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/zone_btn"
-        android:text="23"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -314,7 +291,6 @@
         android:layout_height="85dp"
         android:layout_marginBottom="312dp"
         android:background="@drawable/zone_btn"
-        android:text="24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -463,6 +439,17 @@
         android:layout_width="960dp"
         android:layout_height="526dp"
         android:text="start match"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/teamNumInfor_actions_txtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="484dp"
+        android:text="Currently scouting:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

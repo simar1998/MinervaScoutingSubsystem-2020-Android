@@ -2,6 +2,7 @@ package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.po
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,18 +25,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minervascoutingsubsystemandroid.CONST;
-import com.example.minervascoutingsubsystemandroid.MainActivity;
 import com.example.minervascoutingsubsystemandroid.R;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchSubmit;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchSubmitManager;
-import com.example.minervascoutingsubsystemandroid.structure.models.MatchSubmitWrapper;
 import com.example.minervascoutingsubsystemandroid.structure.models.PostActions;
-import com.example.minervascoutingsubsystemandroid.structure.schedule.Match;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 import com.google.gson.Gson;
-
 
 import java.io.File;
 import java.io.FileWriter;
@@ -44,7 +41,6 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.UUID;
 
 import okhttp3.MediaType;
@@ -85,6 +81,8 @@ public class PostFragment extends Fragment implements FragmentManager {
     String climbPosDescription;
 
     Button submitMatch;
+
+   TextView teamNumInfoTextView;
 
     PostActions post = new PostActions();
     /**
@@ -128,6 +126,8 @@ public class PostFragment extends Fragment implements FragmentManager {
 
 
         submitMatch = (Button) view.findViewById(R.id.submitMatchBtn);
+
+        teamNumInfoTextView = (TextView) view.findViewById(R.id.teamNumInfor_post_txtView);
         climbPos = "NULL";
 
         climbPosDescription = "NULL";
@@ -149,6 +149,12 @@ public class PostFragment extends Fragment implements FragmentManager {
 
         commentsSelectionSpinner.setVisibility(View.GONE);
 
+
+        teamNumInfoTextView.setText(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getTeamNum()+"");
+        if(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance() == 'r')
+        teamNumInfoTextView.setBackgroundColor(Color.RED);
+        else
+            teamNumInfoTextView.setBackgroundColor(Color.BLUE);
         commentsSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
