@@ -62,6 +62,7 @@ public class NetworkCrawlerSubroutine extends AsyncTask<Void, Void, Void> {
                     boolean reachable = address.isReachable(1000);
                     String hostName = address.getCanonicalHostName();
 
+
                     if (reachable) {
                         Log.i(TAG, "Host: " + hostName + "(" + testIp + ") is reachable!");
                     }
