@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.minervascoutingsubsystemandroid.communications.TestNetworkConnectionThread;
 import com.example.minervascoutingsubsystemandroid.structure.schedule.Match;
 import com.example.minervascoutingsubsystemandroid.structure.schedule.MatchLists;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
     public static MainActivity mainActivity;
 
     public static MatchLists matchLists;
+
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
                 JSONObject blue = new JSONObject(alliances.getJSONObject("blue").toString());
                 JSONArray redArray = new JSONArray(red.get("team_keys").toString());
                 JSONArray blueArray = new JSONArray(blue.get("team_keys").toString());
-                System.out.println(redArray.get(0));
                 matches.add(new Match(redArray.get(0),redArray.get(1),redArray.get(2),blueArray.get(0),blueArray.get(1),blueArray.get(2),jsonObject.get("match_number").toString()));
             }
             MainActivity.matchLists = new MatchLists(matches);
@@ -106,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
         }catch (Exception e){
             Toast.makeText(mainActivity.getApplicationContext(),"Please get matchlist",Toast.LENGTH_LONG);
         }
+
+        handler.postDelayed(new TestNetworkConnectionThread(true,handler),120000);
 
         setLastStoredInfo();
 
@@ -208,9 +213,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
 
     }
 
-    public static String getPrefrences(String key, String val){
+    public static String getPrefrences(String key){
         SharedPreferences prefs = MainActivity.mainActivity.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(key,val);
+        return prefs.getString(key,"");
     }
 
 }

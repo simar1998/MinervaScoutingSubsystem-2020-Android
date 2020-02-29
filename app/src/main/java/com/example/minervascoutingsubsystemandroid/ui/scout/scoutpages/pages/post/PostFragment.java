@@ -26,7 +26,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.minervascoutingsubsystemandroid.CONST;
 import com.example.minervascoutingsubsystemandroid.MainActivity;
 import com.example.minervascoutingsubsystemandroid.R;
+import com.example.minervascoutingsubsystemandroid.structure.models.MatchSubmit;
+import com.example.minervascoutingsubsystemandroid.structure.models.MatchSubmitManager;
+import com.example.minervascoutingsubsystemandroid.structure.models.MatchSubmitWrapper;
 import com.example.minervascoutingsubsystemandroid.structure.models.PostActions;
+import com.example.minervascoutingsubsystemandroid.structure.schedule.Match;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
 import com.example.minervascoutingsubsystemandroid.ui.OnFragmentChangeListener;
 import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
@@ -40,6 +44,8 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.UUID;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -266,19 +272,15 @@ public class PostFragment extends Fragment implements FragmentManager {
                 setPostValues();
                 System.out.println(new Gson().toJson(post));
                 ScoutFragment.submittedInfoWrapper.setPostActions(post);
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        String fileName =ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+
-                                ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+ScoutFragment.submittedInfoWrapper.getSubmittedGame().getScoutUUID();
-                        try {
-                            writeToFile((new Gson()).toJson(ScoutFragment.submittedInfoWrapper),fileName, view.getContext());
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+                final String fileName =ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+
+                        ScoutFragment.submittedInfoWrapper.getSubmittedGame().getTeamNum()+"_"+ UUID.randomUUID().toString()+".json";
+                try {
+                    writeToFile((new Gson()).toJson(ScoutFragment.submittedInfoWrapper),fileName, view.getContext());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(fileName);
+                MatchSubmitManager.addMatchSubmitToPref(new MatchSubmit(fileName,false));
                 final OkHttpClient client = new OkHttpClient().newBuilder()
                         .build();
                 MediaType mediaType = MediaType.parse("text/plain");
@@ -296,6 +298,9 @@ public class PostFragment extends Fragment implements FragmentManager {
                         public void run() {
                             try {
                                 Response response = client.newCall(request).execute();
+                                if (response.isSuccessful()){
+                                    MatchSubmitManager.addMatchSubmitToPref(new MatchSubmit(fileName,true));
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
