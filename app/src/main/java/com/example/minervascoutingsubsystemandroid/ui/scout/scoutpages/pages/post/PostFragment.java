@@ -291,7 +291,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                         .url(CONST.postURI+"/minervascouting2020/api/upload/submittedInfoWrapperJSON")
                         .method("POST", body)
                         .build();
-                    Thread thread = new Thread(new Runnable() {
+                    AsyncTask.execute(new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -301,7 +301,6 @@ public class PostFragment extends Fragment implements FragmentManager {
                             }
                         }
                     });
-                    thread.start();
                 stopMatchTimer();
 
                 fragmentListener.onFragmentChange(1);
