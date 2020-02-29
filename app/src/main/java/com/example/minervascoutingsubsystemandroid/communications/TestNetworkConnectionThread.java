@@ -23,17 +23,16 @@ public class TestNetworkConnectionThread implements Runnable {
 
     boolean connectionStatus;
     boolean attemptToSubmitOnConnection;
-    Handler handler;
 
-    public TestNetworkConnectionThread(boolean attemptToSubmitOnConnection, Handler handler) {
+
+    public TestNetworkConnectionThread(boolean attemptToSubmitOnConnection) {
         this.attemptToSubmitOnConnection = attemptToSubmitOnConnection;
-        this.handler = handler;
     }
 
     @Override
     public void run() {
         try {
-
+            System.out.println("RUNNING NETWORK TEST");
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             Request request = new Request.Builder()
@@ -42,21 +41,24 @@ public class TestNetworkConnectionThread implements Runnable {
                     .build();
             try {
                 Response response = client.newCall(request).execute();
-                if (response.body().equals("GET REQUEST SUCCESSFUL")) ;
-                {
+                if (!response.isSuccessful()){
                     System.out.println("NETWORK STATUS FALSE;");
+                    connectionStatus = false;
+                }
+                if (response.body().equals("GET REQUEST SUCCESSFUL")) ;
+                {   System.out.println("NETWORK STATUS TRUE;");
                     connectionStatus = true;
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("NETWORK STATUS TRUE;");
+                System.out.println("NETWORK STATUS FALSE;");
                 connectionStatus = false;
             }
-
-            if (attemptToSubmitOnConnection) {
+            if (attemptToSubmitOnConnection && connectionStatus) {
                 MatchSubmitWrapper matchSubmitWrapper = MatchSubmitManager.getMatchSubmitsFromPref();
                 for (final MatchSubmit matchSubmit : matchSubmitWrapper.getMatchSubmits()) {
                     if (!matchSubmit.isSubmitted()) {
+                        System.out.println("Submitting match "+matchSubmit.getMatchFileName());
                         String submissionStr = MainActivity.readFromFile(matchSubmit.getMatchFileName());
 
                         final OkHttpClient postClient = new OkHttpClient().newBuilder()
@@ -86,12 +88,21 @@ public class TestNetworkConnectionThread implements Runnable {
                         });
 
                     }
+                    else {
+                        System.out.println("DOES NOT NEED SUBMITED " + matchSubmit.getMatchFileName());
+                    }
 
                 }
             }
-            handler.postDelayed(this,120000);
+            Thread.sleep(30000);
+           AsyncTask.execute(new TestNetworkConnectionThread(true));
         }catch (Exception e){
-            handler.postDelayed(this,120000);
+            try {
+                Thread.sleep(30000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            AsyncTask.execute(new TestNetworkConnectionThread(true));
         }
 
 

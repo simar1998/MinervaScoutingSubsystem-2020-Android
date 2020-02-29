@@ -37,6 +37,7 @@ public class MatchSubmitManager {
                 break;
             }
         }
+        MainActivity.insertPrefrences("matchSubmit",(new Gson()).toJson(matchSubmitWrapper));
     }
 
     public static MatchSubmitWrapper getMatchSubmitsFromPref(){

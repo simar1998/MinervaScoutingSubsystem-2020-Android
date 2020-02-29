@@ -2,6 +2,7 @@ package com.example.minervascoutingsubsystemandroid;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
             Toast.makeText(mainActivity.getApplicationContext(),"Please get matchlist",Toast.LENGTH_LONG);
         }
 
-        handler.postDelayed(new TestNetworkConnectionThread(true,handler),120000);
+        AsyncTask.execute(new TestNetworkConnectionThread(true));
 
         setLastStoredInfo();
 
@@ -129,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 
 
     @Override
