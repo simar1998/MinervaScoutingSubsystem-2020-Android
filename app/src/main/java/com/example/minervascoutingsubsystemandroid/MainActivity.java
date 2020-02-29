@@ -200,4 +200,17 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
 
     }
 
+
+    public static void insertPrefrences(String key, String val){
+        SharedPreferences.Editor editor = MainActivity.mainActivity.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString(key,val);
+        editor.apply();
+
+    }
+
+    public static String getPrefrences(String key, String val){
+        SharedPreferences prefs = MainActivity.mainActivity.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        return prefs.getString(key,val);
+    }
+
 }

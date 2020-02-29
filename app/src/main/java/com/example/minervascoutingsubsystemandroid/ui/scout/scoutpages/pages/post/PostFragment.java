@@ -273,6 +273,7 @@ public class PostFragment extends Fragment implements FragmentManager {
                                 ScoutFragment.submittedInfoWrapper.getSubmittedGame().getMatchNum()+"_"+ScoutFragment.submittedInfoWrapper.getSubmittedGame().getScoutUUID();
                         try {
                             writeToFile((new Gson()).toJson(ScoutFragment.submittedInfoWrapper),fileName, view.getContext());
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
