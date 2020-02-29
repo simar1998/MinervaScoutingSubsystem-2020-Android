@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
 
         JSONArray obj = null;
         try {
-            obj = new JSONArray(readFromFile(this.getApplicationContext(),"matchList.json"));
+            obj = new JSONArray(readFromFile("matchList.json"));
             ArrayList<Match> matches = new ArrayList<>();
             for (int i = 0 ; i < obj.length(); i++){
                 JSONObject jsonObject = new JSONObject(obj.get(i).toString());
@@ -102,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
             MainActivity.matchLists = new MatchLists(matches);
         } catch (JSONException e) {
             e.printStackTrace();
+        }catch (Exception e){
+            Toast.makeText(mainActivity.getApplicationContext(),"Please get matchlist",Toast.LENGTH_LONG);
         }
 
         setLastStoredInfo();
@@ -154,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentChangeL
         }
     }
 
-    public static String readFromFile(Context context, String fileName){
+    public static String readFromFile( String fileName){
         String line = null;
 
         try {
