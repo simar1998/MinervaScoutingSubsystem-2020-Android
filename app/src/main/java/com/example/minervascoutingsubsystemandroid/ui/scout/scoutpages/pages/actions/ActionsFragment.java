@@ -1,6 +1,7 @@
 package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.actions;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,12 +61,15 @@ ActionsViewModel actionsViewModel;
     SeekBar shootSuccessSeekbar;
     TextView shootSuccessTxtView;
     TextView shootStaticSuccessTxtView;
-
+    Button feedBtn;
 
     Button shootSubmitBtn;
     Button shootCancelBtn;
 
+    TextView teamNumInfoTextView;
+
     int selectedZone;
+
 
     //ViewGroup optionBtnLayout;
     ViewGroup optionBtnLayout;
@@ -97,7 +101,7 @@ int temp1, temp2;
 
         fieldImg = (ImageView) view.findViewById(R.id.field_actions_imgView);
 
-
+        feedBtn = (Button) view.findViewById(R.id.feed_btn);
 
 
         startBtn = (Button) view.findViewById(R.id.start_btn);
@@ -115,6 +119,7 @@ int temp1, temp2;
         shootSubmitBtn = ( Button) view.findViewById(R.id.shoot_submit_btn);
         shootCancelBtn = (Button) view.findViewById(R.id.shoot_cancel_btn);
 
+        teamNumInfoTextView = (TextView) view.findViewById(R.id.teamNumInfor_actions_txtView);
 
         //optionBtnLayout = (ConstraintLayout) view.findViewById(R.id.action_options_tableLayout);
         final int yellowImgLoc[] = new int[2];
@@ -137,6 +142,9 @@ int temp1, temp2;
         actionTabBtn.setVisibility(View.INVISIBLE);
 
 
+
+
+        feedBtn.setVisibility(View.GONE);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,10 +157,16 @@ int temp1, temp2;
             }
         });
 
-
+        teamNumInfoTextView.setText(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getTeamNum()+"");
+        System.out.println("ALLIANCE: " + ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance());
+        if(ScoutFragment.submittedInfoWrapper.getSubmittedGame().getAlliance() == 'b')
+            teamNumInfoTextView.setBackgroundColor(Color.BLUE);
+        else
+            teamNumInfoTextView.setBackgroundColor(Color.RED);
 
         decideBtnsVisibility(optionsButtons,false);
         decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+
 
         /**
          * Cycles through all zone buttons as a onClick listener
@@ -201,6 +215,9 @@ int temp1, temp2;
 
             });
         }
+
+
+
 
         getOptionsButtonWrapper("intake_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,17 +270,17 @@ int temp1, temp2;
 
         });
 
-        getOptionsButtonWrapper("feed_btn").getButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                actionsList.add(generateNormalAction("feed",selectedZone));
-                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-                decideBtnsVisibility(zoneButtons,true);
-                decideBtnsVisibility(optionsButtons,false);
-                postTabBtn.setVisibility(View.VISIBLE);
-                decideBtnEnabled(zoneButtons, true);
-            }
-        });
+//        getOptionsButtonWrapper("feed_btn").getButton().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                actionsList.add(generateNormalAction("feed",selectedZone));
+//                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+//                decideBtnsVisibility(zoneButtons,true);
+//                decideBtnsVisibility(optionsButtons,false);
+//                postTabBtn.setVisibility(View.VISIBLE);
+//                decideBtnEnabled(zoneButtons, true);
+//            }
+//        });
 
         getOptionsButtonWrapper("cancel_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -552,7 +569,7 @@ int temp1, temp2;
             zoneButtons.add(new ButtonWrapper(i,tempButtonId,view));
         }
 
-        String[] optionButtonsName = {"intake_btn","shoot_btn","drop_btn","feed_btn","cancel_btn"};
+        String[] optionButtonsName = {"intake_btn","shoot_btn","drop_btn","cancel_btn"};
         for (String optionStr : optionButtonsName){
             tempButtonId = view.getResources().getIdentifier(optionStr,"id",activity.getPackageName());
             optionsButtons.add(new ButtonWrapper(optionStr,tempButtonId,view));

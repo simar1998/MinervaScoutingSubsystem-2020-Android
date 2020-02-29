@@ -45,7 +45,7 @@ public class InitInfoViewModel extends ViewModel {
                 @Override
                 public void onClick(View view) {
                     teamNumEditTxt.setText(((Button)view).getText());
-                    submittedGame.setAlliance((buttons.indexOf(view) > 2) ? 'r' : 'b');
+                    submittedGame.setAlliance((buttons.indexOf(view) > 2) ? 'b' : 'r');
                 }
             });
         }
