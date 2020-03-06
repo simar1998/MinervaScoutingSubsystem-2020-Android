@@ -15,6 +15,10 @@ public class Actions {
 
     String action;
 
+    int attempts;
+
+    int scored;
+
     String location;
 
     boolean auto;
@@ -61,6 +65,22 @@ public class Actions {
         this.auto = auto;
     }
 
+
+    public int getAttempts() {
+        return attempts;
+    }
+
+    public void setAttempts(int attempts) {
+        this.attempts = attempts;
+    }
+
+    public int getScored() {
+        return scored;
+    }
+
+    public void setScored(int scored) {
+        this.scored = scored;
+    }
 
 
 

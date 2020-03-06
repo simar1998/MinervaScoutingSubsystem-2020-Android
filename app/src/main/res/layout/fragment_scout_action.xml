@@ -38,11 +38,19 @@
 
     <ImageView
         android:id="@+id/field_actions_imgView"
-        android:layout_width="965dp"
-        android:layout_height="507dp"
+        android:layout_width="1024dp"
+        android:layout_height="548dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/init_info_field" />
+
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_width="234dp"
+        android:layout_height="164dp"
+        android:text="start match"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/debug_action_txtView"
@@ -198,19 +206,19 @@
 
     <Button
         android:id="@+id/zone6_btn"
-        android:layout_width="124dp"
-        android:layout_height="248dp"
-        android:layout_marginEnd="643dp"
-        android:layout_marginBottom="256dp"
+        android:layout_width="148dp"
+        android:layout_height="258dp"
+        android:layout_marginEnd="664dp"
+        android:layout_marginBottom="288dp"
         android:background="@drawable/zone_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/zone5_btn"
-        android:layout_width="123dp"
-        android:layout_height="257dp"
-        android:layout_marginEnd="644dp"
+        android:layout_width="149dp"
+        android:layout_height="287dp"
+        android:layout_marginEnd="660dp"
         android:background="@drawable/zone_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -236,22 +244,22 @@
 
     <Button
         android:id="@+id/zone4_btn"
-        android:layout_width="190dp"
-        android:layout_height="249dp"
-        android:layout_marginEnd="768dp"
-        android:layout_marginBottom="256dp"
+        android:layout_width="213dp"
+        android:layout_height="251dp"
+        android:layout_marginEnd="773dp"
+        android:layout_marginBottom="288dp"
         android:background="@drawable/zone_btn"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/zone3_btn"
-        android:layout_width="191dp"
-        android:layout_height="259dp"
-        android:layout_marginEnd="768dp"
+        android:layout_width="218dp"
+        android:layout_height="289dp"
+        android:layout_marginEnd="812dp"
         android:background="@drawable/zone_btn"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -261,7 +269,8 @@
         android:id="@+id/zone1_btn"
         android:layout_width="54dp"
         android:layout_height="85dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="128dp"
         android:background="@drawable/zone_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -434,19 +443,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/start_btn"
-        android:layout_width="960dp"
-        android:layout_height="526dp"
-        android:text="start match"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <TextView
         android:id="@+id/teamNumInfor_actions_txtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="484dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="612dp"
         android:text="Currently scouting:"
         android:textColor="@android:color/black"
         android:textSize="20sp"

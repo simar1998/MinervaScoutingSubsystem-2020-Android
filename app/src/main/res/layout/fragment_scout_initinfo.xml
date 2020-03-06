@@ -5,12 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/start_init_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="424dp"
+        android:layout_marginBottom="80dp"
+        android:text="CONTINUE TO MATCH"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <EditText
         android:id="@+id/scout_name_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="400dp"
-        android:layout_marginBottom="388dp"
+        android:layout_marginBottom="516dp"
         android:ems="10"
         android:hint="Enter Scout name"
         android:inputType="textPersonName"
@@ -21,8 +31,8 @@
         android:id="@+id/match_num_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="396dp"
-        android:layout_marginBottom="316dp"
+        android:layout_marginEnd="400dp"
+        android:layout_marginBottom="436dp"
         android:ems="10"
         android:hint="Enter Match #"
         android:inputType="number"
@@ -33,29 +43,19 @@
         android:id="@+id/teamNum_editTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="396dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginEnd="404dp"
+        android:layout_marginBottom="172dp"
         android:ems="10"
         android:hint="Click on team #s above or enter here"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <CheckBox
-        android:id="@+id/replayedMatch_chkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="196dp"
-        android:layout_marginBottom="104dp"
-        android:text="Match Being Replayed?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="247dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="268dp"
+        android:layout_width="261dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="380dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -120,13 +120,13 @@
 
     </TableLayout>
 
-    <Button
-        android:id="@+id/start_init_btn"
+    <CheckBox
+        android:id="@+id/replayedMatch_chkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="436dp"
-        android:layout_marginBottom="40dp"
-        android:text="CONTINUE TO MATCH"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="80dp"
+        android:text="Match Being Replayed?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

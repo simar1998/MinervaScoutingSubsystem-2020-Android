@@ -60,11 +60,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
+        android:id="@+id/buddydBot_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="724dp"
+        android:layout_marginBottom="272dp"
+        android:text="Assisted another robot in climb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Switch
         android:id="@+id/park_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="816dp"
-        android:layout_marginBottom="324dp"
+        android:layout_marginEnd="872dp"
+        android:layout_marginBottom="360dp"
         android:text="Parked?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -73,29 +83,9 @@
         android:id="@+id/gotBuddyd_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="652dp"
-        android:layout_marginBottom="284dp"
+        android:layout_marginEnd="708dp"
+        android:layout_marginBottom="320dp"
         android:text="Got climb assist(buddy bar/lifted)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Switch
-        android:id="@+id/buddydBot_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="668dp"
-        android:layout_marginBottom="236dp"
-        android:text="Assisted another robot in climb"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Switch
-        android:id="@+id/barBalance_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="572dp"
-        android:layout_marginBottom="196dp"
-        android:text="Is the bar balanced 5 secs after matchNum is over"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -103,8 +93,8 @@
         android:id="@+id/comments_editText"
         android:layout_width="402dp"
         android:layout_height="207dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="76dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Additional comments"
@@ -116,8 +106,8 @@
         android:id="@+id/optionalComments_spinner"
         android:layout_width="486dp"
         android:layout_height="57dp"
-        android:layout_marginTop="272dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="284dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,7 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="552dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="76dp"
         android:text="Submit matchNum "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -135,9 +125,19 @@
         android:id="@+id/wasDefended_switch"
         android:layout_width="335dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="572dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginEnd="628dp"
+        android:layout_marginBottom="164dp"
         android:text="Was there performance-impacting defence played on this robot through the matchNum"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Switch
+        android:id="@+id/barBalance_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="600dp"
+        android:layout_marginBottom="220dp"
+        android:text="Is the bar balanced 5 secs after matchNum is over"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

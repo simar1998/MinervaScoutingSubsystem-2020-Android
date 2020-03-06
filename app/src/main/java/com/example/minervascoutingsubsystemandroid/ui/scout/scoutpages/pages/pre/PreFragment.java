@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,11 @@ public class PreFragment extends Fragment implements FragmentManager {
     TextView teamNumInfoTextView;
 
 
-    CheckBox hasBallPreload;
+    RadioButton preLoaded0;
+    RadioButton preLoaded1;
+    RadioButton preLoaded2;
+    RadioButton preLoaded3;
+
 
     String startPos;
 
@@ -76,7 +81,10 @@ public class PreFragment extends Fragment implements FragmentManager {
         bluePosProgressBar = (ProgressBar) view.findViewById(R.id.start_pos_progressbr);
         bluePosDescriptionTxtView = (TextView) view.findViewById(R.id.robot_pos_blue_txtView);
 
-        hasBallPreload = (CheckBox) view.findViewById(R.id.ballsPreloaded_init_chkbx);
+        preLoaded0 = (RadioButton) view.findViewById(R.id.preLoadedBalls0_radioBtn);
+        preLoaded1 = (RadioButton) view.findViewById(R.id.preLoadedBalls1_radioBtn);
+        preLoaded2 = (RadioButton) view.findViewById(R.id.preLoadedBalls2_radioBtn);
+        preLoaded3 = (RadioButton) view.findViewById(R.id.preLoadedBalls3_radioBtn);
 
         submitPre = (Button) view.findViewById(R.id.submit_pre_btn);
 
@@ -184,16 +192,30 @@ public class PreFragment extends Fragment implements FragmentManager {
         submitPre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean ballsSelected = false;
                 //balls preload
-                if(hasBallPreload.isChecked()){
+                if(preLoaded0.isChecked()){
+                    pre.setLoadedBall(0);
+                    ballsSelected = true;
+                }
+                else if (preLoaded1.isChecked()){
                     pre.setLoadedBall(1);
+                    ballsSelected = true;
+                }
+                else if (preLoaded2.isChecked()){
+                    pre.setLoadedBall(2);
+                    ballsSelected = true;
+                }
+                else if (preLoaded3.isChecked()){
+                    pre.setLoadedBall(3);
+                    ballsSelected = true;
                 }
                 else {
-                    pre.setLoadedBall(0);
+                    Toast.makeText(getContext(), "Please set the number of balls preloaded in " + ScoutFragment.submittedInfoWrapper.getSubmittedGame().getTeamNum(), Toast.LENGTH_SHORT).show();
                 }
 
 
-                if(startPos != "NULL") {
+                if(startPos != "NULL" && ballsSelected == true) {
                     pre.setStartPos(startPos);
                     ScoutFragment.submittedInfoWrapper.setPre(pre);
                     fragmentListener.onFragmentChange(3);
