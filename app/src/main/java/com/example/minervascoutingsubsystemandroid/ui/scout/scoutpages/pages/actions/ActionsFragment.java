@@ -144,7 +144,7 @@ int temp1, temp2;
 
 
 
-        feedBtn.setVisibility(View.GONE);
+        //feedBtn.setVisibility(View.GONE);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -270,17 +270,17 @@ int temp1, temp2;
 
         });
 
-//        getOptionsButtonWrapper("feed_btn").getButton().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                actionsList.add(generateNormalAction("feed",selectedZone));
-//                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-//                decideBtnsVisibility(zoneButtons,true);
-//                decideBtnsVisibility(optionsButtons,false);
-//                postTabBtn.setVisibility(View.VISIBLE);
-//                decideBtnEnabled(zoneButtons, true);
-//            }
-//        });
+        getOptionsButtonWrapper("feed_btn").getButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionsList.add(generateNormalAction("feed",selectedZone));
+                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                decideBtnsVisibility(zoneButtons,true);
+                decideBtnsVisibility(optionsButtons,false);
+                postTabBtn.setVisibility(View.VISIBLE);
+                decideBtnEnabled(zoneButtons, true);
+            }
+        });
 
         getOptionsButtonWrapper("cancel_btn").getButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -569,7 +569,7 @@ int temp1, temp2;
             zoneButtons.add(new ButtonWrapper(i,tempButtonId,view));
         }
 
-        String[] optionButtonsName = {"intake_btn","shoot_btn","drop_btn","cancel_btn"};
+        String[] optionButtonsName = {"intake_btn","shoot_btn","drop_btn","feed_btn","cancel_btn"};
         for (String optionStr : optionButtonsName){
             tempButtonId = view.getResources().getIdentifier(optionStr,"id",activity.getPackageName());
             optionsButtons.add(new ButtonWrapper(optionStr,tempButtonId,view));

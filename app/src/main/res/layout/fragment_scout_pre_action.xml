@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="408dp"
-        android:layout_marginBottom="600dp"
+        android:layout_marginBottom="572dp"
         android:text="Enter Robot Starting Position \n using the slider bar on the sector line"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -147,10 +147,12 @@
         android:id="@+id/preLoad_description_txtView"
         android:layout_width="131dp"
         android:layout_height="54dp"
-        android:text="Entere the number of balls reloaded in your robot"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="248dp"
+        android:text="Enter the number of balls loaded in your robot"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteX="676dp"
-        tools:layout_editor_absoluteY="471dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/initInfo_field_imgView" />
 
     <RadioGroup
         android:layout_width="142dp"
