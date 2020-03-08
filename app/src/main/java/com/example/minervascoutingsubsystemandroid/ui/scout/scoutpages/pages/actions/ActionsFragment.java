@@ -3,6 +3,8 @@ package com.example.minervascoutingsubsystemandroid.ui.scout.scoutpages.pages.ac
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,8 @@ import com.example.minervascoutingsubsystemandroid.ui.scout.ScoutFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static android.content.Context.VIBRATOR_SERVICE;
 
 public class ActionsFragment extends Fragment implements FragmentManager {
 
@@ -59,13 +63,23 @@ ActionsViewModel actionsViewModel;
     TextView shootStaticAttemptTxtView;
 
     SeekBar shootSuccessSeekbar;
-    TextView shootSuccessTxtView;
+    TextView shootSuccessBarTxtView;
     TextView shootStaticSuccessTxtView;
     Button feedBtn;
 
     Button shootSubmitBtn;
     Button shootCancelBtn;
 
+    Button shootMissSubtractBtn;
+    Button shootMissAddBtn;
+    Button shootSuccessSubtractBtn;
+    Button shootSuccessAddBtn;
+
+    TextView shootMissTxtView;
+    TextView shootSuccessTxtView;
+
+
+    Vibrator vibrator;
     TextView teamNumInfoTextView;
 
     int selectedZone;
@@ -80,7 +94,7 @@ int temp1, temp2;
 
     ArrayList<ButtonWrapper> buttonWrappers = new ArrayList<>();
 
-    public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
 
         actionsViewModel = new ActionsViewModel(this,onFragmentChangeListener);
@@ -113,7 +127,7 @@ int temp1, temp2;
         shootStaticAttemptTxtView = (TextView) view.findViewById(R.id.shoot_static_attempt_txtView);
 
         shootSuccessSeekbar = (SeekBar) view.findViewById(R.id.shoot_success_seekBar);
-        shootSuccessTxtView = (TextView) view.findViewById(R.id.shoot_success_txtView);
+        shootSuccessBarTxtView = (TextView) view.findViewById(R.id.shoot_success_txtView);
         shootStaticSuccessTxtView = (TextView) view.findViewById(R.id.shoot_static_success_txtView);
 
         shootSubmitBtn = ( Button) view.findViewById(R.id.shoot_submit_btn);
@@ -121,6 +135,13 @@ int temp1, temp2;
 
         teamNumInfoTextView = (TextView) view.findViewById(R.id.teamNumInfor_actions_txtView);
 
+        shootMissSubtractBtn = (Button) view.findViewById(R.id.shootMissSubtract_btn);
+        shootMissAddBtn = (Button) view.findViewById(R.id.shootMissAdd_btn);
+        shootSuccessSubtractBtn = (Button) view.findViewById(R.id.shootSuccessSubtract_btn);
+        shootSuccessAddBtn = (Button) view.findViewById(R.id.shootSuccessAdd_btn);
+
+        shootMissTxtView = (TextView) view.findViewById(R.id.shootMissScore_txtView);
+        shootSuccessTxtView = (TextView) view.findViewById(R.id.shootSuccessScore_txtView);
         //optionBtnLayout = (ConstraintLayout) view.findViewById(R.id.action_options_tableLayout);
         final int yellowImgLoc[] = new int[2];
 
@@ -128,13 +149,16 @@ int temp1, temp2;
 
          actions = new Actions();
 
+         vibrator = (Vibrator) this.getContext().getSystemService(VIBRATOR_SERVICE);
+
          final ArrayList<Actions> actionsList = new ArrayList<>();
 
         ArrayList<ImageView> zoneImageViews = new ArrayList<>(Arrays.asList(yellowImg,zone2Img));
 
         final ArrayList<SeekBar> shootOptionSeekBars = new ArrayList<>(Arrays.asList(shootAttemptSeekbar,shootSuccessSeekbar));
-        final  ArrayList<TextView> shootOptionTextViews = new ArrayList<>(Arrays.asList(shootAttemptTxtView,shootStaticAttemptTxtView,shootSuccessTxtView,shootStaticSuccessTxtView));
+        final  ArrayList<TextView> shootOptionTextViews = new ArrayList<>(Arrays.asList(shootAttemptTxtView,shootStaticAttemptTxtView, shootSuccessBarTxtView,shootStaticSuccessTxtView));
         final  ArrayList<Button> shootOptionBtns = new ArrayList<>(Arrays.asList(shootSubmitBtn,shootCancelBtn));
+        final  ArrayList<Button> shootOperatorBtns = new ArrayList<>(Arrays.asList(shootMissSubtractBtn,shootMissAddBtn,shootSuccessSubtractBtn,shootSuccessAddBtn));
 
         //selectedZone = -1;
 
@@ -298,23 +322,36 @@ int temp1, temp2;
         shootSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int attemptedBalls = shootAttemptValueConverter(shootAttemptSeekbar.getProgress());
-                int scoredBalls = shootSuccessValueConverter(shootSuccessSeekbar.getProgress());
-                if(attemptedBalls >= scoredBalls){
-                    actionsList.add(generateShootAction("shoot", selectedZone,attemptedBalls,scoredBalls));
-                    debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
-                    shootAttemptSeekbar.setProgress(0);
-                    shootSuccessSeekbar.setProgress(0);
-                    decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+//                int attemptedBalls = shootAttemptValueConverter(shootAttemptSeekbar.getProgress());
+//                int scoredBalls = shootSuccessValueConverter(shootSuccessSeekbar.getProgress());
+//                if(attemptedBalls >= scoredBalls){
+//                    actionsList.add(generateShootAction("shoot", selectedZone,attemptedBalls,scoredBalls));
+//                    debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+//                    shootAttemptSeekbar.setProgress(0);
+//                    shootSuccessSeekbar.setProgress(0);
+//                    decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+//                    decideBtnsVisibility(optionsButtons,false);
+//                    decideBtnsVisibility(zoneButtons,true);
+//                    postTabBtn.setVisibility(View.VISIBLE);
+//                    decideBtnEnabled(zoneButtons, true);
+//                }
+//                else {
+//                    Toast.makeText(getContext(), "There cannot be more balls scored than attempted", Toast.LENGTH_SHORT).show();
+//                }
+
+
+                int missedBalls = Integer.parseInt(shootMissTxtView.getText().toString());
+                int scoredBalls = Integer.parseInt(shootSuccessTxtView.getText().toString());
+
+                actionsList.add(generateShootAction("shoot", selectedZone,missedBalls,scoredBalls));
+                shootMissTxtView.setText(0+"");
+                shootSuccessTxtView.setText(0+"");
+                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
                     decideBtnsVisibility(optionsButtons,false);
                     decideBtnsVisibility(zoneButtons,true);
                     postTabBtn.setVisibility(View.VISIBLE);
                     decideBtnEnabled(zoneButtons, true);
-                }
-                else {
-                    Toast.makeText(getContext(), "There cannot be more balls scored than attempted", Toast.LENGTH_SHORT).show();
-                }
-
+                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
 
             }
         });
@@ -371,6 +408,44 @@ int temp1, temp2;
 
 
 
+        for (int i = 0; i < shootOperatorBtns.size(); i ++){
+            final int copyOfI = i;
+            shootOperatorBtns.get(i).setOnClickListener(new View.OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+
+                    int val = -1;
+                    char textViewText = '0';
+                    vibrator.vibrate(200);
+                    if (copyOfI == 0 && Integer.parseInt(shootMissTxtView.getText().toString()) >0){
+                        val = Integer.parseInt(shootMissTxtView.getText().toString());
+                        textViewText = ((val-1)+"").charAt(0);
+                        shootMissTxtView.setText(textViewText+"");
+
+                    }
+                    else if (copyOfI == 1){
+                        val = Integer.parseInt(shootMissTxtView.getText().toString());
+                        textViewText = ((val+1)+"").charAt(0);
+                        shootMissTxtView.setText(textViewText+"");
+                    }
+                    else if(copyOfI == 2 && Integer.parseInt(shootSuccessTxtView.getText().toString()) >0){
+                        val = Integer.parseInt(shootSuccessTxtView.getText().toString());
+                        textViewText = ((val-1)+"").charAt(0);
+                        shootSuccessTxtView.setText(textViewText+"");
+                    }
+                    else{
+                        val = Integer.parseInt(shootSuccessTxtView.getText().toString());
+                        textViewText = ((val+1)+"").charAt(0);
+                        shootSuccessTxtView.setText(textViewText+"");
+                    }
+                }
+            });
+        }
+
+
+
 
         shootSuccessSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -389,7 +464,7 @@ int temp1, temp2;
                 else
                     ballsRecord = 5;
                 try {
-                    shootSuccessTxtView.setText(ballsRecord+"");
+                    shootSuccessBarTxtView.setText(ballsRecord+"");
                 }
                 catch (Exception e){
 
@@ -422,7 +497,7 @@ int temp1, temp2;
 
 
     public String getActionDebugText(Actions actions){
-        return actions.getAction().toString() + " time: " + actions.getTime() +"\n zone:" + actions.getLocation();
+        return actions.getAction().toString() + " time: " + actions.getTime() +"\n zone: " + actions.getLocation() + "\n missed: " + actions.getMisses() + "\n scored: " + actions.getScored();
     }
     public int shootAttemptValueConverter(int progress){
         int ballsRecord = -1;
@@ -531,16 +606,19 @@ int temp1, temp2;
         return matchAction;
     }
 
-    public  Actions generateShootAction(String action, int zone, int attempts, int success){
+    public  Actions generateShootAction(String action, int zone, int misses, int success){
         Actions matchAction = new Actions();
         String actionString;
         Log.d("ACTION", "taking action as SHOOT");
         if(action == "shoot"){
             actionString = action;
 
-            matchAction.setAction(actionString+ "_" + attempts + "_" + success);
+            matchAction.setAction(actionString);
             matchAction.setTime(MatchTimerManager.getCounter());
             matchAction.setLocation(zone+"");
+            matchAction.setMisses(misses);
+            matchAction.setScored(success);
+
             if(MatchTimerManager.getCounter() >15){
                 matchAction.setAuto(true);
             }
@@ -574,6 +652,7 @@ int temp1, temp2;
             tempButtonId = view.getResources().getIdentifier(optionStr,"id",activity.getPackageName());
             optionsButtons.add(new ButtonWrapper(optionStr,tempButtonId,view));
         }
+
 
 
     }

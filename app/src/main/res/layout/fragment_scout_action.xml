@@ -419,8 +419,8 @@
         android:id="@+id/shoot_submit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="328dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginEnd="680dp"
+        android:layout_marginBottom="484dp"
         android:text="submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -429,8 +429,8 @@
         android:id="@+id/shoot_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="228dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginEnd="556dp"
+        android:layout_marginBottom="476dp"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -448,9 +448,71 @@
 
     <Button
         android:id="@+id/start_btn"
-        android:layout_width="1048dp"
-        android:layout_height="802dp"
+        android:layout_width="252dp"
+        android:layout_height="206dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="552dp"
         android:text="start match"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/shootSuccessAdd_btn"
+        android:layout_width="52dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="588dp"
+        android:layout_marginBottom="552dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/shootSuccessSubtract_btn"
+        android:layout_width="50dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="700dp"
+        android:layout_marginBottom="552dp"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/shootMissSubtract_btn"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="700dp"
+        android:layout_marginBottom="620dp"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/shootMissAdd_btn"
+        android:layout_width="52dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="592dp"
+        android:layout_marginBottom="624dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/shootMissScore_txtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="676dp"
+        android:layout_marginBottom="636dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/shootSuccessScore_txtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="664dp"
+        android:layout_marginBottom="572dp"
+        android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

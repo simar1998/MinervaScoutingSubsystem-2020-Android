@@ -15,7 +15,7 @@ public class Actions {
 
     String action;
 
-    int attempts;
+    int misses;
 
     int scored;
 
@@ -66,12 +66,12 @@ public class Actions {
     }
 
 
-    public int getAttempts() {
-        return attempts;
+    public int getMisses() {
+        return misses;
     }
 
-    public void setAttempts(int attempts) {
-        this.attempts = attempts;
+    public void setMisses(int misses) {
+        this.misses = misses;
     }
 
     public int getScored() {
