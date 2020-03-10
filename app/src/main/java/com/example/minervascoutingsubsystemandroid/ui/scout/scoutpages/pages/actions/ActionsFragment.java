@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.minervascoutingsubsystemandroid.R;
+import com.example.minervascoutingsubsystemandroid.communications.command.VibrateCommand;
 import com.example.minervascoutingsubsystemandroid.structure.models.Actions;
 import com.example.minervascoutingsubsystemandroid.structure.models.MatchTimerManager;
 import com.example.minervascoutingsubsystemandroid.ui.FragmentManager;
@@ -58,18 +59,14 @@ ActionsViewModel actionsViewModel;
     Button startBtn;
 
 
-    SeekBar shootAttemptSeekbar;
-    TextView shootAttemptTxtView;
-    TextView shootStaticAttemptTxtView;
-
-    SeekBar shootSuccessSeekbar;
-    TextView shootSuccessBarTxtView;
-    TextView shootStaticSuccessTxtView;
     Button feedBtn;
 
     Button shootSubmitBtn;
     Button shootCancelBtn;
 
+
+    TextView shootMissStaticTxtView;
+    TextView shootSuccessStaticTxtView;
     Button shootMissSubtractBtn;
     Button shootMissAddBtn;
     Button shootSuccessSubtractBtn;
@@ -80,6 +77,8 @@ ActionsViewModel actionsViewModel;
 
 
     Vibrator vibrator;
+
+    VibrateCommand vibrateCommand;
     TextView teamNumInfoTextView;
 
     int selectedZone;
@@ -121,15 +120,6 @@ int temp1, temp2;
         startBtn = (Button) view.findViewById(R.id.start_btn);
 
 
-
-        shootAttemptSeekbar = (SeekBar) view.findViewById(R.id.shoot_attempt_seekBar);
-        shootAttemptTxtView = (TextView) view.findViewById(R.id.shoot_attempt_txtView);
-        shootStaticAttemptTxtView = (TextView) view.findViewById(R.id.shoot_static_attempt_txtView);
-
-        shootSuccessSeekbar = (SeekBar) view.findViewById(R.id.shoot_success_seekBar);
-        shootSuccessBarTxtView = (TextView) view.findViewById(R.id.shoot_success_txtView);
-        shootStaticSuccessTxtView = (TextView) view.findViewById(R.id.shoot_static_success_txtView);
-
         shootSubmitBtn = ( Button) view.findViewById(R.id.shoot_submit_btn);
         shootCancelBtn = (Button) view.findViewById(R.id.shoot_cancel_btn);
 
@@ -142,6 +132,9 @@ int temp1, temp2;
 
         shootMissTxtView = (TextView) view.findViewById(R.id.shootMissScore_txtView);
         shootSuccessTxtView = (TextView) view.findViewById(R.id.shootSuccessScore_txtView);
+
+        shootMissStaticTxtView = (TextView) view.findViewById(R.id.shootMissStatic_txtView);
+        shootSuccessStaticTxtView = (TextView) view.findViewById(R.id.shootSuccessStatic_txtView);
         //optionBtnLayout = (ConstraintLayout) view.findViewById(R.id.action_options_tableLayout);
         final int yellowImgLoc[] = new int[2];
 
@@ -155,9 +148,8 @@ int temp1, temp2;
 
         ArrayList<ImageView> zoneImageViews = new ArrayList<>(Arrays.asList(yellowImg,zone2Img));
 
-        final ArrayList<SeekBar> shootOptionSeekBars = new ArrayList<>(Arrays.asList(shootAttemptSeekbar,shootSuccessSeekbar));
-        final  ArrayList<TextView> shootOptionTextViews = new ArrayList<>(Arrays.asList(shootAttemptTxtView,shootStaticAttemptTxtView, shootSuccessBarTxtView,shootStaticSuccessTxtView));
-        final  ArrayList<Button> shootOptionBtns = new ArrayList<>(Arrays.asList(shootSubmitBtn,shootCancelBtn));
+        final  ArrayList<TextView> shootOptionTextViews = new ArrayList<>(Arrays.asList(shootMissStaticTxtView,shootSuccessStaticTxtView,shootMissTxtView,shootSuccessTxtView));
+        final  ArrayList<Button> shootOptionBtns = new ArrayList<>(Arrays.asList(shootMissSubtractBtn,shootMissAddBtn,shootSuccessSubtractBtn,shootSuccessAddBtn,shootSubmitBtn,shootCancelBtn));
         final  ArrayList<Button> shootOperatorBtns = new ArrayList<>(Arrays.asList(shootMissSubtractBtn,shootMissAddBtn,shootSuccessSubtractBtn,shootSuccessAddBtn));
 
         //selectedZone = -1;
@@ -166,7 +158,7 @@ int temp1, temp2;
         actionTabBtn.setVisibility(View.INVISIBLE);
 
 
-
+        vibrateCommand = new VibrateCommand();
 
         //feedBtn.setVisibility(View.GONE);
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -189,7 +181,7 @@ int temp1, temp2;
             teamNumInfoTextView.setBackgroundColor(Color.RED);
 
         decideBtnsVisibility(optionsButtons,false);
-        decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+        decideShootOptionsVisibility(shootOptionTextViews,shootOptionBtns,false);
 
 
         /**
@@ -266,7 +258,7 @@ int temp1, temp2;
             @Override
             public void onClick(View view) {
 
-                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,true);
+                decideShootOptionsVisibility(shootOptionTextViews,shootOptionBtns,true);
                 //debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
             decideBtnsVisibility(optionsButtons,false);
                 postTabBtn.setVisibility(View.VISIBLE);
@@ -346,7 +338,7 @@ int temp1, temp2;
                 actionsList.add(generateShootAction("shoot", selectedZone,missedBalls,scoredBalls));
                 shootMissTxtView.setText(0+"");
                 shootSuccessTxtView.setText(0+"");
-                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+                decideShootOptionsVisibility(shootOptionTextViews,shootOptionBtns,false);
                     decideBtnsVisibility(optionsButtons,false);
                     decideBtnsVisibility(zoneButtons,true);
                     postTabBtn.setVisibility(View.VISIBLE);
@@ -359,52 +351,13 @@ int temp1, temp2;
         shootCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shootAttemptSeekbar.setProgress(0);
-                shootSuccessSeekbar.setProgress(0);
-                decideShootOptionsVisibility(shootOptionSeekBars,shootOptionTextViews,shootOptionBtns,false);
+                decideShootOptionsVisibility(shootOptionTextViews,shootOptionBtns,false);
                 decideBtnsVisibility(optionsButtons, true);
                 postTabBtn.setVisibility(View.VISIBLE);
                 decideBtnEnabled(zoneButtons, true);
             }
         });
 
-
-        shootAttemptSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-
-               int ballsRecord = -1;
-                if (progress <20)
-                    ballsRecord = 1;
-                else if (progress <40)
-                    ballsRecord = 2;
-                else if (progress <60)
-                    ballsRecord=3;
-                else if (progress<80)
-                    ballsRecord=4;
-                else
-                    ballsRecord=5;
-
-
-               try {
-                   shootAttemptTxtView.setText(ballsRecord +"");
-               }
-               catch (Exception e){
-
-               }
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
 
 
@@ -418,7 +371,7 @@ int temp1, temp2;
 
                     int val = -1;
                     char textViewText = '0';
-                    vibrator.vibrate(200);
+                    vibrateCommand.executeCommand();
                     if (copyOfI == 0 && Integer.parseInt(shootMissTxtView.getText().toString()) >0){
                         val = Integer.parseInt(shootMissTxtView.getText().toString());
                         textViewText = ((val-1)+"").charAt(0);
@@ -435,7 +388,7 @@ int temp1, temp2;
                         textViewText = ((val-1)+"").charAt(0);
                         shootSuccessTxtView.setText(textViewText+"");
                     }
-                    else{
+                    else if (copyOfI == 3){
                         val = Integer.parseInt(shootSuccessTxtView.getText().toString());
                         textViewText = ((val+1)+"").charAt(0);
                         shootSuccessTxtView.setText(textViewText+"");
@@ -445,44 +398,6 @@ int temp1, temp2;
         }
 
 
-
-
-        shootSuccessSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                int ballsRecord = -1;
-                if (progress/16.7 <1)
-                    ballsRecord = 0;
-                else if (progress/16.7 <2)
-                    ballsRecord = 1;
-                else if (progress/16.7 <3)
-                    ballsRecord=2;
-                else if (progress/16.7<4)
-                    ballsRecord=3;
-                else if (progress/16.7 < 5)
-                    ballsRecord=4;
-                else
-                    ballsRecord = 5;
-                try {
-                    shootSuccessBarTxtView.setText(ballsRecord+"");
-                }
-                catch (Exception e){
-
-                }
-
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
         postTabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -552,8 +467,7 @@ int temp1, temp2;
         }
     }
 
-    public void decideShootOptionsVisibility(ArrayList<SeekBar> seekBars, ArrayList<TextView> txtViews, ArrayList<Button> btns, boolean makeVisible){
-        decideSeekBarVisibility(seekBars,makeVisible);
+    public void decideShootOptionsVisibility(ArrayList<TextView> txtViews, ArrayList<Button> btns, boolean makeVisible){
         decideTextViewVisibility(txtViews,makeVisible);
 
         for (int i = 0; i < btns.size();i++){
@@ -619,7 +533,7 @@ int temp1, temp2;
             matchAction.setMisses(misses);
             matchAction.setScored(success);
 
-            if(MatchTimerManager.getCounter() >15){
+            if(MatchTimerManager.getCounter() <=20){
                 matchAction.setAuto(true);
             }
             else {
