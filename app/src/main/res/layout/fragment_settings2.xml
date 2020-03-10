@@ -12,21 +12,23 @@
         android:text="Save Settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
 
     <EditText
         android:id="@+id/scoutTeamNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="372dp"
         android:contentDescription="ScoutTeam"
         android:ems="10"
         android:hint="ScoutTeam"
         android:inputType="none|number"
         app:layout_constraintBottom_toTopOf="@+id/saveSettingsBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -40,10 +42,10 @@
         android:inputType="none|text"
         app:layout_constraintBottom_toTopOf="@+id/saveSettingsBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintVertical_bias="0.284" />
 
     <EditText
         android:id="@+id/eventNameEditText"
@@ -55,9 +57,121 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/saveSettingsBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259" />
+        app:layout_constraintVertical_bias="0.124" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="134dp"
+        android:layout_height="199dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="280dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/red1Default_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RED 1" />
+
+        <RadioButton
+            android:id="@+id/red2Default_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RED 2" />
+
+        <RadioButton
+            android:id="@+id/red3Default_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RED 3" />
+
+        <RadioButton
+            android:id="@+id/blue1Default_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BLUE 1" />
+
+        <RadioButton
+            android:id="@+id/blue2Default_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BLUE 2" />
+
+        <RadioButton
+            android:id="@+id/blue3Default_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BLUE 3" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/defaultAlliancePos_txtView"
+        android:layout_width="153dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="484dp"
+        android:text="Select Defalut Alliance colour and position for this tablet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/fieldOrientation_txtView"
+        android:layout_width="154dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="760dp"
+        android:layout_marginBottom="400dp"
+        android:text="Which alliance station is on the right of the field?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioGroup
+        android:layout_width="153dp"
+        android:layout_height="67dp"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="368dp">
+
+        <RadioButton
+            android:id="@+id/fieldOrientationRed_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Red" />
+
+        <RadioButton
+            android:id="@+id/fieldOrientationBlue_radioBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blue" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="146dp"
+        android:layout_height="64dp"
+        tools:layout_editor_absoluteX="398dp"
+        tools:layout_editor_absoluteY="381dp" >
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/leftOrRightSided_txtView"
+        android:layout_width="146dp"
+        android:layout_height="50dp"
+        android:text="Dominant hand/ side you prefer all teleop buttons"
+        tools:layout_editor_absoluteX="398dp"
+        tools:layout_editor_absoluteY="328dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

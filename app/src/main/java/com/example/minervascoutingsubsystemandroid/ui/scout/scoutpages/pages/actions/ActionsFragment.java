@@ -335,15 +335,23 @@ int temp1, temp2;
                 int missedBalls = Integer.parseInt(shootMissTxtView.getText().toString());
                 int scoredBalls = Integer.parseInt(shootSuccessTxtView.getText().toString());
 
-                actionsList.add(generateShootAction("shoot", selectedZone,missedBalls,scoredBalls));
-                shootMissTxtView.setText(0+"");
-                shootSuccessTxtView.setText(0+"");
-                decideShootOptionsVisibility(shootOptionTextViews,shootOptionBtns,false);
+                if(missedBalls + scoredBalls <= 5){
+                    if(missedBalls + scoredBalls != 0){
+                        actionsList.add(generateShootAction("shoot", selectedZone,missedBalls,scoredBalls));
+                    }
+                    shootMissTxtView.setText(0+"");
+                    shootSuccessTxtView.setText(0+"");
+                    decideShootOptionsVisibility(shootOptionTextViews,shootOptionBtns,false);
                     decideBtnsVisibility(optionsButtons,false);
                     decideBtnsVisibility(zoneButtons,true);
                     postTabBtn.setVisibility(View.VISIBLE);
                     decideBtnEnabled(zoneButtons, true);
-                debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                    debugTxtView.setText(getActionDebugText(actionsList.get(actionsList.size()-1)));
+                }
+
+                else {
+                    Toast.makeText(getContext(), "The misses and scored combined cannot be more than 5", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -509,7 +517,7 @@ int temp1, temp2;
             matchAction.setAction(actionString);
             matchAction.setTime(MatchTimerManager.getCounter());
             matchAction.setLocation(zone+"");
-            if(MatchTimerManager.getCounter() >15){
+            if(MatchTimerManager.getCounter() <=20){
                 matchAction.setAuto(true);
             }
             else {

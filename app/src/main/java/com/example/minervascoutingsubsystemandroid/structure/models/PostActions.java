@@ -33,6 +33,9 @@ public class PostActions {
 
     boolean hasClimbFailed;
 
+    boolean defendedInMatch;
+
+
     public Boolean getWasBotDefended() {
         return wasBotDefended;
     }

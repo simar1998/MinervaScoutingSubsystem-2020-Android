@@ -54,6 +54,42 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/blueScoringDisctription_txtView"
+        android:layout_width="63dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="132dp"
+        android:text="Blue Scoring zone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/redHPDisctription_txtView"
+        android:layout_width="52dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="332dp"
+        android:text="Red HP zone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/blueHPDisctription_txtView"
+        android:layout_width="51dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="904dp"
+        android:layout_marginBottom="140dp"
+        android:text="Blue HP zone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/RedScoringDisctription_txtView"
+        android:layout_width="50dp"
+        android:layout_height="71dp"
+        android:text="Red scoring zone"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="377dp" />
+
     <Button
         android:id="@+id/zone21_btn"
         android:layout_width="200dp"
@@ -262,7 +298,7 @@
         android:layout_width="54dp"
         android:layout_height="85dp"
         android:layout_marginStart="64dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="120dp"
         android:background="@drawable/zone_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -373,7 +409,8 @@
         android:id="@+id/teamNumInfor_actions_txtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="484dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="544dp"
         android:text="Currently scouting:"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -480,6 +517,8 @@
         android:id="@+id/shootSuccessStatic_txtView"
         android:layout_width="62dp"
         android:layout_height="61dp"
+        android:layout_marginEnd="416dp"
+        android:layout_marginBottom="220dp"
         android:text="Shots made:"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -488,8 +527,10 @@
 
     <Button
         android:id="@+id/start_btn"
-        android:layout_width="1048dp"
-        android:layout_height="801dp"
+        android:layout_width="193dp"
+        android:layout_height="174dp"
+        android:layout_marginEnd="572dp"
+        android:layout_marginBottom="560dp"
         android:text="start match"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
